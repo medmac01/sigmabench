@@ -1,0 +1,43 @@
+[{
+  "title": "Bypass UAC Using Event Viewer",
+  "id": "674202d0-b22a-4af4-ae5f-2eda1f3da1af",
+  "description": "Bypasses User Account Control using Event Viewer and a relevant Windows Registry modification",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=13 AND (TargetObject LIKE '%\\_Classes\\\\mscfile\\\\shell\\\\open\\\\command\\\\(Default)' ESCAPE '\\' AND (NOT Details LIKE '\\%SystemRoot\\%\\\\system32\\\\mmc.exe \"\\%1\" \\%%' ESCAPE '\\')))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.privilege-escalation",
+    "attack.persistence",
+    "attack.t1547.010"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 2,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "IEWIN7",
+      "Details": "c:\\Windows\\System32\\cmd.exe",
+      "EventID": 13,
+      "EventRecordID": 15676,
+      "EventType": "SetValue",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "c:\\python27\\python.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "sysmon_13_1_compmgmtlauncherUACBypass.evtx",
+      "ProcessGuid": "365ABB72-7D80-5CD5-0000-00100AD01300",
+      "ProcessID": 1980,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2019-05-10T13:32:48.412971Z",
+      "TargetObject": "HKU\\S-1-5-21-3583694148-1414552638-2922671848-1000_CLASSES\\mscfile\\shell\\open\\command\\(Default)",
+      "Task": 13,
+      "ThreadID": 1948,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-10 13:32:48.397",
+      "Version": 2
+    }
+  ]
+}]

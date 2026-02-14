@@ -1,0 +1,44 @@
+[{
+  "title": "New PortProxy Registry Entry Added",
+  "id": "a54f842a-3713-4b45-8c84-5f136fdebd3c",
+  "description": "Detects the modification of the PortProxy registry key which is used for port forwarding.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND ((EventID=12 OR EventID=13 OR EventID=14) AND TargetObject LIKE '%\\\\Services\\\\PortProxy\\\\v4tov4\\\\tcp\\\\%' ESCAPE '\\')"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.lateral-movement",
+    "attack.defense-evasion",
+    "attack.command-and-control",
+    "attack.t1090"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 3,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "IEWIN7",
+      "Details": "1.2.3.5/3389",
+      "EventID": 13,
+      "EventRecordID": 1027,
+      "EventType": "SetValue",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Windows\\system32\\netsh.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "de_portforward_netsh_rdp_sysmon_13_1.evtx",
+      "ProcessGuid": "365ABB72-DC5C-5CE6-0000-001066E27200",
+      "ProcessID": 2032,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2019-05-23T17:46:05.022129Z",
+      "TargetObject": "HKLM\\System\\CurrentControlSet\\services\\PortProxy\\v4tov4\\tcp\\1.2.3.4/8001",
+      "Task": 13,
+      "ThreadID": 2092,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-23 17:46:05.022",
+      "Version": 2
+    }
+  ]
+}]

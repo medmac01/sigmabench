@@ -1,0 +1,101 @@
+[{
+  "title": "EVTX Created In Uncommon Location",
+  "id": "65236ec7-ace0-4f0c-82fd-737b04fd4dcb",
+  "description": "Detects the creation of new files with the \".evtx\" extension in non-common or non-standard location.\nThis could indicate tampering with default EVTX locations in order to evade security controls or simply exfiltration of event log to search for sensitive information within.\nNote that backup software and legitimate administrator might perform similar actions during troubleshooting.\n",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=11 AND (TargetFilename LIKE '%.evtx' ESCAPE '\\' AND (NOT (TargetFilename LIKE 'C:\\\\Windows\\\\System32\\\\winevt\\\\Logs\\\\%' ESCAPE '\\' OR (TargetFilename LIKE 'C:\\\\ProgramData\\\\Microsoft\\\\Windows\\\\Containers\\\\BaseImages\\\\%' ESCAPE '\\' AND TargetFilename LIKE '%\\\\Windows\\\\System32\\\\winevt\\\\Logs\\\\' ESCAPE '\\')))))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.t1562.002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 29,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "LAPTOP-JU4M3I0E",
+      "CreationUtcTime": "2021-01-26 13:21:33.196",
+      "EventID": 11,
+      "EventRecordID": 2429156,
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\windows\\system32\\mmc.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "execution_evasion_visual_studio_prebuild_event.evtx",
+      "ProcessGuid": "00247C92-EC0A-600F-0000-00100AEFCC2C",
+      "ProcessID": 5272,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2021-01-26T13:21:33.197967Z",
+      "TargetFileName": "C:\\Users\\bouss\\Downloads\\prebuildevent_visual_studio.evtx",
+      "Task": 11,
+      "ThreadID": 6060,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2021-01-26 13:21:33.197",
+      "Version": 2
+    }
+  ]
+},
+{
+  "title": "Non Interactive PowerShell Process Spawned",
+  "id": "f4bbd493-b796-416e-bbf2-121235348529",
+  "description": "Detects non-interactive PowerShell activity by looking at the \"powershell\" process with a non-user GUI process such as \"explorer.exe\" as a parent.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND (((Image LIKE '%\\\\powershell.exe' ESCAPE '\\' OR Image LIKE '%\\\\pwsh.exe' ESCAPE '\\') OR (OriginalFileName='PowerShell.EXE' OR OriginalFileName='pwsh.dll')) AND (NOT ((ParentImage LIKE '%:\\\\Windows\\\\explorer.exe' ESCAPE '\\' OR ParentImage LIKE '%:\\\\Windows\\\\System32\\\\CompatTelRunner.exe' ESCAPE '\\' OR ParentImage LIKE '%:\\\\Windows\\\\SysWOW64\\\\explorer.exe' ESCAPE '\\') OR ParentImage LIKE ':\\\\$WINDOWS.~BT\\\\Sources\\\\SetupHost.exe' ESCAPE '\\')) AND (NOT ((ParentImage LIKE '%\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code\\\\Code.exe' ESCAPE '\\' AND ParentCommandLine LIKE '% --ms-enable-electron-run-as-node %' ESCAPE '\\') OR (ParentImage LIKE '%:\\\\Program Files\\\\WindowsApps\\\\Microsoft.WindowsTerminal\\_%' ESCAPE '\\' AND ParentImage LIKE '%\\\\WindowsTerminal.exe' ESCAPE '\\')))))"
+  ],
+  "rule_level": "low",
+  "tags": [
+    "attack.execution",
+    "attack.t1059.001"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 11,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "powershell.exe   start-process notepad.exe",
+      "Company": "Microsoft Corporation",
+      "Computer": "LAPTOP-JU4M3I0E",
+      "CurrentDirectory": "C:\\Users\\bouss\\source\\repos\\blabla\\blabla\\",
+      "Description": "Windows PowerShell",
+      "EventID": 1,
+      "EventRecordID": 2429138,
+      "FileVersion": "10.0.18362.1 (WinBuild.160101.0800)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=2223E8613BB0DD90888B17367007489FE16693E4,MD5=BCC5A6493E0641AA1E60CBF69469E579,SHA256=7762A4766BC394B4CB2D658144B207183FF23B3139181CD74E615DB63E6E57D6,IMPHASH=C6A0924236A2CDF364F3D2FAD87F702A",
+      "IMPHASH": "C6A0924236A2CDF364F3D2FAD87F702A",
+      "Image": "C:\\Windows\\SysWOW64\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "IntegrityLevel": "Medium",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "00247C92-5082-600D-0000-0020A246F726",
+      "LogonId": "0x26f746a2",
+      "MD5": "BCC5A6493E0641AA1E60CBF69469E579",
+      "Opcode": 0,
+      "OriginalFileName": "PowerShell.EXE",
+      "OriginalLogfile": "execution_evasion_visual_studio_prebuild_event.evtx",
+      "ParentCommandLine": "\"C:\\windows\\system32\\cmd.exe\"  /Q /D /C C:\\Users\\bouss\\AppData\\Local\\Temp\\tmpf890f11830e143ada2d718f706dd94c0.exec.cmd",
+      "ParentImage": "C:\\Windows\\SysWOW64\\cmd.exe",
+      "ParentProcessGuid": "00247C92-1749-6010-0000-0010EFAAD92E",
+      "ParentProcessId": 23168,
+      "ProcessGuid": "00247C92-174A-6010-0000-0010C0B2D92E",
+      "ProcessID": 5272,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "2223E8613BB0DD90888B17367007489FE16693E4",
+      "SHA256": "7762A4766BC394B4CB2D658144B207183FF23B3139181CD74E615DB63E6E57D6",
+      "SystemTime": "2021-01-26T13:21:14.023510Z",
+      "Task": 1,
+      "TerminalSessionId": 5,
+      "ThreadID": 6060,
+      "User": "LAPTOP-JU4M3I0E\\bouss",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2021-01-26 13:21:14.021",
+      "Version": 5
+    }
+  ]
+}]

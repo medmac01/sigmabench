@@ -1,0 +1,60 @@
+[{
+  "title": "Windows Spooler Service Suspicious Binary Load",
+  "id": "02fb90de-c321-4e63-a6b9-25f4b03dfd14",
+  "description": "Detect DLL Load from Spooler Service backup folder. This behavior has been observed during the exploitation of the Print Spooler Vulnerability CVE-2021-1675 and CVE-2021-34527 (PrinterNightmare).\n",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=7 AND (Image LIKE '%\\\\spoolsv.exe' ESCAPE '\\' AND (ImageLoaded LIKE '%\\\\Windows\\\\System32\\\\spool\\\\drivers\\\\x64\\\\3\\\\%' ESCAPE '\\' OR ImageLoaded LIKE '%\\\\Windows\\\\System32\\\\spool\\\\drivers\\\\x64\\\\4\\\\%' ESCAPE '\\') AND ImageLoaded LIKE '%.dll' ESCAPE '\\'))"
+  ],
+  "rule_level": "informational",
+  "tags": [
+    "attack.persistence",
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1574",
+    "cve.2021-1675",
+    "cve.2021-34527",
+    "detection.emerging-threats"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 4,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Company": "-",
+      "Computer": "DESKTOP-TTEQ6PR",
+      "Description": "ClassLibrary2",
+      "EventID": 7,
+      "EventRecordID": 1986647,
+      "FileVersion": "1.0.0.0",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=9A6C506F3604E02F20154E2A7F29F577E2F973AA,MD5=36188F389FE0A1F12B4015AD3A090F55,SHA256=76AB7A463CAE7F04F7E17E7525FC3C0C085D35FA8C41BF6B1EAF599368E87F0F,IMPHASH=DAE02F32A21E03CE65412F6E56942DAA",
+      "IMPHASH": "DAE02F32A21E03CE65412F6E56942DAA",
+      "Image": "C:\\Windows\\System32\\spoolsv.exe",
+      "ImageLoaded": "C:\\Windows\\System32\\spool\\drivers\\x64\\4\\Test.dll",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "MD5": "36188F389FE0A1F12B4015AD3A090F55",
+      "Opcode": 0,
+      "OriginalFileName": "ClassLibrary2.dll",
+      "OriginalLogfile": "privesc_spoolfool_mahdihtm_sysmon_1_11_7_13.evtx",
+      "ProcessGuid": "08DA6306-C703-6210-2700-000000001000",
+      "ProcessID": 2320,
+      "Product": "ClassLibrary2",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "RuleName": "-",
+      "SHA1": "9A6C506F3604E02F20154E2A7F29F577E2F973AA",
+      "SHA256": "76AB7A463CAE7F04F7E17E7525FC3C0C085D35FA8C41BF6B1EAF599368E87F0F",
+      "Signature": "-",
+      "SignatureStatus": "Unavailable",
+      "Signed": "false",
+      "SystemTime": "2022-02-19T17:35:16.328564Z",
+      "Task": 7,
+      "ThreadID": 3124,
+      "User": "NT AUTHORITY\\SYSTEM",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2022-02-19 17:35:16.311",
+      "Version": 3
+    }
+  ]
+}]

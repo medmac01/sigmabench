@@ -1,0 +1,40 @@
+[{
+  "title": "Security Eventlog Cleared",
+  "id": "d99b79d2-0a6f-4f46-ad8b-260b6e17f982",
+  "description": "One of the Windows Eventlogs has been cleared. e.g. caused by \"wevtutil cl\" command execution",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Security' AND ((EventID=517 AND Provider_Name='Security') OR (EventID=1102 AND Provider_Name='Microsoft-Windows-Eventlog'))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.t1070.001",
+    "car.2016-04-002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Security",
+      "Computer": "MSEDGEWIN10",
+      "EventID": 1102,
+      "EventRecordID": 161471,
+      "Guid": "{fc65ddd8-d6ef-4962-83d5-6e5cfe9ce148}",
+      "Keywords": "0x4020000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "Runas_4624_4648_Webshell_CreateProcessAsUserA.evtx",
+      "ProcessID": 1276,
+      "Provider_Name": "Microsoft-Windows-Eventlog",
+      "SubjectDomainName": "MSEDGEWIN10",
+      "SubjectLogonId": "0x52a7d",
+      "SubjectUserName": "IEUser",
+      "SubjectUserSid": "S-1-5-21-3461203602-4096304019-2269080069-1000",
+      "SystemTime": "2020-09-15T18:04:36.333991Z",
+      "Task": 104,
+      "ThreadID": 6720,
+      "Version": 0
+    }
+  ]
+}]

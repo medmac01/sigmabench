@@ -1,0 +1,41 @@
+[{
+  "title": "Malicious Named Pipe Created",
+  "id": "fe3ac066-98bb-432a-b1e7-a5229cb39d4a",
+  "description": "Detects the creation of a named pipe seen used by known APTs or malware.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND ((EventID=17 OR EventID=18) AND (PipeName LIKE '\\\\46a676ab7f179e511e30dd2dc41bd388' ESCAPE '\\' OR PipeName LIKE '\\\\583da945-62af-10e8-4902-a8f205c72b2e' ESCAPE '\\' OR PipeName LIKE '\\\\6e7645c4-32c5-4fe3-aabf-e94c2f4370e7' ESCAPE '\\' OR PipeName LIKE '\\\\9f81f59bc58452127884ce513865ed20' ESCAPE '\\' OR PipeName LIKE '\\\\adschemerpc' ESCAPE '\\' OR PipeName LIKE '\\\\ahexec' ESCAPE '\\' OR PipeName LIKE '\\\\AnonymousPipe' ESCAPE '\\' OR PipeName LIKE '\\\\bc31a7' ESCAPE '\\' OR PipeName LIKE '\\\\bc367' ESCAPE '\\' OR PipeName LIKE '\\\\bizkaz' ESCAPE '\\' OR PipeName LIKE '\\\\csexecsvc' ESCAPE '\\' OR PipeName LIKE '\\\\dce\\_3d' ESCAPE '\\' OR PipeName LIKE '\\\\e710f28d59aa529d6792ca6ff0ca1b34' ESCAPE '\\' OR PipeName LIKE '\\\\gruntsvc' ESCAPE '\\' OR PipeName LIKE '\\\\isapi\\_dg' ESCAPE '\\' OR PipeName LIKE '\\\\isapi\\_dg2' ESCAPE '\\' OR PipeName LIKE '\\\\isapi\\_http' ESCAPE '\\' OR PipeName LIKE '\\\\jaccdpqnvbrrxlaf' ESCAPE '\\' OR PipeName LIKE '\\\\lsassw' ESCAPE '\\' OR PipeName LIKE '\\\\NamePipe\\_MoreWindows' ESCAPE '\\' OR PipeName LIKE '\\\\pcheap\\_reuse' ESCAPE '\\' OR PipeName LIKE '\\\\Posh%' ESCAPE '\\' OR PipeName LIKE '\\\\rpchlp\\_3' ESCAPE '\\' OR PipeName LIKE '\\\\sdlrpc' ESCAPE '\\' OR PipeName LIKE '\\\\svcctl' ESCAPE '\\' OR PipeName LIKE '\\\\testPipe' ESCAPE '\\' OR PipeName LIKE '\\\\winsession' ESCAPE '\\'))"
+  ],
+  "rule_level": "critical",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1055"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "IEWIN7",
+      "EventID": 18,
+      "EventRecordID": 8046,
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "System",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "lm_sysmon_18_remshell_over_namedpipe.evtx",
+      "PipeName": "\\46a676ab7f179e511e30dd2dc41bd388",
+      "ProcessGuid": "365ABB72-D9C4-5CC7-0000-0010EA030000",
+      "ProcessID": 1896,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2019-04-29T20:59:14.447313Z",
+      "Task": 18,
+      "ThreadID": 1820,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-04-29 20:59:14.430",
+      "Version": 1
+    }
+  ]
+}]

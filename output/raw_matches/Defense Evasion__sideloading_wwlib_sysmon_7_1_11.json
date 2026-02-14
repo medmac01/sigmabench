@@ -1,0 +1,54 @@
+[{
+  "title": "Potential WWlib.DLL Sideloading",
+  "id": "e2e01011-5910-4267-9c3b-4149ed5479cf",
+  "description": "Detects potential DLL sideloading of \"wwlib.dll\"",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=7 AND (ImageLoaded LIKE '%\\\\wwlib.dll' ESCAPE '\\' AND (NOT ((Image LIKE 'C:\\\\Program Files (x86)\\\\Microsoft Office\\\\%' ESCAPE '\\' OR Image LIKE 'C:\\\\Program Files\\\\Microsoft Office\\\\%' ESCAPE '\\') AND Image LIKE '%\\\\winword.exe' ESCAPE '\\' AND (ImageLoaded LIKE 'C:\\\\Program Files (x86)\\\\Microsoft Office\\\\%' ESCAPE '\\' OR ImageLoaded LIKE 'C:\\\\Program Files\\\\Microsoft Office\\\\%' ESCAPE '\\')))))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.persistence",
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1574.001"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 2,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Company": "?",
+      "Computer": "MSEDGEWIN10",
+      "Description": "?",
+      "EventID": 7,
+      "EventRecordID": 419623,
+      "FileVersion": "?",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=7442108B3E63CC7004AA107FFAE911590A1784CB,MD5=443CB0F0B428505DD186861B7D4CE1C4,SHA256=746265B89A195198B1783669D966DBD31F0FD3D49101AD2DA18453583F1914C3,IMPHASH=F39A7C2185726FEEAE792839EFD8B8E5",
+      "IMPHASH": "F39A7C2185726FEEAE792839EFD8B8E5",
+      "Image": "C:\\ProgramData\\Intel\\CV.exe",
+      "ImageLoaded": "C:\\ProgramData\\Intel\\wwlib.dll",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "MD5": "443CB0F0B428505DD186861B7D4CE1C4",
+      "Opcode": 0,
+      "OriginalFileName": "?",
+      "OriginalLogfile": "sideloading_wwlib_sysmon_7_1_11.evtx",
+      "ProcessGuid": "747F3D96-1B5B-5F8B-0000-001047A62100",
+      "ProcessID": 3344,
+      "Product": "?",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "7442108B3E63CC7004AA107FFAE911590A1784CB",
+      "SHA256": "746265B89A195198B1783669D966DBD31F0FD3D49101AD2DA18453583F1914C3",
+      "SignatureStatus": "Unavailable",
+      "Signed": "false",
+      "SystemTime": "2020-10-17T16:27:08.070948Z",
+      "Task": 7,
+      "ThreadID": 4376,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2020-10-17 16:27:08.058",
+      "Version": 3
+    }
+  ]
+}]

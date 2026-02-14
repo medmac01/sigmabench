@@ -1,0 +1,42 @@
+[{
+  "title": "Startup Folder File Write",
+  "id": "2aa0a6b4-a865-495b-ab51-c28249537b75",
+  "description": "A General detection for files being created in the Windows startup directory. This could be an indicator of persistence.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=11 AND (TargetFilename LIKE '%\\\\Microsoft\\\\Windows\\\\Start Menu\\\\Programs\\\\StartUp%' ESCAPE '\\' AND (NOT ((Image LIKE 'C:\\\\Windows\\\\System32\\\\wuauclt.exe' ESCAPE '\\' OR Image LIKE 'C:\\\\Windows\\\\uus\\\\ARM64\\\\wuaucltcore.exe' ESCAPE '\\') OR (TargetFilename LIKE 'C:\\\\$WINDOWS.~BT\\\\NewOS\\\\%' ESCAPE '\\' OR TargetFilename LIKE 'C:\\\\$WinREAgent\\\\Scratch\\\\Mount\\\\%' ESCAPE '\\'))) AND (NOT (Image LIKE '%\\\\ONENOTE.EXE' ESCAPE '\\' AND TargetFilename LIKE '%\\\\Send to OneNote.lnk' ESCAPE '\\'))))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.privilege-escalation",
+    "attack.persistence",
+    "attack.t1547.001"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "MSEDGEWIN10",
+      "CreationUtcTime": "2020-12-09 22:45:33.087",
+      "EventID": 11,
+      "EventRecordID": 549541,
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "System",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "lateral_movement_startup_3_11.evtx",
+      "ProcessGuid": "747F3D96-CDE2-5FD1-0000-0010EB030000",
+      "ProcessID": 3428,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2020-12-09T22:45:33.090853Z",
+      "TargetFileName": "C:\\Users\\IEUser\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\onedrive.exe",
+      "Task": 11,
+      "ThreadID": 4688,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2020-12-09 22:45:33.087",
+      "Version": 2
+    }
+  ]
+}]

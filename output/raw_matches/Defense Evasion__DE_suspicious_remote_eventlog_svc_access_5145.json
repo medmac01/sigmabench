@@ -1,0 +1,40 @@
+[{
+  "title": "Security Eventlog Cleared",
+  "id": "d99b79d2-0a6f-4f46-ad8b-260b6e17f982",
+  "description": "One of the Windows Eventlogs has been cleared. e.g. caused by \"wevtutil cl\" command execution",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Security' AND ((EventID=517 AND Provider_Name='Security') OR (EventID=1102 AND Provider_Name='Microsoft-Windows-Eventlog'))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.t1070.001",
+    "car.2016-04-002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Security",
+      "Computer": "01566s-win16-ir.threebeesco.com",
+      "EventID": 1102,
+      "EventRecordID": 772605,
+      "Guid": "{fc65ddd8-d6ef-4962-83d5-6e5cfe9ce148}",
+      "Keywords": "0x4020000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "DE_suspicious_remote_eventlog_svc_access_5145.evtx",
+      "ProcessID": 5424,
+      "Provider_Name": "Microsoft-Windows-Eventlog",
+      "SubjectDomainName": "3B",
+      "SubjectLogonId": "0x7b186",
+      "SubjectUserName": "Administrator",
+      "SubjectUserSid": "S-1-5-21-308926384-506822093-3341789130-500",
+      "SystemTime": "2020-09-23T16:49:41.578692Z",
+      "Task": 104,
+      "ThreadID": 5816,
+      "Version": 0
+    }
+  ]
+}]

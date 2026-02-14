@@ -1,0 +1,47 @@
+[{
+  "title": "Uncommon Process Access Rights For Target Image",
+  "id": "a24e5861-c6ca-4fde-a93c-ba9256feddf0",
+  "description": "Detects process access request to uncommon target images with a \"PROCESS_ALL_ACCESS\" access mask.\n",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=10 AND ((TargetImage LIKE '%\\\\calc.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\calculator.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\mspaint.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\notepad.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\ping.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\wordpad.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\write.exe' ESCAPE '\\') AND GrantedAccess='0x1FFFFF'))"
+  ],
+  "rule_level": "low",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1055.011"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 4,
+      "CallTrace": "C:\\Windows\\SYSTEM32\\ntdll.dll+a0fb4|C:\\Windows\\System32\\KERNELBASE.dll+48652|C:\\Windows\\System32\\KERNELBASE.dll+45f2a|C:\\Windows\\System32\\KERNELBASE.dll+45ab6|C:\\Windows\\System32\\KERNEL32.DLL+5f19b|UNKNOWN(0000000000B5003D)",
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "MSEDGEWIN10",
+      "EventID": 10,
+      "EventRecordID": 304596,
+      "GrantedAccess": "0x1fffff",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "evasion_codeinj_odzhan_spoolsv_sysmon_10_1.evtx",
+      "ProcessID": 3324,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SourceImage": "C:\\Windows\\System32\\spoolsv.exe",
+      "SourceProcessGUID": "747F3D96-1CDA-5EFE-0000-0010E0780100",
+      "SourceProcessId": 2704,
+      "SourceThreadId": 2764,
+      "SystemTime": "2020-07-02T17:51:37.872769Z",
+      "TargetImage": "C:\\Windows\\System32\\notepad.exe",
+      "TargetProcessGUID": "747F3D96-1EA9-5EFE-0000-00102BF53D00",
+      "TargetProcessId": 3344,
+      "Task": 10,
+      "ThreadID": 4016,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2020-07-02 17:51:37.867",
+      "Version": 3
+    }
+  ]
+}]

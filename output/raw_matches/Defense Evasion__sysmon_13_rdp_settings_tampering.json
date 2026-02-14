@@ -1,0 +1,172 @@
+[{
+  "title": "RDP Sensitive Settings Changed",
+  "id": "3f6b7b62-61aa-45db-96bd-9c31b36b653c",
+  "description": "Detects tampering of RDP Terminal Service/Server sensitive settings.\nSuch as allowing unauthorized users access to a system via the 'fAllowUnsolicited' or enabling RDP via 'fDenyTSConnections', etc.\n\nBelow is a list of registry keys/values that are monitored by this rule:\n\n- Shadow: Used to enable Remote Desktop shadowing, which allows an administrator to view or control a user's session.\n- DisableRemoteDesktopAntiAlias: Disables anti-aliasing for remote desktop sessions.\n- DisableSecuritySettings: Disables certain security settings for Remote Desktop connections.\n- fAllowUnsolicited: Allows unsolicited remote assistance offers.\n- fAllowUnsolicitedFullControl: Allows unsolicited remote assistance offers with full control.\n- InitialProgram: Specifies a program to run automatically when a user logs on to a remote computer.\n- ServiceDll: Used in RDP hijacking techniques to specify a custom DLL to be loaded by the Terminal Services service.\n- SecurityLayer: Specifies the security layer used for RDP connections.\n",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=13 AND ((((TargetObject LIKE '%\\\\Control\\\\Terminal Server\\\\%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Windows NT\\\\Terminal Services\\\\%' ESCAPE '\\') AND TargetObject LIKE '%\\\\Shadow' ESCAPE '\\' AND (Details='DWORD (0x00000001)' OR Details='DWORD (0x00000002)' OR Details='DWORD (0x00000003)' OR Details='DWORD (0x00000004)')) OR ((TargetObject LIKE '%\\\\Control\\\\Terminal Server\\\\%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Windows NT\\\\Terminal Services\\\\%' ESCAPE '\\') AND (TargetObject LIKE '%\\\\DisableRemoteDesktopAntiAlias' ESCAPE '\\' OR TargetObject LIKE '%\\\\DisableSecuritySettings' ESCAPE '\\' OR TargetObject LIKE '%\\\\fAllowUnsolicited' ESCAPE '\\' OR TargetObject LIKE '%\\\\fAllowUnsolicitedFullControl' ESCAPE '\\') AND Details='DWORD (0x00000001)') OR (TargetObject LIKE '%\\\\Control\\\\Terminal Server\\\\InitialProgram%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Control\\\\Terminal Server\\\\WinStations\\\\RDP-Tcp\\\\InitialProgram%' ESCAPE '\\' OR TargetObject LIKE '%\\\\services\\\\TermService\\\\Parameters\\\\ServiceDll%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Terminal Server\\\\WinStations\\\\RDP-Tcp\\\\SecurityLayer%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Windows NT\\\\Terminal Services\\\\InitialProgram%' ESCAPE '\\')) AND (NOT (TargetObject LIKE '%\\\\SecurityLayer' ESCAPE '\\' AND Details='DWORD (0x00000002)'))))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.persistence",
+    "attack.t1112"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 9,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "PC04.example.corp",
+      "Details": "%%ProgramFiles%%\\RDP Wrapper\\rdpwrap.dll",
+      "EventID": 13,
+      "EventRecordID": 5265,
+      "EventType": "SetValue",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Users\\IEUser\\Desktop\\RDPWrap-v1.6.2\\RDPWInst.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "sysmon_13_rdp_settings_tampering.evtx",
+      "ProcessGuid": "365ABB72-AB70-5C8E-0000-0010DF1F0A00",
+      "ProcessID": 1852,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2019-03-17T20:18:05.086560Z",
+      "TargetObject": "HKLM\\System\\CurrentControlSet\\services\\TermService\\Parameters\\ServiceDll",
+      "Task": 13,
+      "ThreadID": 464,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-03-17 20:18:05.086",
+      "Version": 2
+    }
+  ]
+},
+{
+  "title": "Default RDP Port Changed to Non Standard Port",
+  "id": "509e84b9-a71a-40e0-834f-05470369bd1e",
+  "description": "Detects changes to the default RDP port.\nRemote desktop is a common feature in operating systems. It allows a user to log into a remote system using an interactive session with a graphical user interface.\nMicrosoft refers to its implementation of the Remote Desktop Protocol (RDP) as Remote Desktop Services (RDS).\n",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=13 AND (TargetObject LIKE '%\\\\Control\\\\Terminal Server\\\\WinStations\\\\RDP-Tcp\\\\PortNumber' ESCAPE '\\' AND (NOT Details='DWORD (0x00000d3d)')))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.privilege-escalation",
+    "attack.persistence",
+    "attack.t1547.010"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 19,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "PC04.example.corp",
+      "Details": "DWORD (0x00000050)",
+      "EventID": 13,
+      "EventRecordID": 5329,
+      "EventType": "SetValue",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Windows\\regedit.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "sysmon_13_rdp_settings_tampering.evtx",
+      "ProcessGuid": "365ABB72-AC79-5C8E-0000-0010E1B50D00",
+      "ProcessID": 1852,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2019-03-17T20:22:59.399761Z",
+      "TargetObject": "HKLM\\System\\CurrentControlSet\\Control\\Terminal Server\\WinStations\\RDP-Tcp\\PortNumber",
+      "Task": 13,
+      "ThreadID": 464,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-03-17 20:22:59.399",
+      "Version": 2
+    }
+  ]
+},
+{
+  "title": "RDP Sensitive Settings Changed to Zero",
+  "id": "a2863fbc-d5cb-48d5-83fb-d976d4b1743b",
+  "description": "Detects tampering of RDP Terminal Service/Server sensitive settings.\nSuch as allowing unauthorized users access to a system via the 'fAllowUnsolicited' or enabling RDP via 'fDenyTSConnections', etc.\n",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=13 AND ((TargetObject LIKE '%\\\\fDenyTSConnections' ESCAPE '\\' OR TargetObject LIKE '%\\\\fSingleSessionPerUser' ESCAPE '\\' OR TargetObject LIKE '%\\\\UserAuthentication' ESCAPE '\\') AND Details='DWORD (0x00000000)'))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.persistence",
+    "attack.t1112"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 10,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "PC04.example.corp",
+      "Details": "DWORD (0x00000000)",
+      "EventID": 13,
+      "EventRecordID": 5267,
+      "EventType": "SetValue",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Users\\IEUser\\Desktop\\RDPWrap-v1.6.2\\RDPWInst.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "sysmon_13_rdp_settings_tampering.evtx",
+      "ProcessGuid": "365ABB72-AB70-5C8E-0000-0010DF1F0A00",
+      "ProcessID": 1852,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2019-03-17T20:18:09.282593Z",
+      "TargetObject": "HKLM\\System\\CurrentControlSet\\Control\\Terminal Server\\fDenyTSConnections",
+      "Task": 13,
+      "ThreadID": 464,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-03-17 20:18:09.272",
+      "Version": 2
+    }
+  ]
+},
+{
+  "title": "ServiceDll Hijack",
+  "id": "612e47e9-8a59-43a6-b404-f48683f45bd6",
+  "description": "Detects changes to the \"ServiceDLL\" value related to a service in the registry.\nThis is often used as a method of persistence.\n",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=13 AND (((TargetObject LIKE '%\\\\System\\\\%' ESCAPE '\\' AND TargetObject LIKE '%ControlSet%' ESCAPE '\\' AND TargetObject LIKE '%\\\\Services\\\\%' ESCAPE '\\') AND TargetObject LIKE '%\\\\Parameters\\\\ServiceDll' ESCAPE '\\') AND (NOT (Details LIKE 'C:\\\\Windows\\\\system32\\\\spool\\\\drivers\\\\x64\\\\3\\\\PrintConfig.dll' ESCAPE '\\' OR (Image LIKE 'C:\\\\Windows\\\\system32\\\\lsass.exe' ESCAPE '\\' AND TargetObject LIKE '%\\\\Services\\\\NTDS\\\\Parameters\\\\ServiceDll' ESCAPE '\\' AND Details LIKE '\\%\\%systemroot\\%\\%\\\\system32\\\\ntdsa.dll' ESCAPE '\\') OR Image LIKE 'C:\\\\Windows\\\\System32\\\\poqexec.exe' ESCAPE '\\')) AND (NOT (Image LIKE '%\\\\regsvr32.exe' ESCAPE '\\' AND Details LIKE 'C:\\\\Windows\\\\System32\\\\STAgent.dll' ESCAPE '\\'))))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.persistence",
+    "attack.privilege-escalation",
+    "attack.t1543.003"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 9,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "PC04.example.corp",
+      "Details": "%%ProgramFiles%%\\RDP Wrapper\\rdpwrap.dll",
+      "EventID": 13,
+      "EventRecordID": 5265,
+      "EventType": "SetValue",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Users\\IEUser\\Desktop\\RDPWrap-v1.6.2\\RDPWInst.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "sysmon_13_rdp_settings_tampering.evtx",
+      "ProcessGuid": "365ABB72-AB70-5C8E-0000-0010DF1F0A00",
+      "ProcessID": 1852,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2019-03-17T20:18:05.086560Z",
+      "TargetObject": "HKLM\\System\\CurrentControlSet\\services\\TermService\\Parameters\\ServiceDll",
+      "Task": 13,
+      "ThreadID": 464,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-03-17 20:18:05.086",
+      "Version": 2
+    }
+  ]
+}]

@@ -1,0 +1,89 @@
+[{
+  "title": "Mimikatz DC Sync",
+  "id": "611eab06-a145-4dfa-a295-3ccc5c20f59a",
+  "description": "Detects Mimikatz DC sync security events",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Security' AND ((EventID=4662 AND (Properties LIKE '%Replicating Directory Changes All%' ESCAPE '\\' OR Properties LIKE '%1131f6ad-9c07-11d1-f79f-00c04fc2dcd2%' ESCAPE '\\' OR Properties LIKE '%1131f6aa-9c07-11d1-f79f-00c04fc2dcd2%' ESCAPE '\\' OR Properties LIKE '%9923a32a-3607-11d2-b9be-0000f87a36b2%' ESCAPE '\\' OR Properties LIKE '%89e95b76-444d-4c62-991a-0facbeda640c%' ESCAPE '\\') AND AccessMask='0x100') AND (NOT (SubjectDomainName='Window Manager' OR (SubjectUserName LIKE 'NT AUT%' ESCAPE '\\' OR SubjectUserName LIKE 'MSOL\\_%' ESCAPE '\\') OR SubjectUserName LIKE '%$' ESCAPE '\\')))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.credential-access",
+    "attack.s0002",
+    "attack.t1003.006"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 4,
+      "AccessList": "%%7688",
+      "AccessMask": "0x100",
+      "AdditionalInfo": "-",
+      "Channel": "Security",
+      "Computer": "DC1.insecurebank.local",
+      "EventID": 4662,
+      "EventRecordID": 203056,
+      "Guid": "54849625-5478-4994-A5BA-3E3B0328C30D",
+      "HandleId": "0x0",
+      "Keywords": "0x8020000000000000",
+      "Level": 0,
+      "ObjectName": "%{c6faf700-bfe4-452a-a766-424f84c29583}",
+      "ObjectServer": "DS",
+      "ObjectType": "%{19195a5b-6da0-11d0-afd3-00c04fd930c9}",
+      "Opcode": 0,
+      "OperationType": "Object Access",
+      "OriginalLogfile": "persistence_security_dcshadow_4742.evtx",
+      "ProcessID": 444,
+      "Properties": "%%7688\r\n\t\t{9923a32a-3607-11d2-b9be-0000f87a36b2}\r\n\t{19195a5b-6da0-11d0-afd3-00c04fd930c9}",
+      "Provider_Name": "Microsoft-Windows-Security-Auditing",
+      "SubjectDomainName": "insecurebank",
+      "SubjectLogonId": "0x418a6fb",
+      "SubjectUserName": "Administrator",
+      "SubjectUserSid": "S-1-5-21-738609754-2819869699-4189121830-500",
+      "SystemTime": "2019-05-08T03:00:37.583261Z",
+      "Task": 14080,
+      "ThreadID": 4980,
+      "Version": 0
+    }
+  ]
+},
+{
+  "title": "Security Eventlog Cleared",
+  "id": "d99b79d2-0a6f-4f46-ad8b-260b6e17f982",
+  "description": "One of the Windows Eventlogs has been cleared. e.g. caused by \"wevtutil cl\" command execution",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Security' AND ((EventID=517 AND Provider_Name='Security') OR (EventID=1102 AND Provider_Name='Microsoft-Windows-Eventlog'))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.t1070.001",
+    "car.2016-04-002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Security",
+      "Computer": "DC1.insecurebank.local",
+      "EventID": 1102,
+      "EventRecordID": 203050,
+      "Guid": "{fc65ddd8-d6ef-4962-83d5-6e5cfe9ce148}",
+      "Keywords": "0x4020000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "persistence_security_dcshadow_4742.evtx",
+      "ProcessID": 744,
+      "Provider_Name": "Microsoft-Windows-Eventlog",
+      "SubjectDomainName": "insecurebank",
+      "SubjectLogonId": "0x218b896",
+      "SubjectUserName": "administrator",
+      "SubjectUserSid": "S-1-5-21-738609754-2819869699-4189121830-500",
+      "SystemTime": "2019-05-08T03:00:11.778188Z",
+      "Task": 104,
+      "ThreadID": 768,
+      "Version": 0
+    }
+  ]
+}]

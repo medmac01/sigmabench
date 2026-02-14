@@ -1,0 +1,61 @@
+[{
+  "title": "Suspicious Process By Web Server Process",
+  "id": "8202070f-edeb-4d31-a010-a26c72ac5600",
+  "description": "Detects potentially suspicious processes being spawned by a web server process which could be the result of a successfully placed web shell or exploitation\n",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND (((ParentImage LIKE '%\\\\caddy.exe' ESCAPE '\\' OR ParentImage LIKE '%\\\\httpd.exe' ESCAPE '\\' OR ParentImage LIKE '%\\\\nginx.exe' ESCAPE '\\' OR ParentImage LIKE '%\\\\php-cgi.exe' ESCAPE '\\' OR ParentImage LIKE '%\\\\php.exe' ESCAPE '\\' OR ParentImage LIKE '%\\\\tomcat.exe' ESCAPE '\\' OR ParentImage LIKE '%\\\\UMWorkerProcess.exe' ESCAPE '\\' OR ParentImage LIKE '%\\\\w3wp.exe' ESCAPE '\\' OR ParentImage LIKE '%\\\\ws\\_TomcatService.exe' ESCAPE '\\') OR ((ParentImage LIKE '%\\\\java.exe' ESCAPE '\\' OR ParentImage LIKE '%\\\\javaw.exe' ESCAPE '\\') AND (ParentImage LIKE '%-tomcat-%' ESCAPE '\\' OR ParentImage LIKE '%\\\\tomcat%' ESCAPE '\\')) OR ((ParentImage LIKE '%\\\\java.exe' ESCAPE '\\' OR ParentImage LIKE '%\\\\javaw.exe' ESCAPE '\\') AND (ParentCommandLine LIKE '%CATALINA\\_HOME%' ESCAPE '\\' OR ParentCommandLine LIKE '%catalina.home%' ESCAPE '\\' OR ParentCommandLine LIKE '%catalina.jar%' ESCAPE '\\'))) AND (Image LIKE '%\\\\arp.exe' ESCAPE '\\' OR Image LIKE '%\\\\at.exe' ESCAPE '\\' OR Image LIKE '%\\\\bash.exe' ESCAPE '\\' OR Image LIKE '%\\\\bitsadmin.exe' ESCAPE '\\' OR Image LIKE '%\\\\certutil.exe' ESCAPE '\\' OR Image LIKE '%\\\\cmd.exe' ESCAPE '\\' OR Image LIKE '%\\\\cscript.exe' ESCAPE '\\' OR Image LIKE '%\\\\dsget.exe' ESCAPE '\\' OR Image LIKE '%\\\\hostname.exe' ESCAPE '\\' OR Image LIKE '%\\\\nbtstat.exe' ESCAPE '\\' OR Image LIKE '%\\\\net.exe' ESCAPE '\\' OR Image LIKE '%\\\\net1.exe' ESCAPE '\\' OR Image LIKE '%\\\\netdom.exe' ESCAPE '\\' OR Image LIKE '%\\\\netsh.exe' ESCAPE '\\' OR Image LIKE '%\\\\nltest.exe' ESCAPE '\\' OR Image LIKE '%\\\\ntdsutil.exe' ESCAPE '\\' OR Image LIKE '%\\\\powershell\\_ise.exe' ESCAPE '\\' OR Image LIKE '%\\\\powershell.exe' ESCAPE '\\' OR Image LIKE '%\\\\pwsh.exe' ESCAPE '\\' OR Image LIKE '%\\\\qprocess.exe' ESCAPE '\\' OR Image LIKE '%\\\\query.exe' ESCAPE '\\' OR Image LIKE '%\\\\qwinsta.exe' ESCAPE '\\' OR Image LIKE '%\\\\reg.exe' ESCAPE '\\' OR Image LIKE '%\\\\rundll32.exe' ESCAPE '\\' OR Image LIKE '%\\\\sc.exe' ESCAPE '\\' OR Image LIKE '%\\\\sh.exe' ESCAPE '\\' OR Image LIKE '%\\\\wmic.exe' ESCAPE '\\' OR Image LIKE '%\\\\wscript.exe' ESCAPE '\\' OR Image LIKE '%\\\\wusa.exe' ESCAPE '\\') AND (NOT ((ParentImage LIKE '%\\\\java.exe' ESCAPE '\\' AND CommandLine LIKE '%Windows\\\\system32\\\\cmd.exe /c C:\\\\ManageEngine\\\\ADManager \"Plus\\\\ES\\\\bin\\\\elasticsearch.bat -Enode.name=RMP-NODE1 -pelasticsearch-pid.txt' ESCAPE '\\') OR (ParentImage LIKE '%\\\\java.exe' ESCAPE '\\' AND (CommandLine LIKE '%sc query%' ESCAPE '\\' AND CommandLine LIKE '%ADManager Plus%' ESCAPE '\\'))))))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.persistence",
+    "attack.initial-access",
+    "attack.t1505.003",
+    "attack.t1190"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"c:\\windows\\system32\\cmd.exe\" /c net user",
+      "Company": "Microsoft Corporation",
+      "Computer": "IEWIN7",
+      "CurrentDirectory": "c:\\windows\\system32\\inetsrv\\",
+      "Description": "Windows Command Processor",
+      "EventID": 1,
+      "EventRecordID": 1044,
+      "FileVersion": "6.1.7601.17514 (win7sp1_rtm.101119-1850)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=EE8CBF12D87C4D388F09B4F69BED2E91682920B5,MD5=AD7B9C14083B52BC532FBA5948342B98,SHA256=17F746D82695FA9B35493B41859D39D786D32B23A9D2E00F4011DEC7A02402AE,IMPHASH=CEEFB55F764020CC5C5F8F23349AB163",
+      "IMPHASH": "CEEFB55F764020CC5C5F8F23349AB163",
+      "Image": "C:\\Windows\\System32\\cmd.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "365ABB72-45C7-5CE7-0000-002092F99C00",
+      "LogonId": "0x9cf992",
+      "MD5": "AD7B9C14083B52BC532FBA5948342B98",
+      "Opcode": 0,
+      "OriginalLogfile": "LM_typical_IIS_webshell_sysmon_1_10_traces.evtx",
+      "ParentCommandLine": "c:\\windows\\system32\\inetsrv\\w3wp.exe -ap \"DefaultAppPool\" -v \"v2.0\" -l \"webengine4.dll\" -a \\\\.\\pipe\\iisipm719e5ea8-b97b-40d0-96b6-44cca91790fe -h \"C:\\inetpub\\temp\\apppools\\DefaultAppPool\\DefaultAppPool.config\" -w \"\" -m 0 -t 20",
+      "ParentImage": "C:\\Windows\\System32\\inetsrv\\w3wp.exe",
+      "ParentProcessGuid": "365ABB72-49D6-5CE7-0000-001020A7A700",
+      "ParentProcessId": 2580,
+      "ProcessGuid": "365ABB72-4A01-5CE7-0000-0010EE9DAC00",
+      "ProcessID": 2032,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "EE8CBF12D87C4D388F09B4F69BED2E91682920B5",
+      "SHA256": "17F746D82695FA9B35493B41859D39D786D32B23A9D2E00F4011DEC7A02402AE",
+      "SystemTime": "2019-05-24T01:33:53.112486Z",
+      "Task": 1,
+      "TerminalSessionId": 0,
+      "ThreadID": 2092,
+      "User": "IIS APPPOOL\\DefaultAppPool",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-24 01:33:53.112",
+      "Version": 5
+    }
+  ]
+}]

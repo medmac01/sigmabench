@@ -1,0 +1,163 @@
+[{
+  "title": "Bypass UAC Using DelegateExecute",
+  "id": "46dd5308-4572-4d12-aa43-8938f0184d4f",
+  "description": "Bypasses User Account Control using a fileless method",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=13 AND (TargetObject LIKE '%\\\\open\\\\command\\\\DelegateExecute' ESCAPE '\\' AND Details='(Empty)'))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.privilege-escalation",
+    "attack.defense-evasion",
+    "attack.t1548.002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 3,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "MSEDGEWIN10",
+      "Details": "(Empty)",
+      "EventID": 13,
+      "EventRecordID": 5696,
+      "EventType": "SetValue",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Windows\\system32\\reg.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_UACME_53.evtx",
+      "ProcessGuid": "747F3D96-A104-5D46-0000-0010C79CBC03",
+      "ProcessID": 2780,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2019-08-04T09:10:28.893194Z",
+      "TargetObject": "HKU\\S-1-5-21-3461203602-4096304019-2269080069-1000_Classes\\Folder\\shell\\open\\command\\DelegateExecute",
+      "Task": 13,
+      "ThreadID": 3676,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-08-04 09:10:28.869",
+      "Version": 2
+    }
+  ]
+},
+{
+  "title": "Sdclt Child Processes",
+  "id": "da2738f2-fadb-4394-afa7-0a0674885afa",
+  "description": "A General detection for sdclt spawning new processes. This could be an indicator of sdclt being used for bypass UAC techniques.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND ParentImage LIKE '%\\\\sdclt.exe' ESCAPE '\\')"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1548.002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 9,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"C:\\Windows\\System32\\control.exe\"  /name Microsoft.BackupAndRestoreCenter",
+      "Company": "Microsoft Corporation",
+      "Computer": "MSEDGEWIN10",
+      "CurrentDirectory": "C:\\Windows\\system32\\",
+      "Description": "Windows Control Panel",
+      "EventID": 1,
+      "EventRecordID": 5702,
+      "FileVersion": "10.0.17763.1 (WinBuild.160101.0800)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=391FF1F690C0912C217B3CF625900D4F50128867,MD5=88EA810385F455C74306D71C4879C61C,SHA256=4774A931C9D97828323C9E829917D82C27A05DAB9FEA6A0CEF9EBBA59942231F,IMPHASH=7A8EC2645C24D85DE8216D63022623C0",
+      "IMPHASH": "7A8EC2645C24D85DE8216D63022623C0",
+      "Image": "C:\\Windows\\System32\\control.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "747F3D96-56A3-5D45-0000-0020B3D31800",
+      "LogonId": "0x18d3b3",
+      "MD5": "88EA810385F455C74306D71C4879C61C",
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_UACME_53.evtx",
+      "ParentCommandLine": "\"C:\\Windows\\system32\\sdclt.exe\"",
+      "ParentImage": "C:\\Windows\\System32\\sdclt.exe",
+      "ParentProcessGuid": "747F3D96-A105-5D46-0000-00103BEBBC03",
+      "ParentProcessId": 4532,
+      "ProcessGuid": "747F3D96-A106-5D46-0000-00107201BD03",
+      "ProcessID": 2780,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "391FF1F690C0912C217B3CF625900D4F50128867",
+      "SHA256": "4774A931C9D97828323C9E829917D82C27A05DAB9FEA6A0CEF9EBBA59942231F",
+      "SystemTime": "2019-08-04T09:10:30.752830Z",
+      "Task": 1,
+      "TerminalSessionId": 1,
+      "ThreadID": 3676,
+      "User": "MSEDGEWIN10\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-08-04 09:10:30.346",
+      "Version": 5
+    }
+  ]
+},
+{
+  "title": "Potential UAC Bypass Via Sdclt.EXE",
+  "id": "40f9af16-589d-4984-b78d-8c2aec023197",
+  "description": "A General detection for sdclt being spawned as an elevated process. This could be an indicator of sdclt being used for bypass UAC techniques.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND (Image LIKE '%sdclt.exe' ESCAPE '\\' AND (IntegrityLevel='High' OR IntegrityLevel='S-1-16-12288')))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.privilege-escalation",
+    "attack.defense-evasion",
+    "attack.t1548.002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 8,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"C:\\Windows\\system32\\sdclt.exe\"",
+      "Company": "Microsoft Corporation",
+      "Computer": "MSEDGEWIN10",
+      "CurrentDirectory": "C:\\Windows\\system32\\",
+      "Description": "Microsoft® Windows Backup",
+      "EventID": 1,
+      "EventRecordID": 5701,
+      "FileVersion": "10.0.17763.1 (WinBuild.160101.0800)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=99C4ECC452300FD9E29CD009814E75BA29F0F71F,MD5=BEA1DCD574DE36E43D618373AEBFFEA8,SHA256=801DD9B98F263862E076461217FC2C774AA514E5482D0EA0ACCE6ED31BB4731B,IMPHASH=AACB1F271E52307A5D3490C6FC19417E",
+      "IMPHASH": "AACB1F271E52307A5D3490C6FC19417E",
+      "Image": "C:\\Windows\\System32\\sdclt.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "747F3D96-56A3-5D45-0000-0020B3D31800",
+      "LogonId": "0x18d3b3",
+      "MD5": "BEA1DCD574DE36E43D618373AEBFFEA8",
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_UACME_53.evtx",
+      "ParentCommandLine": "UACME.exe  53",
+      "ParentImage": "C:\\Users\\IEUser\\Desktop\\UACME.exe",
+      "ParentProcessGuid": "747F3D96-A104-5D46-0000-00102B92BC03",
+      "ParentProcessId": 7616,
+      "ProcessGuid": "747F3D96-A105-5D46-0000-00103BEBBC03",
+      "ProcessID": 2780,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "99C4ECC452300FD9E29CD009814E75BA29F0F71F",
+      "SHA256": "801DD9B98F263862E076461217FC2C774AA514E5482D0EA0ACCE6ED31BB4731B",
+      "SystemTime": "2019-08-04T09:10:30.395225Z",
+      "Task": 1,
+      "TerminalSessionId": 1,
+      "ThreadID": 3676,
+      "User": "MSEDGEWIN10\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-08-04 09:10:29.934",
+      "Version": 5
+    }
+  ]
+}]

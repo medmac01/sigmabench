@@ -1,0 +1,137 @@
+[{
+  "title": "Security Eventlog Cleared",
+  "id": "d99b79d2-0a6f-4f46-ad8b-260b6e17f982",
+  "description": "One of the Windows Eventlogs has been cleared. e.g. caused by \"wevtutil cl\" command execution",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Security' AND ((EventID=517 AND Provider_Name='Security') OR (EventID=1102 AND Provider_Name='Microsoft-Windows-Eventlog'))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.t1070.001",
+    "car.2016-04-002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Security",
+      "Computer": "alice.insecurebank.local",
+      "EventID": 1102,
+      "EventRecordID": 25048,
+      "Guid": "{fc65ddd8-d6ef-4962-83d5-6e5cfe9ce148}",
+      "Keywords": "0x4020000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "4624 LT3 AnonymousLogon Localhost - JuicyPotato.evtx",
+      "ProcessID": 748,
+      "Provider_Name": "Microsoft-Windows-Eventlog",
+      "SubjectDomainName": "insecurebank",
+      "SubjectLogonId": "0x1c363a4",
+      "SubjectUserName": "bob",
+      "SubjectUserSid": "S-1-5-21-1005675359-741490361-30848483-1108",
+      "SystemTime": "2019-11-15T08:19:02.298512Z",
+      "Task": 104,
+      "ThreadID": 6064,
+      "Version": 0
+    }
+  ]
+},
+{
+  "title": "RottenPotato Like Attack Pattern",
+  "id": "16f5d8ca-44bd-47c8-acbe-6fc95a16c12f",
+  "description": "Detects logon events that have characteristics of events generated during an attack with RottenPotato and the like",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Security' AND (EventID=4624 AND LogonType=3 AND TargetUserName='ANONYMOUS LOGON' AND WorkstationName='-' AND (IpAddress='127.0.0.1' OR IpAddress='::1'))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.collection",
+    "attack.privilege-escalation",
+    "attack.credential-access",
+    "attack.t1557.001"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 2,
+      "AuthenticationPackageName": "NTLM",
+      "Channel": "Security",
+      "Computer": "alice.insecurebank.local",
+      "EventID": 4624,
+      "EventRecordID": 25049,
+      "Guid": "54849625-5478-4994-A5BA-3E3B0328C30D",
+      "ImpersonationLevel": "%%1833",
+      "IpAddress": "127.0.0.1",
+      "IpPort": "59336",
+      "KeyLength": 128,
+      "Keywords": "0x8020000000000000",
+      "Level": 0,
+      "LmPackageName": "NTLM V1",
+      "LogonGuid": "00000000-0000-0000-0000-000000000000",
+      "LogonProcessName": "NtLmSsp",
+      "LogonType": 3,
+      "Opcode": 0,
+      "OriginalLogfile": "4624 LT3 AnonymousLogon Localhost - JuicyPotato.evtx",
+      "ProcessID": 516,
+      "ProcessName": "-",
+      "Provider_Name": "Microsoft-Windows-Security-Auditing",
+      "SubjectDomainName": "-",
+      "SubjectLogonId": "0x0",
+      "SubjectUserName": "-",
+      "SubjectUserSid": "S-1-0-0",
+      "SystemTime": "2019-11-15T08:19:16.102509Z",
+      "TargetDomainName": "NT AUTHORITY",
+      "TargetLogonId": "0x1d12916",
+      "TargetUserName": "ANONYMOUS LOGON",
+      "TargetUserSid": "S-1-5-7",
+      "Task": 12544,
+      "ThreadID": 308,
+      "TransmittedServices": "-",
+      "Version": 1,
+      "WorkstationName": "-"
+    }
+  ]
+},
+{
+  "title": "User Logoff Event",
+  "id": "0badd08f-c6a3-4630-90d3-6875cca440be",
+  "description": "Detects a user log-off activity. Could be used for example to correlate information during forensic investigations",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Security' AND (EventID=4634 OR EventID=4647)"
+  ],
+  "rule_level": "informational",
+  "tags": [
+    "attack.impact",
+    "attack.t1531"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 3,
+      "Channel": "Security",
+      "Computer": "alice.insecurebank.local",
+      "EventID": 4634,
+      "EventRecordID": 25050,
+      "Guid": "54849625-5478-4994-A5BA-3E3B0328C30D",
+      "Keywords": "0x8020000000000000",
+      "Level": 0,
+      "LogonType": 3,
+      "Opcode": 0,
+      "OriginalLogfile": "4624 LT3 AnonymousLogon Localhost - JuicyPotato.evtx",
+      "ProcessID": 516,
+      "Provider_Name": "Microsoft-Windows-Security-Auditing",
+      "SystemTime": "2019-11-15T08:19:17.134469Z",
+      "TargetDomainName": "NT AUTHORITY",
+      "TargetLogonId": "0x1d12916",
+      "TargetUserName": "ANONYMOUS LOGON",
+      "TargetUserSid": "S-1-5-7",
+      "Task": 12545,
+      "ThreadID": 5300,
+      "Version": 0
+    }
+  ]
+}]

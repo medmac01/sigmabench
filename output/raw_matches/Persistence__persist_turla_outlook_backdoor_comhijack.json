@@ -1,0 +1,43 @@
+[{
+  "title": "Potential COM Object Hijacking Via TreatAs Subkey - Registry",
+  "id": "9b0f8a61-91b2-464f-aceb-0527e0a45020",
+  "description": "Detects COM object hijacking via TreatAs subkey",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=13 AND ((TargetObject LIKE '%HKU\\\\%' ESCAPE '\\' AND TargetObject LIKE '%Classes\\\\CLSID\\\\%' ESCAPE '\\' AND TargetObject LIKE '%\\\\TreatAs%' ESCAPE '\\') AND (NOT Image LIKE 'C:\\\\WINDOWS\\\\system32\\\\svchost.exe' ESCAPE '\\')))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.privilege-escalation",
+    "attack.persistence",
+    "attack.t1546.015"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 3,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "IEWIN7",
+      "Details": "{49CBB1C7-97D1-485A-9EC1-A26065633066}",
+      "EventID": 13,
+      "EventRecordID": 449,
+      "EventType": "SetValue",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Windows\\system32\\reg.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "persist_turla_outlook_backdoor_comhijack.evtx",
+      "ProcessGuid": "365ABB72-501C-5CE3-0000-0010B5494900",
+      "ProcessID": 3416,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2019-05-21T01:10:52.468297Z",
+      "TargetObject": "HKU\\S-1-5-21-3583694148-1414552638-2922671848-1000_CLASSES\\CLSID\\{84DA0A92-25E0-11D3-B9F7-00C04F4C8F5D}\\TreatAs\\{Default}",
+      "Task": 13,
+      "ThreadID": 3496,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-21 01:10:52.458",
+      "Version": 2
+    }
+  ]
+}]

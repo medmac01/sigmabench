@@ -1,0 +1,47 @@
+[{
+  "title": "First Time Seen Remote Named Pipe",
+  "id": "52d8b0c6-53d6-439a-9e41-52ad442ad9ad",
+  "description": "This detection excludes known namped pipes accessible remotely and notify on newly observed ones, may help to detect lateral movement and remote exec using named pipes",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Security' AND ((EventID=5145 AND ShareName LIKE '\\\\\\\\*\\\\IPC$' ESCAPE '\\') AND (NOT (RelativeTargetName='atsvc' OR RelativeTargetName='samr' OR RelativeTargetName='lsarpc' OR RelativeTargetName='lsass' OR RelativeTargetName='winreg' OR RelativeTargetName='netlogon' OR RelativeTargetName='srvsvc' OR RelativeTargetName LIKE 'protected\\_storage' ESCAPE '\\' OR RelativeTargetName='wkssvc' OR RelativeTargetName='browser' OR RelativeTargetName='netdfs' OR RelativeTargetName='svcctl' OR RelativeTargetName='spoolss' OR RelativeTargetName='ntsvcs' OR RelativeTargetName LIKE 'LSM\\_API\\_service' ESCAPE '\\' OR RelativeTargetName='HydraLsPipe' OR RelativeTargetName LIKE 'TermSrv\\_API\\_service' ESCAPE '\\' OR RelativeTargetName='MsFteWds' OR RelativeTargetName LIKE 'sql\\\\query' ESCAPE '\\' OR RelativeTargetName='eventlog')))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.lateral-movement",
+    "attack.t1021.002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "AccessList": "%%1538\r\n\t\t\t\t%%1541\r\n\t\t\t\t%%4416\r\n\t\t\t\t%%4417\r\n\t\t\t\t%%4418\r\n\t\t\t\t%%4419\r\n\t\t\t\t%%4420\r\n\t\t\t\t%%4423\r\n\t\t\t\t%%4424",
+      "AccessMask": "0x12019f",
+      "AccessReason": "-",
+      "Channel": "Security",
+      "Computer": "MSEDGEWIN10",
+      "EventID": 5145,
+      "EventRecordID": 87753,
+      "Guid": "54849625-5478-4994-A5BA-3E3B0328C30D",
+      "IpAddress": "::1",
+      "IpPort": "49674",
+      "Keywords": "0x8020000000000000",
+      "Level": 0,
+      "ObjectType": "File",
+      "Opcode": 0,
+      "OriginalLogfile": "PrivEsc_NetSvc_SessionToken_Retrival_via_localSMB_Auth_5145.evtx",
+      "ProcessID": 4,
+      "Provider_Name": "Microsoft-Windows-Security-Auditing",
+      "RelativeTargetName": "pipey",
+      "ShareName": "\\\\*\\IPC$",
+      "SubjectDomainName": "WORKGROUP",
+      "SubjectLogonId": "0x3e4",
+      "SubjectUserName": "MSEDGEWIN10$",
+      "SubjectUserSid": "S-1-5-20",
+      "SystemTime": "2020-08-02T16:24:07.558941Z",
+      "Task": 12811,
+      "ThreadID": 256,
+      "Version": 0
+    }
+  ]
+}]

@@ -1,0 +1,59 @@
+[{
+  "title": "Potential Lateral Movement via Windows Remote Shell",
+  "id": "79df3f68-dccb-48e9-9171-b75cbc37c51d",
+  "description": "Detects a child process spawned by 'winrshost.exe', which suggests remote command execution through Windows Remote Shell (WinRs) and may indicate potential lateral movement activity.\n",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND (ParentImage LIKE '%\\\\winrshost.exe' ESCAPE '\\' AND (NOT Image LIKE 'C:\\\\Windows\\\\System32\\\\conhost.exe' ESCAPE '\\')))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.lateral-movement",
+    "attack.t1021.006"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 2,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "C:\\Windows\\system32\\cmd.exe /C ipconfig",
+      "Company": "Microsoft Corporation",
+      "Computer": "DC1.insecurebank.local",
+      "CurrentDirectory": "C:\\Users\\administrator\\",
+      "Description": "Windows Command Processor",
+      "EventID": 1,
+      "EventRecordID": 17985,
+      "FileVersion": "6.3.9600.16384 (winblue_rtm.130821-1623)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=7C3D7281E1151FE4127923F4B4C3CD36438E1A12,MD5=F5AE03DE0AD60F5B17B82F2CD68402FE,SHA256=6F88FB88FFB0F1D5465C2826E5B4F523598B1B8378377C8378FFEBC171BAD18B,IMPHASH=77AED1ADAF24B344F08C8AD1432908C3",
+      "IMPHASH": "77AED1ADAF24B344F08C8AD1432908C3",
+      "Image": "C:\\Windows\\System32\\cmd.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "DFAE8213-BD78-5CDC-0000-002005FE1200",
+      "LogonId": "0x12fe05",
+      "MD5": "F5AE03DE0AD60F5B17B82F2CD68402FE",
+      "Opcode": 0,
+      "OriginalLogfile": "LM_winrm_exec_sysmon_1_winrshost.evtx",
+      "ParentCommandLine": "C:\\Windows\\system32\\WinrsHost.exe -Embedding",
+      "ParentImage": "C:\\Windows\\System32\\winrshost.exe",
+      "ParentProcessGuid": "DFAE8213-BD78-5CDC-0000-0010C7FE1200",
+      "ParentProcessId": 3948,
+      "ProcessGuid": "DFAE8213-BD78-5CDC-0000-001091041300",
+      "ProcessID": 1792,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "7C3D7281E1151FE4127923F4B4C3CD36438E1A12",
+      "SHA256": "6F88FB88FFB0F1D5465C2826E5B4F523598B1B8378377C8378FFEBC171BAD18B",
+      "SystemTime": "2019-05-16T01:31:36.454892Z",
+      "Task": 1,
+      "TerminalSessionId": 0,
+      "ThreadID": 2232,
+      "User": "insecurebank\\Administrator",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-16 01:31:36.443",
+      "Version": 5
+    }
+  ]
+}]

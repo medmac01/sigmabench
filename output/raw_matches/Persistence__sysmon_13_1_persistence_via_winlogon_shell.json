@@ -1,0 +1,103 @@
+[{
+  "title": "Uncommon Userinit Child Process",
+  "id": "0a98a10c-685d-4ab0-bddc-b6bdd1d48458",
+  "description": "Detects uncommon \"userinit.exe\" child processes, which could be a sign of uncommon shells or login scripts used for persistence.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND (ParentImage LIKE '%\\\\userinit.exe' ESCAPE '\\' AND (NOT Image LIKE '%:\\\\WINDOWS\\\\explorer.exe' ESCAPE '\\') AND (NOT ((CommandLine LIKE '%netlogon.bat%' ESCAPE '\\' OR CommandLine LIKE '%UsrLogon.cmd%' ESCAPE '\\') OR CommandLine='PowerShell.exe' OR (Image LIKE '%:\\\\Windows\\\\System32\\\\proquota.exe' ESCAPE '\\' OR Image LIKE '%:\\\\Windows\\\\SysWOW64\\\\proquota.exe' ESCAPE '\\') OR (Image LIKE '%:\\\\Program Files (x86)\\\\Citrix\\\\HDX\\\\bin\\\\cmstart.exe' ESCAPE '\\' OR Image LIKE '%:\\\\Program Files (x86)\\\\Citrix\\\\HDX\\\\bin\\\\icast.exe' ESCAPE '\\' OR Image LIKE '%:\\\\Program Files (x86)\\\\Citrix\\\\System32\\\\icast.exe' ESCAPE '\\' OR Image LIKE '%:\\\\Program Files\\\\Citrix\\\\HDX\\\\bin\\\\cmstart.exe' ESCAPE '\\' OR Image LIKE '%:\\\\Program Files\\\\Citrix\\\\HDX\\\\bin\\\\icast.exe' ESCAPE '\\' OR Image LIKE '%:\\\\Program Files\\\\Citrix\\\\System32\\\\icast.exe' ESCAPE '\\') OR Image IS NULL))))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.privilege-escalation",
+    "attack.t1037.001",
+    "attack.persistence"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 16,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe\"",
+      "Computer": "IEWIN7",
+      "CurrentDirectory": "C:\\Windows\\system32\\",
+      "Description": "NpmTaskRunner",
+      "EventID": 1,
+      "EventRecordID": 7556,
+      "FileVersion": "1.0.0.0",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=E2286C233467D0E164ED5ED1D07BAC9F90F74D19,MD5=41CE32C0D1D4E5BB8C63674F317450EF,SHA256=5DE788D23B247B29F116CD0583280CE10A429E9F8C1D80C42DEAB20C6F4DBB4E,IMPHASH=F34D5F2D4577ED6D9CEEC516C1F5A744",
+      "IMPHASH": "F34D5F2D4577ED6D9CEEC516C1F5A744",
+      "Image": "C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "365ABB72-1E4A-5D04-0000-002013C00B00",
+      "LogonId": "0xbc013",
+      "MD5": "41CE32C0D1D4E5BB8C63674F317450EF",
+      "Opcode": 0,
+      "OriginalLogfile": "sysmon_13_1_persistence_via_winlogon_shell.evtx",
+      "ParentCommandLine": "C:\\Windows\\system32\\userinit.exe",
+      "ParentImage": "C:\\Windows\\System32\\userinit.exe",
+      "ParentProcessGuid": "365ABB72-1E51-5D04-0000-00104C340C00",
+      "ParentProcessId": 3448,
+      "ProcessGuid": "365ABB72-1E51-5D04-0000-00107B380C00",
+      "ProcessID": 1960,
+      "Product": "NpmTaskRunner",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "E2286C233467D0E164ED5ED1D07BAC9F90F74D19",
+      "SHA256": "5DE788D23B247B29F116CD0583280CE10A429E9F8C1D80C42DEAB20C6F4DBB4E",
+      "SystemTime": "2019-06-14T22:23:13.957120Z",
+      "Task": 1,
+      "TerminalSessionId": 2,
+      "ThreadID": 288,
+      "User": "IEWIN7\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-06-14 22:23:13.925",
+      "Version": 5
+    }
+  ]
+},
+{
+  "title": "CurrentVersion NT Autorun Keys Modification",
+  "id": "cbf93e5d-ca6c-4722-8bea-e9119007c248",
+  "description": "Detects modification of autostart extensibility point (ASEP) in registry.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=13 AND ((TargetObject LIKE '%\\\\SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion%' ESCAPE '\\' AND (TargetObject LIKE '%\\\\Winlogon\\\\VmApplet%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Winlogon\\\\Userinit%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Winlogon\\\\Taskman%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Winlogon\\\\Shell%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Winlogon\\\\GpExtensions%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Winlogon\\\\AppSetup%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Winlogon\\\\AlternateShells\\\\AvailableShells%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Windows\\\\IconServiceLib%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Windows\\\\Appinit\\_Dlls%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Image File Execution Options%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Font Drivers%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Drivers32%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Windows\\\\Run%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Windows\\\\Load%' ESCAPE '\\')) AND (NOT (Details='(Empty)' OR Details IS NULL OR Image LIKE 'C:\\\\Windows\\\\System32\\\\poqexec.exe' ESCAPE '\\' OR (TargetObject LIKE '%\\\\Image File Execution Options\\\\%' ESCAPE '\\' AND (TargetObject LIKE '%\\\\DisableExceptionChainValidation' ESCAPE '\\' OR TargetObject LIKE '%\\\\MitigationOptions' ESCAPE '\\')) OR (Image LIKE 'C:\\\\Windows\\\\system32\\\\svchost.exe' ESCAPE '\\' AND (TargetObject LIKE '%\\\\Winlogon\\\\GPExtensions\\\\{827D319E-6EAC-11D2-A4EA-00C04F79F83A}\\\\PreviousPolicyAreas%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Winlogon\\\\GPExtensions\\\\{827D319E-6EAC-11D2-A4EA-00C04F79F83A}\\\\MaxNoGPOListChangesInterval%' ESCAPE '\\') AND (Details='DWORD (0x00000001)' OR Details='DWORD (0x00000009)' OR Details='DWORD (0x000003c0)')) OR (Image LIKE 'C:\\\\Windows\\\\System32\\\\RuntimeBroker.exe' ESCAPE '\\' AND TargetObject LIKE '%\\\\runtimebroker.exe\\\\Microsoft.Windows.ShellExperienceHost%' ESCAPE '\\'))) AND (NOT ((Image LIKE 'C:\\\\Program Files (x86)\\\\Microsoft\\\\Temp\\\\%' ESCAPE '\\' AND Image LIKE '%\\\\MicrosoftEdgeUpdate.exe' ESCAPE '\\') OR ((Image LIKE 'C:\\\\Program Files (x86)\\\\Avira\\\\Antivirus\\\\avguard.exe%' ESCAPE '\\' OR Image LIKE 'C:\\\\Program Files\\\\Avira\\\\Antivirus\\\\avguard.exe%' ESCAPE '\\') AND TargetObject LIKE '%SOFTWARE\\\\WOW6432Node\\\\Avira\\\\Antivirus\\\\Overwrite\\_Keys\\\\HKEY\\_LOCAL\\_MACHINE\\\\Software\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Winlogon\\\\%' ESCAPE '\\' AND (TargetObject LIKE '%\\\\userinit\\\\UseAsDefault' ESCAPE '\\' OR TargetObject LIKE '%\\\\shell\\\\UseAsDefault' ESCAPE '\\') AND (Details='explorer.exe' OR Details LIKE 'C:\\\\Windows\\\\system32\\\\userinit.exe,' ESCAPE '\\')) OR ((TargetObject LIKE '%\\\\ClickToRunStore\\\\HKLM\\\\SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\%' ESCAPE '\\' OR TargetObject LIKE '%\\\\ClickToRun\\\\REGISTRY\\\\MACHINE\\\\Software\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\%' ESCAPE '\\') OR (Image LIKE 'C:\\\\Program Files\\\\Microsoft Office\\\\root\\\\integration\\\\integrator.exe' ESCAPE '\\' OR Image LIKE 'C:\\\\Program Files (x86)\\\\Microsoft Office\\\\root\\\\integration\\\\integrator.exe' ESCAPE '\\')) OR ((Image LIKE 'C:\\\\Program Files\\\\Common Files\\\\Microsoft Shared\\\\ClickToRun\\\\%' ESCAPE '\\' OR Image LIKE 'C:\\\\Program Files\\\\Common Files\\\\Microsoft Shared\\\\ClickToRun\\\\Updates\\\\%' ESCAPE '\\') AND Image LIKE '%\\\\OfficeClickToRun.exe' ESCAPE '\\') OR (Image LIKE 'C:\\\\Windows\\\\Microsoft.NET\\\\Framework%' ESCAPE '\\' AND Image LIKE '%\\\\ngen.exe' ESCAPE '\\') OR (Image LIKE '%\\\\AppData\\\\Local\\\\Microsoft\\\\OneDrive\\\\StandaloneUpdater\\\\OneDriveSetup.exe' ESCAPE '\\' AND TargetObject LIKE '%\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\RunOnce\\\\Delete Cached Update Binary' ESCAPE '\\' AND Details LIKE 'C:\\\\Windows\\\\system32\\\\cmd.exe /q /c del /q \"C:\\\\Users\\\\%' ESCAPE '\\' AND Details LIKE '%\\\\AppData\\\\Local\\\\Microsoft\\\\OneDrive\\\\Update\\\\OneDriveSetup.exe\"' ESCAPE '\\')))))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.privilege-escalation",
+    "attack.persistence",
+    "attack.t1547.001"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 3,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "IEWIN7",
+      "Details": "\"C:\\Users\\IEUser\\AppData\\Roaming\\9QxTsAU9w8gyPj4w\\BRE6BgE2JubB.exe\",explorer.exe",
+      "EventID": 13,
+      "EventRecordID": 7532,
+      "EventType": "SetValue",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Users\\IEUser\\Downloads\\a.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "sysmon_13_1_persistence_via_winlogon_shell.evtx",
+      "ProcessGuid": "365ABB72-1E19-5D04-0000-0010DFC60A00",
+      "ProcessID": 1960,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "RuleName": "Persistence - Winlogon Shell",
+      "SystemTime": "2019-06-14T22:22:21.535245Z",
+      "TargetObject": "HKU\\S-1-5-21-3583694148-1414552638-2922671848-1000\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Shell",
+      "Task": 13,
+      "ThreadID": 288,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-06-14 22:22:21.519",
+      "Version": 2
+    }
+  ]
+}]

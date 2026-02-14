@@ -1,0 +1,261 @@
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Command and Control/bits_openvpn.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Command and Control/DE_RDP_Tunnel_5156.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Command and Control/DE_RDP_Tunneling_4624.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Command and Control/DE_RDP_Tunneling_TerminalServices-RemoteConnectionManagerOperational_1149.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Command and Control/DE_sysmon-3-rdp-tun.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Command and Control/tunna_iis_rdp_smb_tunneling_sysmon_3.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/4794_DSRM_password_change_t1098.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/ACL_ForcePwd_SPNAdd_User_Computer_Accounts.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/babyshark_mimikatz_powershell.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/CA_4624_4625_LogonType2_LogonProc_chrome.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/CA_chrome_firefox_opera_4663.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/CA_DCSync_4662.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/CA_hashdump_4663_4656_lsass_access.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/CA_keefarce_keepass_credump.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/CA_keepass_KeeThief_Get-KeePassDatabaseKey.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/CA_Mimikatz_Memssp_Default_Logs_Sysmon_11.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/CA_PetiPotam_etw_rpc_efsr_5_6.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/CA_protectedstorage_5145_rpc_masterkey.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/CA_sysmon_hashdump_cmd_meterpreter.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/CA_teamviewer-dumper_sysmon_10.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/dc_applog_ntdsutil_dfir_325_326_327.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/discovery_sysmon_1_iis_pwd_and_config_discovery_appcmd.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/etw_rpc_zerologon.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/kerberos_pwd_spray_4771.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/LsassSilentProcessExit_process_exit_monitor_3001_lsass.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/MSSQL_multiple_failed_logon_EventID_18456.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/phish_windows_credentials_powershell_scriptblockLog_4104.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/Powershell_4104_MiniDumpWriteDump_Lsass.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/ppl_bypass_ppldump_knowdll_hijack_sysmon_security.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/remote_pwd_reset_rpc_mimikatz_postzerologon_target_DC.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/remote_sam_registry_access_via_backup_operator_priv.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/sysmon_10_11_lsass_memdump.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/sysmon_10_11_outlfank_dumpert_and_andrewspecial_memdump.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/sysmon_10_1_memdump_comsvcs_minidump.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/sysmon_10_lsass_mimikatz_sekurlsa_logonpasswords.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/sysmon_13_keylogger_directx.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/Sysmon_13_Local_Admin_Password_Changed.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/Sysmon13_MachineAccount_Password_Hash_Changed_via_LsarSetSecret.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/sysmon17_18_kekeo_tsssp_default_np.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/sysmon_2x10_lsass_with_different_pid_RtlCreateProcessReflection.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/sysmon_3_10_Invoke-Mimikatz_hosted_Github.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/sysmon_rdrleakdiag_lsass_dump.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/tutto_malseclogon.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/Zerologon_CVE-2020-1472_DFIR_System_NetLogon_Error_EventID_5805.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Credential Access/Zerologon_VoidSec_CVE-2020-1472_4626_LT3_Anonym_follwedby_4742_DC_Anony_DC.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/apt10_jjs_sideloading_prochollowing_persist_as_service_sysmon_1_7_8_13.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/DE_104_system_log_cleared.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/DE_1102_security_log_cleared.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/DE_BYOV_Zam64_CA_Memdump_sysmon_7_10.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/DE_EventLog_Service_Crashed.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/DE_Fake_ComputerAccount_4720.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/de_hiding_files_via_attrib_cmdlet.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/DE_KernelDebug_and_TestSigning_ON_Security_4826.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/de_portforward_netsh_rdp_sysmon_13_1.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/DE_Powershell_CLM_Disabled_Sysmon_12.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/de_powershell_execpolicy_changed_sysmon_13.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/DE_ProcessHerpaderping_Sysmon_11_10_1_7.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/de_PsScriptBlockLogging_disabled_sysmon12_13.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/DE_remote_eventlog_svc_crash_byt3bl33d3r_sysmon_17_1_3.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/DE_renamed_psexec_service_sysmon_17_18.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/DE_suspicious_remote_eventlog_svc_access_5145.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/de_sysmon_13_VBA_Security_AccessVBOM.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/DE_UAC_Disabled_Sysmon_12_13.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/de_unmanagedpowershell_psinject_sysmon_7_8_10.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/DE_WinEventLogSvc_Crash_System_7036.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/DE_xp_cmdshell_enabled_MSSQL_EID_15457.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/DSE_bypass_BYOV_TDL_dummydriver_sysmon_6_7_13.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/evasion_codeinj_odzhan_conhost_sysmon_10_1.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/evasion_codeinj_odzhan_spoolsv_sysmon_10_1.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/faxhell_sysmon_7_1_18_3_bindshell_dllhijack.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/meterpreter_migrate_to_explorer_sysmon_8.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/process_suspend_sysmon_10_ga_800.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/sideloading_wwlib_sysmon_7_1_11.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/sysmon_10_1_ppid_spoofing.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/Sysmon_10_Evasion_Suspicious_NtOpenProcess_CallTrace.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/Sysmon_12_DE_AntiForensics_MRU_DeleteKey.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/sysmon_13_rdp_settings_tampering.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/sysmon_2_11_evasion_timestomp_MACE.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/Sysmon 7 dllhijack_cdpsshims_CDPSvc.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/Sysmon 7  Update Session Orchestrator Dll Hijack.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Defense Evasion/Win_4985_T1186_Process_Doppelganging.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Discovery/4799_remote_local_groups_enumeration.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Discovery/dicovery_4661_net_group_domain_admins_target.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Discovery/discovery_bloodhound.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Discovery/discovery_enum_shares_target_sysmon_3_18.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Discovery/discovery_local_user_or_group_windows_security_4799_4798.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Discovery/discovery_meterpreter_ps_cmd_process_listing_sysmon_10.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Discovery/discovery_psloggedon.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Discovery/Discovery_Remote_System_NamedPipes_Sysmon_18.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Discovery/discovery_sysmon_18_Invoke_UserHunter_NetSessionEnum_DC-srvsvc.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Discovery/discovery_sysmon_3_Invoke_UserHunter_SourceMachine.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Discovery/discovery_UEFI_Settings_rweverything_sysmon_6.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/evasion_execution_imageload_wuauclt_lolbas.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/exec_driveby_cve-2018-15982_sysmon_1_10.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/exec_msxsl_xsl_sysmon_1_7.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/exec_persist_rundll32_mshta_scheduledtask_sysmon_1_3_11.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/exec_sysmon_1_11_lolbin_rundll32_openurl_FileProtocolHandler.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/exec_sysmon_1_11_lolbin_rundll32_shdocvw_openurl.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/exec_sysmon_1_11_lolbin_rundll32_zipfldr_RouteTheCall.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/exec_sysmon_1_7_jscript9_defense_evasion.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/exec_sysmon_1_ftp.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/exec_sysmon_1_lolbin_pcalua.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/exec_sysmon_1_lolbin_renamed_regsvr32_scrobj.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/exec_sysmon_1_lolbin_rundll32_advpack_RegisterOCX.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/exec_sysmon_1_rundll32_pcwutl_LaunchApplication.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/exec_sysmon_lobin_regsvr32_sct.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/Exec_sysmon_meterpreter_reversetcp_msipackage.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/execution_evasion_visual_studio_prebuild_event.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/Exec_via_cpl_Application_Experience_EventID_17_ControlPanelApplet.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/exec_wmic_xsl_internet_sysmon_3_1_11.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/revshell_cmd_svchost_sysmon_1.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/rogue_msi_url_1040_1042.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/susp_explorer_exec.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/susp_explorer_exec_root_cmdline_@rimpq_@CyberRaiju.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/sysmon_11_1_lolbas_downldr_desktopimgdownldr.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/sysmon_1_11_rundll32_cpl_ostap.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/Sysmon_Exec_CompiledHTML.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/sysmon_exec_from_vss_persistence.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/sysmon_lolbas_rundll32_zipfldr_routethecall_shell.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/sysmon_lolbin_bohops_vshadow_exec.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/sysmon_mshta_sharpshooter_stageless_meterpreter.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/sysmon_vbs_sharpshooter_stageless_meterpreter.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/sysmon_zipexec.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/temp_scheduled_task_4698_4699.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Execution/windows_bits_4_59_60_lolbas desktopimgdownldr.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/DFIR_RDP_Client_TimeZone_RdpCoreTs_104_example.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/dfir_rdpsharp_target_RdpCoreTs_168_68_131.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/ImpersonateUser-via local Pass The Hash Sysmon and Security.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/lateral_movement_startup_3_11.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_4624_mimikatz_sekurlsa_pth_source_machine.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_5145_Remote_FileCopy.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_add_new_namedpipe_tp_nullsession_registry_turla_like_ttp.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_DCOM_MSHTA_LethalHTA_Sysmon_3_1.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_dcom_shwnd_shbrwnd_mmc20_failed_traces_system_10016.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_ImageLoad_NFSH_Sysmon_7.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_impacket_docmexec_mmc_sysmon_01.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_NewShare_Added_Sysmon_12_13.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_PowershellRemoting_sysmon_1_wsmprovhost.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_regsvc_DirectoryServiceExtPt_Lsass_NTDS_AdamXpn.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_REMCOM_5145_TargetHost.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/lm_remote_registry_sysmon_1_13_3.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_Remote_Service01_5145_svcctl.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_Remote_Service02_7045.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_renamed_psexecsvc_5145.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_ScheduledTask_ATSVC_target_host.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_sysmon_1_12_13_3_tsclient_SharpRdp.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/lm_sysmon_18_remshell_over_namedpipe.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_sysmon_3_12_13_1_SharpRDP.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_sysmon_3_DCOM_ShellBrowserWindow_ShellWindows.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_sysmon_psexec_smb_meterpreter.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_sysmon_remote_task_src_powershell.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_tsclient_startup_folder.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_typical_IIS_webshell_sysmon_1_10_traces.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_winrm_exec_sysmon_1_winrshost.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_winrm_target_wrmlogs_91_wsmanShellStarted_poorLog.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_WMI_4624_4688_TargetHost.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_WMIC_4648_rpcss.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_wmiexec_impacket_sysmon_whoami.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_wmi_PoisonHandler_Mr-Un1k0d3r_sysmon_1_13.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/LM_xp_cmdshell_MSSQL_Events.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/MSSQL_15281_xp_cmdshell_exec_failed_attempt.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/net_share_drive_5142.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/powercat_revShell_sysmon_1_3.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/remote_file_copy_system_proc_file_write_sysmon_11.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/RemotePowerShell_MS_Windows-Remote_Management_EventID_169.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/remote task update 4624 4702 same logonid.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/sharprdp_sysmon_7_mstscax.dll.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/smb_bi_auth_conn_spoolsample.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/smbmap_upload_exec_sysmon.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/spoolsample_5145.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/sysmon_1_exec_via_sql_xpcmdshell.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Lateral Movement/wmi_remote_registry_sysmon.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/DACL_DCSync_Right_Powerview_ Add-DomainObjectAcl.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/evasion_persis_hidden_run_keyvalue_sysmon_13.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/Network_Service_Guest_added_to_admins_4732.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/persist_bitsadmin_Microsoft-Windows-Bits-Client-Operational.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/persistence_accessibility_features_osk_sysmon1.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/persistence_hidden_local_account_sysmon.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/persistence_pendingGPO_sysmon_13.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/persistence_security_dcshadow_4742.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/Persistence_Shime_Microsoft-Windows-Application-Experience_Program-Telemetry_500.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/persistence_SilentProcessExit_ImageHijack_sysmon_13_1.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/persistence_startup_UserShellStartup_Folder_Changed_sysmon_13.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/persistence_sysmon_11_13_1_shime_appfix.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/Persistence_Winsock_Catalog Change EventId_1.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/persist_firefox_comhijack_sysmon_11_13_7_1.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/persist_turla_outlook_backdoor_comhijack.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/persist_valid_account_guest_rid_hijack.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/sysmon_13_1_persistence_via_winlogon_shell.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/sysmon_1_persist_bitsjob_SetNotifyCmdLine.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/sysmon_1_smss_child_proc_bootexecute_setupexecute.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/sysmon_20_21_1_CommandLineEventConsumer.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/sysmon_local_account_creation_and_added_admingroup_12_13.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Persistence/wmighost_sysmon_20_21_1.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/4624 LT3 AnonymousLogon Localhost - JuicyPotato.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/4765_sidhistory_add_t1178.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/CVE-2020-0796_SMBV3Ghost_LocalPrivEsc_Sysmon_3_1_10.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/EfsPotato_sysmon_17_18_privesc_seimpersonate_to_system.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/eop_appcontainer_il_broker_filewrite.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Invoke_TokenDuplication_UAC_Bypass4624.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/NTLM2SelfRelay-med0x2e-security_4624_4688.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/PrivEsc_CVE-2020-1313_Sysmon_13_UScheduler_Cmdline.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/PrivEsc_Imperson_NetSvc_to_Sys_Decoder_Sysmon_1_17_18.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/privesc_KrbRelayUp_windows_4624.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/PrivEsc_NetSvc_SessionToken_Retrival_via_localSMB_Auth_5145.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/privesc_registry_symlink_CVE-2020-1377.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/privesc_roguepotato_sysmon_17_18.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/privesc_rotten_potato_from_webshell_metasploit_sysmon_1_8_3.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/PrivEsc_SeImpersonatePriv_enabled_back_for_upnp_localsvc_4698.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/privesc_seimpersonate_tosys_spoolsv_sysmon_17_18.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/privesc_spoolfool_mahdihtm_sysmon_1_11_7_13.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/privesc_spoolsv_spl_file_write_sysmon11.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/privesc_sysmon_cve_20201030_spooler.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/privesc_unquoted_svc_sysmon_1_11.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/privexchange_dirkjan.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/RogueWinRM.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Runas_4624_4648_Webshell_CreateProcessAsUserA.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/samaccount_spoofing_CVE-2021-42287_CVE-2021-42278_DC_securitylogs.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/security_4624_4673_token_manip.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/sysmon_11_1_15_WScriptBypassUAC.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/sysmon_11_1_7_uacbypass_cliconfg.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/sysmon_1_11_exec_as_system_via_schedtask.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/sysmon_1_13_11_cmstp_ini_uacbypass.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/sysmon_1_13_UACBypass_AppPath_Control.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/sysmon_11_7_1_uacbypass_windirectory_mocking.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/sysmon_13_1_12_11_perfmonUACBypass.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/sysmon_13_1_compmgmtlauncherUACBypass.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/sysmon_13_1_meterpreter_getsystem_NamedPipeImpersonation.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_13_1_UAC_Bypass_EventVwrBypass.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_13_1_UACBypass_SDCLTBypass.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/sysmon_1_7_11_mcx2prov_uacbypass.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/sysmon_1_7_11_migwiz.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/sysmon_1_7_11_sysprep_uacbypass.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/sysmon_1_7_elevate_uacbypass_sysprep.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/sysmon_privesc_from_admin_to_system_handle_inheritance.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/sysmon_privesc_psexec_dwell.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/sysmon_uacbypass_CDSSync_schtask_hijack_byeintegrity5.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_22.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_23.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_30.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_32.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_33.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_34.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_36_FileCreate.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_37_FileCreate.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_38.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_39.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_41.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_43.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_45.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_53.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_54.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_56.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_uacme_58.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_63.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/Sysmon_UACME_64.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/System_7045_namedpipe_privesc.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/UACME_59_Sysmon.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/UACME_61_Changepk.evtx
+/home/gpuadmin/threathunting/phd/sigmabench/data/evtx_samples/Privilege Escalation/win10_4703_SeDebugPrivilege_enabled.evtx

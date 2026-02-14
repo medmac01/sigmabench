@@ -1,0 +1,59 @@
+[{
+  "title": "Suspicious Script Execution From Temp Folder",
+  "id": "a6a39bdb-935c-4f0a-ab77-35f4bbf44d33",
+  "description": "Detects a suspicious script executions from temporary folder",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND (((Image LIKE '%\\\\powershell.exe' ESCAPE '\\' OR Image LIKE '%\\\\pwsh.exe' ESCAPE '\\' OR Image LIKE '%\\\\mshta.exe' ESCAPE '\\' OR Image LIKE '%\\\\wscript.exe' ESCAPE '\\' OR Image LIKE '%\\\\cscript.exe' ESCAPE '\\') AND (CommandLine LIKE '%\\\\Windows\\\\Temp%' ESCAPE '\\' OR CommandLine LIKE '%\\\\Temporary Internet%' ESCAPE '\\' OR CommandLine LIKE '%\\\\AppData\\\\Local\\\\Temp%' ESCAPE '\\' OR CommandLine LIKE '%\\\\AppData\\\\Roaming\\\\Temp%' ESCAPE '\\' OR CommandLine LIKE '%\\%TEMP\\%%' ESCAPE '\\' OR CommandLine LIKE '%\\%TMP\\%%' ESCAPE '\\' OR CommandLine LIKE '%\\%LocalAppData\\%\\\\Temp%' ESCAPE '\\')) AND (NOT (CommandLine LIKE '% >%' ESCAPE '\\' OR CommandLine LIKE '%Out-File%' ESCAPE '\\' OR CommandLine LIKE '%ConvertTo-Json%' ESCAPE '\\' OR CommandLine LIKE '%-WindowStyle hidden -Verb runAs%' ESCAPE '\\' OR CommandLine LIKE '%\\\\Windows\\\\system32\\\\config\\\\systemprofile\\\\AppData\\\\Local\\\\Temp\\\\Amazon\\\\EC2-Windows\\\\%' ESCAPE '\\'))))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.execution",
+    "attack.t1059"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 3,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"C:\\Windows\\System32\\WScript.exe\" \"C:\\Users\\IEUser\\AppData\\Local\\Microsoft\\Windows\\Temporary Internet Files\\Content.IE5\\S97WTYG7\\updatevbs.vbs\"",
+      "Company": "Microsoft Corporation",
+      "Computer": "IEWIN7",
+      "CurrentDirectory": "C:\\Users\\IEUser\\Desktop\\",
+      "Description": "Microsoft ® Windows Based Script Host",
+      "EventID": 1,
+      "EventRecordID": 7681,
+      "FileVersion": "5.8.7600.16385",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=C2752A6515D97D5906232828004BC54C587E6780,MD5=BA7AC4381D685354FF87E0553E950A4E,SHA256=BED1028BADEE2ADE8A8A8EDD25AA4C3E70A6BEEFAFBDFFD6426E5E467F24EB01,IMPHASH=317C8DE06F7AEE57A3ACF4722FE00983",
+      "IMPHASH": "317C8DE06F7AEE57A3ACF4722FE00983",
+      "Image": "C:\\Windows\\System32\\wscript.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "365ABB72-98E4-5D04-0000-0020A4350100",
+      "LogonId": "0x135a4",
+      "MD5": "BA7AC4381D685354FF87E0553E950A4E",
+      "Opcode": 0,
+      "OriginalLogfile": "sysmon_vbs_sharpshooter_stageless_meterpreter.evtx",
+      "ParentCommandLine": "\"C:\\Program Files\\Internet Explorer\\iexplore.exe\" C:\\Users\\IEUser\\Downloads\\updatevbs.html",
+      "ParentImage": "C:\\Program Files\\Internet Explorer\\iexplore.exe",
+      "ParentProcessGuid": "365ABB72-9C8E-5D04-0000-0010D0421600",
+      "ParentProcessId": 540,
+      "ProcessGuid": "365ABB72-9C9D-5D04-0000-001039CE1600",
+      "ProcessID": 2044,
+      "Product": "Microsoft ® Windows Script Host",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "C2752A6515D97D5906232828004BC54C587E6780",
+      "SHA256": "BED1028BADEE2ADE8A8A8EDD25AA4C3E70A6BEEFAFBDFFD6426E5E467F24EB01",
+      "SystemTime": "2019-06-15T07:22:05.691759Z",
+      "Task": 1,
+      "TerminalSessionId": 1,
+      "ThreadID": 2092,
+      "User": "IEWIN7\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-06-15 07:22:05.660",
+      "Version": 5
+    }
+  ]
+}]

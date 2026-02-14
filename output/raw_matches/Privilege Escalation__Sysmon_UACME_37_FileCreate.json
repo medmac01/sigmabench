@@ -1,0 +1,60 @@
+[{
+  "title": "UAC Bypass Using NTFS Reparse Point - Process",
+  "id": "39ed3c80-e6a1-431b-9df3-911ac53d08a7",
+  "description": "Detects the pattern of UAC Bypass using NTFS reparse point and wusa.exe DLL hijacking (UACMe 36)",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND ((CommandLine LIKE '\"C:\\\\Windows\\\\system32\\\\wusa.exe\"  /quiet C:\\\\Users\\\\%' ESCAPE '\\' AND CommandLine LIKE '%\\\\AppData\\\\Local\\\\Temp\\\\update.msu' ESCAPE '\\' AND (IntegrityLevel='High' OR IntegrityLevel='System' OR IntegrityLevel='S-1-16-16384' OR IntegrityLevel='S-1-16-12288')) OR (ParentCommandLine LIKE '\"C:\\\\Windows\\\\system32\\\\dism.exe\" /online /quiet /norestart /add-package /packagepath:\"C:\\\\Windows\\\\system32\\\\pe386\" /ignorecheck' ESCAPE '\\' AND (IntegrityLevel='High' OR IntegrityLevel='System') AND (CommandLine LIKE '%C:\\\\Users\\\\%' ESCAPE '\\' AND CommandLine LIKE '%\\\\AppData\\\\Local\\\\Temp\\\\%' ESCAPE '\\' AND CommandLine LIKE '%\\\\dismhost.exe {%' ESCAPE '\\') AND Image LIKE '%\\\\DismHost.exe' ESCAPE '\\')))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1548.002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 5,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"C:\\Windows\\system32\\wusa.exe\"  /quiet C:\\Users\\IEUser\\AppData\\Local\\Temp\\update.msu",
+      "Company": "Microsoft Corporation",
+      "Computer": "MSEDGEWIN10",
+      "CurrentDirectory": "C:\\Windows\\system32\\",
+      "Description": "Windows Update Standalone Installer",
+      "EventID": 1,
+      "EventRecordID": 5490,
+      "FileVersion": "10.0.17763.1 (WinBuild.160101.0800)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=41C0812B0BE63153F3B68EA76C8B985D69DDCFBB,MD5=59701FE9C8BA85BCEB73A9B1B3E8E1C4,SHA256=E0438C5594A4EEB8515518989EE3A773581F414273B857B885D2201F66A95B06,IMPHASH=D5E97853B4CD1F8376A7D9FDA250C21E",
+      "IMPHASH": "D5E97853B4CD1F8376A7D9FDA250C21E",
+      "Image": "C:\\Windows\\System32\\wusa.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "747F3D96-56A3-5D45-0000-0020B3D31800",
+      "LogonId": "0x18d3b3",
+      "MD5": "59701FE9C8BA85BCEB73A9B1B3E8E1C4",
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_UACME_37_FileCreate.evtx",
+      "ParentCommandLine": "UACME.exe  37",
+      "ParentImage": "C:\\Users\\IEUser\\Desktop\\UACME.exe",
+      "ParentProcessGuid": "747F3D96-7E92-5D45-0000-0010FF472601",
+      "ParentProcessId": 4884,
+      "ProcessGuid": "747F3D96-7E93-5D45-0000-0010AA8A2601",
+      "ProcessID": 2780,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "41C0812B0BE63153F3B68EA76C8B985D69DDCFBB",
+      "SHA256": "E0438C5594A4EEB8515518989EE3A773581F414273B857B885D2201F66A95B06",
+      "SystemTime": "2019-08-03T12:31:15.779750Z",
+      "Task": 1,
+      "TerminalSessionId": 1,
+      "ThreadID": 3676,
+      "User": "MSEDGEWIN10\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-08-03 12:31:15.555",
+      "Version": 5
+    }
+  ]
+}]

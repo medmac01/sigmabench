@@ -1,0 +1,80 @@
+[{
+  "title": "Security Eventlog Cleared",
+  "id": "d99b79d2-0a6f-4f46-ad8b-260b6e17f982",
+  "description": "One of the Windows Eventlogs has been cleared. e.g. caused by \"wevtutil cl\" command execution",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Security' AND ((EventID=517 AND Provider_Name='Security') OR (EventID=1102 AND Provider_Name='Microsoft-Windows-Eventlog'))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.t1070.001",
+    "car.2016-04-002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Security",
+      "Computer": "wind10.winlab.local",
+      "EventID": 1102,
+      "EventRecordID": 21365,
+      "Guid": "{fc65ddd8-d6ef-4962-83d5-6e5cfe9ce148}",
+      "Keywords": "0x4020000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "NTLM2SelfRelay-med0x2e-security_4624_4688.evtx",
+      "ProcessID": 1228,
+      "Provider_Name": "Microsoft-Windows-Eventlog",
+      "SubjectDomainName": "WIND10",
+      "SubjectLogonId": "0x47ea55",
+      "SubjectUserName": "admin",
+      "SubjectUserSid": "S-1-5-21-482804190-775995292-3801157738-1002",
+      "SystemTime": "2022-05-01T04:40:18.084003Z",
+      "Task": 104,
+      "ThreadID": 9912,
+      "Version": 0
+    }
+  ]
+},
+{
+  "title": "User Logoff Event",
+  "id": "0badd08f-c6a3-4630-90d3-6875cca440be",
+  "description": "Detects a user log-off activity. Could be used for example to correlate information during forensic investigations",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Security' AND (EventID=4634 OR EventID=4647)"
+  ],
+  "rule_level": "informational",
+  "tags": [
+    "attack.impact",
+    "attack.t1531"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 6,
+      "Channel": "Security",
+      "Computer": "wind10.winlab.local",
+      "EventID": 4634,
+      "EventRecordID": 21375,
+      "Guid": "54849625-5478-4994-A5BA-3E3B0328C30D",
+      "Keywords": "0x8020000000000000",
+      "Level": 0,
+      "LogonType": 3,
+      "Opcode": 0,
+      "OriginalLogfile": "NTLM2SelfRelay-med0x2e-security_4624_4688.evtx",
+      "ProcessID": 704,
+      "Provider_Name": "Microsoft-Windows-Security-Auditing",
+      "SystemTime": "2022-05-01T04:42:11.069064Z",
+      "TargetDomainName": "WINLAB.LOCAL",
+      "TargetLogonId": "0x821aab",
+      "TargetUserName": "Administrator",
+      "TargetUserSid": "S-1-5-21-81107902-1099128984-1836738286-500",
+      "Task": 12545,
+      "ThreadID": 9984,
+      "Version": 0
+    }
+  ]
+}]

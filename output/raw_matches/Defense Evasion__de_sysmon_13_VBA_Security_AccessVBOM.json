@@ -1,0 +1,44 @@
+[{
+  "title": "Trust Access Disable For VBApplications",
+  "id": "1a5c46e9-f32f-42f7-b2bc-6e9084db7fbf",
+  "description": "Detects registry changes to Microsoft Office \"AccessVBOM\" to a value of \"1\" which disables trust access for VBA on the victim machine and lets attackers execute malicious macros without any Microsoft Office warnings.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=13 AND (TargetObject LIKE '%\\\\Security\\\\AccessVBOM' ESCAPE '\\' AND Details='DWORD (0x00000001)'))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.persistence",
+    "attack.defense-evasion",
+    "attack.t1112"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "IEWIN7",
+      "Details": "DWORD (0x00000001)",
+      "EventID": 13,
+      "EventRecordID": 17915,
+      "EventType": "SetValue",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Windows\\system32\\wbem\\wmiprvse.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "de_sysmon_13_VBA_Security_AccessVBOM.evtx",
+      "ProcessGuid": "365ABB72-92DF-5CDB-0000-0010A15E1300",
+      "ProcessID": 2024,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "RuleName": "Defense Evasion - access to the VBA project object model in the Macro Settings changed",
+      "SystemTime": "2019-05-15T04:18:40.474644Z",
+      "TargetObject": "HKU\\S-1-5-21-3583694148-1414552638-2922671848-1000\\Software\\Microsoft\\Office\\16.0\\Excel\\Security\\AccessVBOM",
+      "Task": 13,
+      "ThreadID": 1212,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-15 04:18:40.459",
+      "Version": 2
+    }
+  ]
+}]

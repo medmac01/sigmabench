@@ -1,0 +1,60 @@
+[{
+  "title": "UAC Bypass via Windows Firewall Snap-In Hijack",
+  "id": "e52cb31c-10ed-4aea-bcb7-593c9f4a315b",
+  "description": "Detects attempts to bypass User Account Control (UAC) by hijacking the Microsoft Management Console (MMC) Windows Firewall snap-in",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND ((ParentImage LIKE '%\\\\mmc.exe' ESCAPE '\\' AND ParentCommandLine LIKE '%WF.msc%' ESCAPE '\\') AND (NOT Image LIKE '%\\\\WerFault.exe' ESCAPE '\\')))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1548"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 6,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"C:\\Users\\IEUser\\AppData\\Local\\Temp\\fubuki.exe\"",
+      "Company": "Hazardous Environments",
+      "Computer": "MSEDGEWIN10",
+      "CurrentDirectory": "C:\\Windows\\system32\\",
+      "Description": "UACMe proxy DLL",
+      "EventID": 1,
+      "EventRecordID": 5522,
+      "FileVersion": "3.1.9.1905",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=C2558B74F5273E7AC7AD1D11B0A8591EFE73E088,MD5=C960E3BB9D2A99573DB7D5576AD5F3C3,SHA256=8A20DBB729093D3BD3E5A9F6541895DC6F4B1899ABA4B66160B5F6A1D0CD33CA,IMPHASH=069E5461D2FBAD8D4C3909C4E0340847",
+      "IMPHASH": "069E5461D2FBAD8D4C3909C4E0340847",
+      "Image": "C:\\Users\\IEUser\\AppData\\Local\\Temp\\Fubuki.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "747F3D96-56A3-5D45-0000-0020B3D31800",
+      "LogonId": "0x18d3b3",
+      "MD5": "C960E3BB9D2A99573DB7D5576AD5F3C3",
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_UACME_38.evtx",
+      "ParentCommandLine": "huy32,wf.msc \"C:\\Users\\IEUser\\AppData\\Local\\Temp\\kmkze.msc\"",
+      "ParentImage": "C:\\Windows\\System32\\mmc.exe",
+      "ParentProcessGuid": "747F3D96-9123-5D45-0000-001087596101",
+      "ParentProcessId": 4372,
+      "ProcessGuid": "747F3D96-9124-5D45-0000-001022926101",
+      "ProcessID": 2780,
+      "Product": "UACMe",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "C2558B74F5273E7AC7AD1D11B0A8591EFE73E088",
+      "SHA256": "8A20DBB729093D3BD3E5A9F6541895DC6F4B1899ABA4B66160B5F6A1D0CD33CA",
+      "SystemTime": "2019-08-03T13:50:29.424081Z",
+      "Task": 1,
+      "TerminalSessionId": 1,
+      "ThreadID": 3676,
+      "User": "MSEDGEWIN10\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-08-03 13:50:28.562",
+      "Version": 5
+    }
+  ]
+}]

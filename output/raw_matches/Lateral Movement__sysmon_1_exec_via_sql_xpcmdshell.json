@@ -1,0 +1,62 @@
+[{
+  "title": "Suspicious Child Process Of SQL Server",
+  "id": "869b9ca7-9ea2-4a5a-8325-e80e62f75445",
+  "description": "Detects suspicious child processes of the SQLServer process. This could indicate potential RCE or SQL Injection.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND ((ParentImage LIKE '%\\\\sqlservr.exe' ESCAPE '\\' AND (Image LIKE '%\\\\bash.exe' ESCAPE '\\' OR Image LIKE '%\\\\bitsadmin.exe' ESCAPE '\\' OR Image LIKE '%\\\\cmd.exe' ESCAPE '\\' OR Image LIKE '%\\\\netstat.exe' ESCAPE '\\' OR Image LIKE '%\\\\nltest.exe' ESCAPE '\\' OR Image LIKE '%\\\\ping.exe' ESCAPE '\\' OR Image LIKE '%\\\\powershell.exe' ESCAPE '\\' OR Image LIKE '%\\\\pwsh.exe' ESCAPE '\\' OR Image LIKE '%\\\\regsvr32.exe' ESCAPE '\\' OR Image LIKE '%\\\\rundll32.exe' ESCAPE '\\' OR Image LIKE '%\\\\sh.exe' ESCAPE '\\' OR Image LIKE '%\\\\systeminfo.exe' ESCAPE '\\' OR Image LIKE '%\\\\tasklist.exe' ESCAPE '\\' OR Image LIKE '%\\\\wsl.exe' ESCAPE '\\')) AND (NOT (ParentImage LIKE 'C:\\\\Program Files\\\\Microsoft SQL Server\\\\%' ESCAPE '\\' AND ParentImage LIKE '%DATEV\\_DBENGINE\\\\MSSQL\\\\Binn\\\\sqlservr.exe' ESCAPE '\\' AND Image LIKE 'C:\\\\Windows\\\\System32\\\\cmd.exe' ESCAPE '\\' AND CommandLine LIKE '\"C:\\\\Windows\\\\system32\\\\cmd.exe\" %' ESCAPE '\\'))))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.t1505.003",
+    "attack.t1190",
+    "attack.initial-access",
+    "attack.persistence",
+    "attack.privilege-escalation"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"C:\\Windows\\system32\\cmd.exe\" /c set > c:\\users\\\\public\\netstat.txt",
+      "Company": "Microsoft Corporation",
+      "Computer": "MSEDGEWIN10",
+      "CurrentDirectory": "C:\\Windows\\system32\\",
+      "Description": "Windows Command Processor",
+      "EventID": 1,
+      "EventRecordID": 56509,
+      "FileVersion": "10.0.17763.1 (WinBuild.160101.0800)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=8C5437CD76A89EC983E3B364E219944DA3DAB464,MD5=975B45B669930B0CC773EAF2B414206F,SHA256=3656F37A1C6951EC4496FABB8EE957D3A6E3C276D5A3785476B482C9C0D32EA2,IMPHASH=272245E2988E1E430500B852C4FB5E18",
+      "IMPHASH": "272245E2988E1E430500B852C4FB5E18",
+      "Image": "C:\\Windows\\System32\\cmd.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "747F3D96-CE3B-5DBE-0000-00201ED50100",
+      "LogonId": "0x1d51e",
+      "MD5": "975B45B669930B0CC773EAF2B414206F",
+      "Opcode": 0,
+      "OriginalLogfile": "sysmon_1_exec_via_sql_xpcmdshell.evtx",
+      "ParentCommandLine": "\"c:\\Program Files\\Microsoft SQL Server\\MSSQL10.SQLEXPRESS\\MSSQL\\Binn\\sqlservr.exe\" -sSQLEXPRESS",
+      "ParentImage": "C:\\Program Files\\Microsoft SQL Server\\MSSQL10.SQLEXPRESS\\MSSQL\\Binn\\sqlservr.exe",
+      "ParentProcessGuid": "747F3D96-CE42-5DBE-0000-0010EE430200",
+      "ParentProcessId": 3936,
+      "ProcessGuid": "747F3D96-DB7C-5DBE-0000-0010CF6B9502",
+      "ProcessID": 3180,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "8C5437CD76A89EC983E3B364E219944DA3DAB464",
+      "SHA256": "3656F37A1C6951EC4496FABB8EE957D3A6E3C276D5A3785476B482C9C0D32EA2",
+      "SystemTime": "2019-11-03T13:51:58.263043Z",
+      "Task": 1,
+      "TerminalSessionId": 0,
+      "ThreadID": 4224,
+      "User": "MSEDGEWIN10\\sqlsvc",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-11-03 13:51:56.380",
+      "Version": 5
+    }
+  ]
+}]

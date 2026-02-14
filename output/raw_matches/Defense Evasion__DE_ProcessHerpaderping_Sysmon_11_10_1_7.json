@@ -1,0 +1,60 @@
+[{
+  "title": "Suspicious File Characteristics Due to Missing Fields",
+  "id": "9637e8a5-7131-4f7f-bdc7-2b05d8670c43",
+  "description": "Detects Executables in the Downloads folder without FileVersion,Description,Product,Company likely created with py2exe",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND (((Description='?' AND FileVersion='?') OR (Description='?' AND Product='?') OR (Description='?' AND Company='?')) AND Image LIKE '%\\\\Downloads\\\\%' ESCAPE '\\'))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.execution",
+    "attack.t1059.006"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 3,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\".\\samir.exe\"",
+      "Company": "?",
+      "Computer": "LAPTOP-JU4M3I0E",
+      "CurrentDirectory": "c:\\Users\\bouss\\Downloads\\",
+      "Description": "?",
+      "EventID": 1,
+      "EventRecordID": 2246493,
+      "FileVersion": "?",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=413A3B931275B7708D91E65BF1567A4337289A77,MD5=F4B84F18CCC81417CC870E14EE6639DF,SHA256=164691E78D5AC947B9DDB782E4C3E052C366D974B7D010774501992EF71CB762,IMPHASH=00000000000000000000000000000000",
+      "IMPHASH": "00000000000000000000000000000000",
+      "Image": "C:\\Users\\bouss\\Downloads\\samir.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "00247C92-6AEB-5F95-0000-00206EDC7814",
+      "LogonId": "0x1478dc6e",
+      "MD5": "F4B84F18CCC81417CC870E14EE6639DF",
+      "Opcode": 0,
+      "OriginalFileName": "?",
+      "OriginalLogfile": "DE_ProcessHerpaderping_Sysmon_11_10_1_7.evtx",
+      "ParentCommandLine": "ProcessHerpaderping.exe  \"c:\\Program Files\\Internet Explorer\\iexplore.exe\" .\\samir.exe",
+      "ParentImage": "C:\\Users\\bouss\\Downloads\\ProcessHerpaderping.exe",
+      "ParentProcessGuid": "00247C92-F3AE-5F97-0000-00106ABA0418",
+      "ParentProcessId": 21756,
+      "ProcessGuid": "00247C92-F3AE-5F97-0000-00104EBD0418",
+      "ProcessID": 5400,
+      "Product": "?",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "413A3B931275B7708D91E65BF1567A4337289A77",
+      "SHA256": "164691E78D5AC947B9DDB782E4C3E052C366D974B7D010774501992EF71CB762",
+      "SystemTime": "2020-10-27T10:17:18.397762Z",
+      "Task": 1,
+      "TerminalSessionId": 3,
+      "ThreadID": 6548,
+      "User": "LAPTOP-JU4M3I0E\\bouss",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2020-10-27 10:17:18.377",
+      "Version": 5
+    }
+  ]
+}]

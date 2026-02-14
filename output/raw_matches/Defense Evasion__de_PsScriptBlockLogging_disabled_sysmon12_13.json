@@ -1,0 +1,45 @@
+[{
+  "title": "PowerShell Logging Disabled Via Registry Key Tampering",
+  "id": "fecfd1a1-cc78-4313-a1ea-2ee2e8ec27a7",
+  "description": "Detects changes to the registry for the currently logged-in user. In order to disable PowerShell module logging, script block logging or transcription and script execution logging",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=13 AND ((TargetObject LIKE '%\\\\Microsoft\\\\Windows\\\\PowerShell\\\\%' ESCAPE '\\' OR TargetObject LIKE '%\\\\Microsoft\\\\PowerShellCore\\\\%' ESCAPE '\\') AND (TargetObject LIKE '%\\\\ModuleLogging\\\\EnableModuleLogging' ESCAPE '\\' OR TargetObject LIKE '%\\\\ScriptBlockLogging\\\\EnableScriptBlockLogging' ESCAPE '\\' OR TargetObject LIKE '%\\\\ScriptBlockLogging\\\\EnableScriptBlockInvocationLogging' ESCAPE '\\' OR TargetObject LIKE '%\\\\Transcription\\\\EnableTranscripting' ESCAPE '\\' OR TargetObject LIKE '%\\\\Transcription\\\\EnableInvocationHeader' ESCAPE '\\' OR TargetObject LIKE '%\\\\EnableScripts' ESCAPE '\\') AND Details='DWORD (0x00000000)'))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.t1564.001",
+    "attack.t1112",
+    "attack.persistence"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "IEWIN7",
+      "Details": "DWORD (0x00000000)",
+      "EventID": 13,
+      "EventRecordID": 18967,
+      "EventType": "SetValue",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Windows\\system32\\reg.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "de_PsScriptBlockLogging_disabled_sysmon12_13.evtx",
+      "ProcessGuid": "365ABB72-9AD3-5CE1-0000-0010F55C1800",
+      "ProcessID": 2004,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "RuleName": "Defense Evasion - PowerShell Audit Settings Changed",
+      "SystemTime": "2019-05-19T18:05:07.719920Z",
+      "TargetObject": "HKLM\\SOFTWARE\\Wow6432Node\\Policies\\Microsoft\\Windows\\PowerShell\\ScriptBlockLogging\\EnableScriptBlockLogging",
+      "Task": 13,
+      "ThreadID": 1976,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-19 18:05:07.704",
+      "Version": 2
+    }
+  ]
+}]

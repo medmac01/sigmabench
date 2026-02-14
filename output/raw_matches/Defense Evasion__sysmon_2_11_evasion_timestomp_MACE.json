@@ -1,0 +1,86 @@
+[{
+  "title": "Suspicious Startup Folder Persistence",
+  "id": "28208707-fe31-437f-9a7f-4b1108b94d2e",
+  "description": "Detects the creation of potentially malicious script and executable files in Windows startup folders, which is a common persistence technique used by threat actors.\nThese files (.ps1, .vbs, .js, .bat, etc.) are automatically executed when a user logs in, making the Startup folder an attractive target for attackers.\nThis technique is frequently observed in malvertising campaigns and malware distribution where attackers attempt to maintain long-term access to compromised systems.\n",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=11 AND (TargetFilename LIKE '%\\\\Windows\\\\Start Menu\\\\Programs\\\\Startup\\\\%' ESCAPE '\\' AND (TargetFilename LIKE '%.bat' ESCAPE '\\' OR TargetFilename LIKE '%.cmd' ESCAPE '\\' OR TargetFilename LIKE '%.dll' ESCAPE '\\' OR TargetFilename LIKE '%.hta' ESCAPE '\\' OR TargetFilename LIKE '%.jar' ESCAPE '\\' OR TargetFilename LIKE '%.js' ESCAPE '\\' OR TargetFilename LIKE '%.jse' ESCAPE '\\' OR TargetFilename LIKE '%.msi' ESCAPE '\\' OR TargetFilename LIKE '%.ps1' ESCAPE '\\' OR TargetFilename LIKE '%.psd1' ESCAPE '\\' OR TargetFilename LIKE '%.psm1' ESCAPE '\\' OR TargetFilename LIKE '%.scr' ESCAPE '\\' OR TargetFilename LIKE '%.url' ESCAPE '\\' OR TargetFilename LIKE '%.vba' ESCAPE '\\' OR TargetFilename LIKE '%.vbe' ESCAPE '\\' OR TargetFilename LIKE '%.vbs' ESCAPE '\\' OR TargetFilename LIKE '%.wsf' ESCAPE '\\')))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.privilege-escalation",
+    "attack.execution",
+    "attack.t1204.002",
+    "attack.persistence",
+    "attack.t1547.001"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "IEWIN7",
+      "CreationUtcTime": "2019-04-30 10:12:45.583",
+      "EventID": 11,
+      "EventRecordID": 8930,
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Windows\\system32\\cmd.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "sysmon_2_11_evasion_timestomp_MACE.evtx",
+      "ProcessGuid": "365ABB72-1EFA-5CC8-0000-0010D3DE1C00",
+      "ProcessID": 1956,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2019-04-30T10:12:45.583363Z",
+      "TargetFileName": "C:\\Users\\IEUser\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\bs.ps1",
+      "Task": 11,
+      "ThreadID": 1636,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-04-30 10:12:45.583",
+      "Version": 2
+    }
+  ]
+},
+{
+  "title": "Startup Folder File Write",
+  "id": "2aa0a6b4-a865-495b-ab51-c28249537b75",
+  "description": "A General detection for files being created in the Windows startup directory. This could be an indicator of persistence.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=11 AND (TargetFilename LIKE '%\\\\Microsoft\\\\Windows\\\\Start Menu\\\\Programs\\\\StartUp%' ESCAPE '\\' AND (NOT ((Image LIKE 'C:\\\\Windows\\\\System32\\\\wuauclt.exe' ESCAPE '\\' OR Image LIKE 'C:\\\\Windows\\\\uus\\\\ARM64\\\\wuaucltcore.exe' ESCAPE '\\') OR (TargetFilename LIKE 'C:\\\\$WINDOWS.~BT\\\\NewOS\\\\%' ESCAPE '\\' OR TargetFilename LIKE 'C:\\\\$WinREAgent\\\\Scratch\\\\Mount\\\\%' ESCAPE '\\'))) AND (NOT (Image LIKE '%\\\\ONENOTE.EXE' ESCAPE '\\' AND TargetFilename LIKE '%\\\\Send to OneNote.lnk' ESCAPE '\\'))))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.privilege-escalation",
+    "attack.persistence",
+    "attack.t1547.001"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "IEWIN7",
+      "CreationUtcTime": "2019-04-30 10:12:45.583",
+      "EventID": 11,
+      "EventRecordID": 8930,
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Windows\\system32\\cmd.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "sysmon_2_11_evasion_timestomp_MACE.evtx",
+      "ProcessGuid": "365ABB72-1EFA-5CC8-0000-0010D3DE1C00",
+      "ProcessID": 1956,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2019-04-30T10:12:45.583363Z",
+      "TargetFileName": "C:\\Users\\IEUser\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\bs.ps1",
+      "Task": 11,
+      "ThreadID": 1636,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-04-30 10:12:45.583",
+      "Version": 2
+    }
+  ]
+}]

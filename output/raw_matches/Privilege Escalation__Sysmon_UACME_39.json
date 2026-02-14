@@ -1,0 +1,101 @@
+[{
+  "title": "MMC Spawning Windows Shell",
+  "id": "05a2ab7e-ce11-4b63-86db-ab32e763e11d",
+  "description": "Detects a Windows command line executable started from MMC",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND (ParentImage LIKE '%\\\\mmc.exe' ESCAPE '\\' AND ((Image LIKE '%\\\\cmd.exe' ESCAPE '\\' OR Image LIKE '%\\\\powershell.exe' ESCAPE '\\' OR Image LIKE '%\\\\pwsh.exe' ESCAPE '\\' OR Image LIKE '%\\\\wscript.exe' ESCAPE '\\' OR Image LIKE '%\\\\cscript.exe' ESCAPE '\\' OR Image LIKE '%\\\\sh.exe' ESCAPE '\\' OR Image LIKE '%\\\\bash.exe' ESCAPE '\\' OR Image LIKE '%\\\\reg.exe' ESCAPE '\\' OR Image LIKE '%\\\\regsvr32.exe' ESCAPE '\\') OR Image LIKE '%\\\\BITSADMIN%' ESCAPE '\\')))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.lateral-movement",
+    "attack.t1021.003"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 7,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"C:\\Windows\\system32\\cmd.exe\"",
+      "Company": "Microsoft Corporation",
+      "Computer": "MSEDGEWIN10",
+      "CurrentDirectory": "C:\\Windows\\system32\\",
+      "Description": "Windows Command Processor",
+      "EventID": 1,
+      "EventRecordID": 5532,
+      "FileVersion": "10.0.17763.1 (WinBuild.160101.0800)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=8C5437CD76A89EC983E3B364E219944DA3DAB464,MD5=975B45B669930B0CC773EAF2B414206F,SHA256=3656F37A1C6951EC4496FABB8EE957D3A6E3C276D5A3785476B482C9C0D32EA2,IMPHASH=272245E2988E1E430500B852C4FB5E18",
+      "IMPHASH": "272245E2988E1E430500B852C4FB5E18",
+      "Image": "C:\\Windows\\System32\\cmd.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "747F3D96-56A3-5D45-0000-0020B3D31800",
+      "LogonId": "0x18d3b3",
+      "MD5": "975B45B669930B0CC773EAF2B414206F",
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_UACME_39.evtx",
+      "ParentCommandLine": "\"C:\\Windows\\System32\\mmc.exe\" eventvwr.msc",
+      "ParentImage": "C:\\Windows\\System32\\mmc.exe",
+      "ParentProcessGuid": "747F3D96-A356-5D45-0000-001014F99901",
+      "ParentProcessId": 4056,
+      "ProcessGuid": "747F3D96-A357-5D45-0000-0010BD149A01",
+      "ProcessID": 2780,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "8C5437CD76A89EC983E3B364E219944DA3DAB464",
+      "SHA256": "3656F37A1C6951EC4496FABB8EE957D3A6E3C276D5A3785476B482C9C0D32EA2",
+      "SystemTime": "2019-08-03T15:08:07.558917Z",
+      "Task": 1,
+      "TerminalSessionId": 1,
+      "ThreadID": 3676,
+      "User": "MSEDGEWIN10\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-08-03 15:08:07.355",
+      "Version": 5
+    }
+  ]
+},
+{
+  "title": "UAC Bypass Using .NET Code Profiler on MMC",
+  "id": "93a19907-d4f9-4deb-9f91-aac4692776a6",
+  "description": "Detects the pattern of UAC Bypass using .NET Code Profiler and mmc.exe DLL hijacking (UACMe 39)",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=11 AND (TargetFilename LIKE 'C:\\\\Users\\\\%' ESCAPE '\\' AND TargetFilename LIKE '%\\\\AppData\\\\Local\\\\Temp\\\\pe386.dll' ESCAPE '\\'))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1548.002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 2,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "MSEDGEWIN10",
+      "CreationUtcTime": "2019-08-03 15:08:06.372",
+      "EventID": 11,
+      "EventRecordID": 5527,
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Windows\\explorer.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_UACME_39.evtx",
+      "ProcessGuid": "747F3D96-A356-5D45-0000-001029AA9901",
+      "ProcessID": 2780,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2019-08-03T15:08:06.419322Z",
+      "TargetFileName": "C:\\Users\\IEUser\\AppData\\Local\\Temp\\pe386.dll",
+      "Task": 11,
+      "ThreadID": 3676,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-08-03 15:08:06.372",
+      "Version": 2
+    }
+  ]
+}]

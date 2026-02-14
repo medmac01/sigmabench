@@ -1,0 +1,135 @@
+[{
+  "title": "Suspicious Service Installation",
+  "id": "1d61f71d-59d2-479e-9562-4ff5f4ead16b",
+  "description": "Detects suspicious service installation commands",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='System' AND (Provider_Name='Service Control Manager' AND EventID=7045 AND (ImagePath LIKE '% -nop %' ESCAPE '\\' OR ImagePath LIKE '% -sta %' ESCAPE '\\' OR ImagePath LIKE '% -w hidden %' ESCAPE '\\' OR ImagePath LIKE '%:\\\\Temp\\\\%' ESCAPE '\\' OR ImagePath LIKE '%.downloadfile(%' ESCAPE '\\' OR ImagePath LIKE '%.downloadstring(%' ESCAPE '\\' OR ImagePath LIKE '%\\\\ADMIN$\\\\%' ESCAPE '\\' OR ImagePath LIKE '%\\\\Perflogs\\\\%' ESCAPE '\\' OR ImagePath LIKE '%&&%' ESCAPE '\\'))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.persistence",
+    "attack.privilege-escalation",
+    "car.2013-09-005",
+    "attack.t1543.003"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "AccountName": "LocalSystem",
+      "Channel": "System",
+      "Computer": "IEWIN7",
+      "EventID": 7045,
+      "EventRecordID": 10446,
+      "EventSourceName": "Service Control Manager",
+      "Guid": "{555908d1-a6d7-4695-8e1e-26931d2012f4}",
+      "ImagePath": "%COMSPEC% /c ping -n 1 127.0.0.1 >nul && echo 'WinPwnage' > \\\\.\\pipe\\WinPwnagePipe",
+      "Keywords": "0x8080000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "System_7045_namedpipe_privesc.evtx",
+      "ProcessID": 468,
+      "Provider_Name": "Service Control Manager",
+      "Qualifiers": 16384,
+      "ServiceName": "WinPwnage",
+      "ServiceType": "user mode service",
+      "StartType": "demand start",
+      "SystemTime": "2019-05-12T12:52:43.702578Z",
+      "Task": 0,
+      "ThreadID": 3256,
+      "UserID": "S-1-5-21-3583694148-1414552638-2922671848-1000",
+      "Version": 0
+    }
+  ]
+},
+{
+  "title": "Meterpreter or Cobalt Strike Getsystem Service Installation - System",
+  "id": "843544a7-56e0-4dcc-a44f-5cc266dd97d6",
+  "description": "Detects the use of getsystem Meterpreter/Cobalt Strike command by detecting a specific service installation",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='System' AND ((Provider_Name='Service Control Manager' AND EventID=7045) AND (((ImagePath LIKE '%/c%' ESCAPE '\\' AND ImagePath LIKE '%echo%' ESCAPE '\\' AND ImagePath LIKE '%\\\\pipe\\\\%' ESCAPE '\\') AND (ImagePath LIKE '%cmd%' ESCAPE '\\' OR ImagePath LIKE '%\\%COMSPEC\\%%' ESCAPE '\\')) OR (ImagePath LIKE '%rundll32%' ESCAPE '\\' AND ImagePath LIKE '%.dll,a%' ESCAPE '\\' AND ImagePath LIKE '%/p:%' ESCAPE '\\') OR ImagePath LIKE '\\\\\\\\127.0.0.1\\\\ADMIN$\\\\%' ESCAPE '\\'))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1134.001",
+    "attack.t1134.002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "AccountName": "LocalSystem",
+      "Channel": "System",
+      "Computer": "IEWIN7",
+      "EventID": 7045,
+      "EventRecordID": 10446,
+      "EventSourceName": "Service Control Manager",
+      "Guid": "{555908d1-a6d7-4695-8e1e-26931d2012f4}",
+      "ImagePath": "%COMSPEC% /c ping -n 1 127.0.0.1 >nul && echo 'WinPwnage' > \\\\.\\pipe\\WinPwnagePipe",
+      "Keywords": "0x8080000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "System_7045_namedpipe_privesc.evtx",
+      "ProcessID": 468,
+      "Provider_Name": "Service Control Manager",
+      "Qualifiers": 16384,
+      "ServiceName": "WinPwnage",
+      "ServiceType": "user mode service",
+      "StartType": "demand start",
+      "SystemTime": "2019-05-12T12:52:43.702578Z",
+      "Task": 0,
+      "ThreadID": 3256,
+      "UserID": "S-1-5-21-3583694148-1414552638-2922671848-1000",
+      "Version": 0
+    }
+  ]
+},
+{
+  "title": "Uncommon Service Installation Image Path",
+  "id": "26481afe-db26-4228-b264-25a29fe6efc7",
+  "description": "Detects uncommon service installation commands by looking at suspicious or uncommon image path values containing references to encoded powershell commands, temporary paths, etc.\n",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='System' AND ((Provider_Name='Service Control Manager' AND EventID=7045) AND ((ImagePath LIKE '%\\\\\\\\.\\\\pipe%' ESCAPE '\\' OR ImagePath LIKE '%\\\\Users\\\\Public\\\\%' ESCAPE '\\' OR ImagePath LIKE '%\\\\Windows\\\\Temp\\\\%' ESCAPE '\\') OR (ImagePath LIKE '% -e%' ESCAPE '\\' AND (ImagePath LIKE '% aQBlAHgA%' ESCAPE '\\' OR ImagePath LIKE '% aWV4I%' ESCAPE '\\' OR ImagePath LIKE '% IAB%' ESCAPE '\\' OR ImagePath LIKE '% JAB%' ESCAPE '\\' OR ImagePath LIKE '% PAA%' ESCAPE '\\' OR ImagePath LIKE '% SQBFAFgA%' ESCAPE '\\' OR ImagePath LIKE '% SUVYI%' ESCAPE '\\'))) AND (NOT ImagePath LIKE 'C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender\\\\Definition Updates\\\\%' ESCAPE '\\') AND (NOT ImagePath LIKE 'C:\\\\WINDOWS\\\\TEMP\\\\thor10-remote\\\\thor64.exe%' ESCAPE '\\'))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.persistence",
+    "attack.privilege-escalation",
+    "car.2013-09-005",
+    "attack.t1543.003"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "AccountName": "LocalSystem",
+      "Channel": "System",
+      "Computer": "IEWIN7",
+      "EventID": 7045,
+      "EventRecordID": 10446,
+      "EventSourceName": "Service Control Manager",
+      "Guid": "{555908d1-a6d7-4695-8e1e-26931d2012f4}",
+      "ImagePath": "%COMSPEC% /c ping -n 1 127.0.0.1 >nul && echo 'WinPwnage' > \\\\.\\pipe\\WinPwnagePipe",
+      "Keywords": "0x8080000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "System_7045_namedpipe_privesc.evtx",
+      "ProcessID": 468,
+      "Provider_Name": "Service Control Manager",
+      "Qualifiers": 16384,
+      "ServiceName": "WinPwnage",
+      "ServiceType": "user mode service",
+      "StartType": "demand start",
+      "SystemTime": "2019-05-12T12:52:43.702578Z",
+      "Task": 0,
+      "ThreadID": 3256,
+      "UserID": "S-1-5-21-3583694148-1414552638-2922671848-1000",
+      "Version": 0
+    }
+  ]
+}]

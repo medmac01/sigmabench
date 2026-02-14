@@ -1,0 +1,60 @@
+[{
+  "title": "Sdclt Child Processes",
+  "id": "da2738f2-fadb-4394-afa7-0a0674885afa",
+  "description": "A General detection for sdclt spawning new processes. This could be an indicator of sdclt being used for bypass UAC techniques.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND ParentImage LIKE '%\\\\sdclt.exe' ESCAPE '\\')"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1548.002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 3,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"C:\\Windows\\System32\\cmd.exe\"  /name Microsoft.BackupAndRestoreCenter",
+      "Company": "Microsoft Corporation",
+      "Computer": "IEWIN7",
+      "CurrentDirectory": "C:\\Users\\IEUser\\AppData\\Local\\Temp\\onedrive\\",
+      "Description": "Windows Command Processor",
+      "EventID": 1,
+      "EventRecordID": 11267,
+      "FileVersion": "6.1.7601.17514 (win7sp1_rtm.101119-1850)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=EE8CBF12D87C4D388F09B4F69BED2E91682920B5,MD5=AD7B9C14083B52BC532FBA5948342B98,SHA256=17F746D82695FA9B35493B41859D39D786D32B23A9D2E00F4011DEC7A02402AE,IMPHASH=CEEFB55F764020CC5C5F8F23349AB163",
+      "IMPHASH": "CEEFB55F764020CC5C5F8F23349AB163",
+      "Image": "C:\\Windows\\System32\\cmd.exe",
+      "IntegrityLevel": "Medium",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "365ABB72-94CD-5CD3-0000-0020DD3A0100",
+      "LogonId": "0x13add",
+      "MD5": "AD7B9C14083B52BC532FBA5948342B98",
+      "Opcode": 0,
+      "OriginalLogfile": "sysmon_1_13_UACBypass_AppPath_Control.evtx",
+      "ParentCommandLine": "\"C:\\Windows\\system32\\sdclt.exe\"",
+      "ParentImage": "C:\\Windows\\System32\\sdclt.exe",
+      "ParentProcessGuid": "365ABB72-9DA4-5CD3-0000-00102E692F00",
+      "ParentProcessId": 3184,
+      "ProcessGuid": "365ABB72-9DA4-5CD3-0000-00107F7A2F00",
+      "ProcessID": 1988,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "EE8CBF12D87C4D388F09B4F69BED2E91682920B5",
+      "SHA256": "17F746D82695FA9B35493B41859D39D786D32B23A9D2E00F4011DEC7A02402AE",
+      "SystemTime": "2019-05-09T03:25:25.067945Z",
+      "Task": 1,
+      "TerminalSessionId": 1,
+      "ThreadID": 228,
+      "User": "IEWIN7\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-09 03:25:24.677",
+      "Version": 5
+    }
+  ]
+}]

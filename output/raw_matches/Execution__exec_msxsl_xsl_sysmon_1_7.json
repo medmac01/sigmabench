@@ -1,0 +1,59 @@
+[{
+  "title": "Msxsl.EXE Execution",
+  "id": "9e50a8b3-dd05-4eb8-9153-bdb6b79d50b0",
+  "description": "Detects the execution of the MSXSL utility. This can be used to execute Extensible Stylesheet Language (XSL) files. These files are commonly used to describe the processing and rendering of data within XML files.\nAdversaries can abuse this functionality to execute arbitrary files while potentially bypassing application whitelisting defenses.\n",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND Image LIKE '%\\\\msxsl.exe' ESCAPE '\\')"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.t1220"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "msxsl.exe  c:\\Users\\IEUser\\AppData\\Roaming\\Adobe\\test.dat c:\\Users\\IEUser\\AppData\\Roaming\\Adobe\\test.dat",
+      "Company": "Microsoft",
+      "Computer": "IEWIN7",
+      "CurrentDirectory": "D:\\",
+      "Description": "msxsl",
+      "EventID": 1,
+      "EventRecordID": 1017,
+      "FileVersion": "1.1.0.1",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=8B516E7BE14172E49085C4234C9A53C6EB490A45,MD5=3E9F31B4E2CD423C015D34D63047685E,SHA256=35BA7624F586086F32A01459FCC0AB755B01B49D571618AF456AA49E593734C7,IMPHASH=2477F6A819520981112AD254E2BD87D8",
+      "IMPHASH": "2477F6A819520981112AD254E2BD87D8",
+      "Image": "\\\\vboxsrv\\HTools\\msxsl.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "365ABB72-CE6C-5CE6-0000-002047F30000",
+      "LogonId": "0xf347",
+      "MD5": "3E9F31B4E2CD423C015D34D63047685E",
+      "Opcode": 0,
+      "OriginalLogfile": "exec_msxsl_xsl_sysmon_1_7.evtx",
+      "ParentCommandLine": "\"C:\\Windows\\System32\\cmd.exe\"",
+      "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+      "ParentProcessGuid": "365ABB72-D2D4-5CE6-0000-001047EA6400",
+      "ParentProcessId": 2236,
+      "ProcessGuid": "365ABB72-D7B0-5CE6-0000-001077C56D00",
+      "ProcessID": 2032,
+      "Product": "Command Line XSLT",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "8B516E7BE14172E49085C4234C9A53C6EB490A45",
+      "SHA256": "35BA7624F586086F32A01459FCC0AB755B01B49D571618AF456AA49E593734C7",
+      "SystemTime": "2019-05-23T17:26:08.716859Z",
+      "Task": 1,
+      "TerminalSessionId": 1,
+      "ThreadID": 2092,
+      "User": "IEWIN7\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-23 17:26:08.686",
+      "Version": 5
+    }
+  ]
+}]

@@ -1,0 +1,83 @@
+[{
+  "title": "Hijack Legit RDP Session to Move Laterally",
+  "id": "52753ea4-b3a0-4365-910d-36cff487b789",
+  "description": "Detects the usage of tsclient share to place a backdoor on the RDP source machine's startup folder",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=11 AND (Image LIKE '%\\\\mstsc.exe' ESCAPE '\\' AND TargetFilename LIKE '%\\\\Microsoft\\\\Windows\\\\Start Menu\\\\Programs\\\\Startup\\\\%' ESCAPE '\\'))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.command-and-control",
+    "attack.t1219.002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 2,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "alice.insecurebank.local",
+      "CreationUtcTime": "2019-05-14 13:55:57.243",
+      "EventID": 11,
+      "EventRecordID": 31145,
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Windows\\system32\\mstsc.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "LM_tsclient_startup_folder.evtx",
+      "ProcessGuid": "ECAD0485-C903-5CDA-0000-0010340F1000",
+      "ProcessID": 1580,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2019-05-14T14:04:05.697491Z",
+      "TargetFileName": "C:\\Users\\administrator\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\cmd.exe",
+      "Task": 11,
+      "ThreadID": 2324,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-14 14:04:05.696",
+      "Version": 2
+    }
+  ]
+},
+{
+  "title": "Startup Folder File Write",
+  "id": "2aa0a6b4-a865-495b-ab51-c28249537b75",
+  "description": "A General detection for files being created in the Windows startup directory. This could be an indicator of persistence.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=11 AND (TargetFilename LIKE '%\\\\Microsoft\\\\Windows\\\\Start Menu\\\\Programs\\\\StartUp%' ESCAPE '\\' AND (NOT ((Image LIKE 'C:\\\\Windows\\\\System32\\\\wuauclt.exe' ESCAPE '\\' OR Image LIKE 'C:\\\\Windows\\\\uus\\\\ARM64\\\\wuaucltcore.exe' ESCAPE '\\') OR (TargetFilename LIKE 'C:\\\\$WINDOWS.~BT\\\\NewOS\\\\%' ESCAPE '\\' OR TargetFilename LIKE 'C:\\\\$WinREAgent\\\\Scratch\\\\Mount\\\\%' ESCAPE '\\'))) AND (NOT (Image LIKE '%\\\\ONENOTE.EXE' ESCAPE '\\' AND TargetFilename LIKE '%\\\\Send to OneNote.lnk' ESCAPE '\\'))))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.privilege-escalation",
+    "attack.persistence",
+    "attack.t1547.001"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 2,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "alice.insecurebank.local",
+      "CreationUtcTime": "2019-05-14 13:55:57.243",
+      "EventID": 11,
+      "EventRecordID": 31145,
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Windows\\system32\\mstsc.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "LM_tsclient_startup_folder.evtx",
+      "ProcessGuid": "ECAD0485-C903-5CDA-0000-0010340F1000",
+      "ProcessID": 1580,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2019-05-14T14:04:05.697491Z",
+      "TargetFileName": "C:\\Users\\administrator\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\cmd.exe",
+      "Task": 11,
+      "ThreadID": 2324,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-14 14:04:05.696",
+      "Version": 2
+    }
+  ]
+}]

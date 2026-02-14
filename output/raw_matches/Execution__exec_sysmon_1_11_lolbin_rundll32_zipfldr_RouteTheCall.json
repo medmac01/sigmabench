@@ -1,0 +1,59 @@
+[{
+  "title": "Potentially Suspicious Rundll32 Activity",
+  "id": "e593cf51-88db-4ee1-b920-37e89012a3c9",
+  "description": "Detects suspicious execution of rundll32, with specific calls to some DLLs with known LOLBIN functionalities",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND (((CommandLine LIKE '%javascript:%' ESCAPE '\\' AND CommandLine LIKE '%.RegisterXLL%' ESCAPE '\\') OR (CommandLine LIKE '%url.dll%' ESCAPE '\\' AND CommandLine LIKE '%OpenURL%' ESCAPE '\\') OR (CommandLine LIKE '%url.dll%' ESCAPE '\\' AND CommandLine LIKE '%OpenURLA%' ESCAPE '\\') OR (CommandLine LIKE '%url.dll%' ESCAPE '\\' AND CommandLine LIKE '%FileProtocolHandler%' ESCAPE '\\') OR (CommandLine LIKE '%zipfldr.dll%' ESCAPE '\\' AND CommandLine LIKE '%RouteTheCall%' ESCAPE '\\') OR (CommandLine LIKE '%shell32.dll%' ESCAPE '\\' AND CommandLine LIKE '%Control\\_RunDLL%' ESCAPE '\\') OR (CommandLine LIKE '%shell32.dll%' ESCAPE '\\' AND CommandLine LIKE '%ShellExec\\_RunDLL%' ESCAPE '\\') OR (CommandLine LIKE '%mshtml.dll%' ESCAPE '\\' AND CommandLine LIKE '%PrintHTML%' ESCAPE '\\') OR (CommandLine LIKE '%advpack.dll%' ESCAPE '\\' AND CommandLine LIKE '%LaunchINFSection%' ESCAPE '\\') OR (CommandLine LIKE '%advpack.dll%' ESCAPE '\\' AND CommandLine LIKE '%RegisterOCX%' ESCAPE '\\') OR (CommandLine LIKE '%ieadvpack.dll%' ESCAPE '\\' AND CommandLine LIKE '%LaunchINFSection%' ESCAPE '\\') OR (CommandLine LIKE '%ieadvpack.dll%' ESCAPE '\\' AND CommandLine LIKE '%RegisterOCX%' ESCAPE '\\') OR (CommandLine LIKE '%ieframe.dll%' ESCAPE '\\' AND CommandLine LIKE '%OpenURL%' ESCAPE '\\') OR (CommandLine LIKE '%shdocvw.dll%' ESCAPE '\\' AND CommandLine LIKE '%OpenURL%' ESCAPE '\\') OR (CommandLine LIKE '%syssetup.dll%' ESCAPE '\\' AND CommandLine LIKE '%SetupInfObjectInstallAction%' ESCAPE '\\') OR (CommandLine LIKE '%setupapi.dll%' ESCAPE '\\' AND CommandLine LIKE '%InstallHinfSection%' ESCAPE '\\') OR (CommandLine LIKE '%pcwutl.dll%' ESCAPE '\\' AND CommandLine LIKE '%LaunchApplication%' ESCAPE '\\') OR (CommandLine LIKE '%dfshim.dll%' ESCAPE '\\' AND CommandLine LIKE '%ShOpenVerbApplication%' ESCAPE '\\') OR (CommandLine LIKE '%dfshim.dll%' ESCAPE '\\' AND CommandLine LIKE '%ShOpenVerbShortcut%' ESCAPE '\\') OR (CommandLine LIKE '%scrobj.dll%' ESCAPE '\\' AND CommandLine LIKE '%GenerateTypeLib%' ESCAPE '\\' AND CommandLine LIKE '%http%' ESCAPE '\\') OR (CommandLine LIKE '%shimgvw.dll%' ESCAPE '\\' AND CommandLine LIKE '%ImageView\\_Fullscreen%' ESCAPE '\\' AND CommandLine LIKE '%http%' ESCAPE '\\') OR (CommandLine LIKE '%comsvcs.dll%' ESCAPE '\\' AND CommandLine LIKE '%MiniDump%' ESCAPE '\\')) AND (NOT (CommandLine LIKE '%shell32.dll,Control\\_RunDLL desk.cpl,screensaver,@screensaver%' ESCAPE '\\' OR (ParentImage LIKE 'C:\\\\Windows\\\\System32\\\\control.exe' ESCAPE '\\' AND ParentCommandLine LIKE '%.cpl%' ESCAPE '\\' AND (CommandLine LIKE '%Shell32.dll%' ESCAPE '\\' AND CommandLine LIKE '%Control\\_RunDLL%' ESCAPE '\\' AND CommandLine LIKE '%.cpl%' ESCAPE '\\')) OR (ParentImage LIKE 'C:\\\\Windows\\\\System32\\\\control.exe' ESCAPE '\\' AND CommandLine LIKE '\"C:\\\\Windows\\\\system32\\\\rundll32.exe\" Shell32.dll,Control\\_RunDLL \"C:\\\\Windows\\\\System32\\\\%' ESCAPE '\\' AND CommandLine LIKE '%.cpl\",' ESCAPE '\\')))))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.t1218.011"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 2,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"C:\\Windows\\System32\\rundll32.exe\" zipfldr.dll,RouteTheCall c:\\Windows\\System32\\calc.exe",
+      "Company": "Microsoft Corporation",
+      "Computer": "IEWIN7",
+      "CurrentDirectory": "C:\\Users\\IEUser\\Downloads\\WinPwnage-master\\WinPwnage-master\\",
+      "Description": "Windows host process (Rundll32)",
+      "EventID": 1,
+      "EventRecordID": 16443,
+      "FileVersion": "6.1.7600.16385 (win7_rtm.090713-1255)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=892503B20247B341CFD20DDA5FDACFA41527A087,MD5=C648901695E275C8F2AD04B687A68CE2,SHA256=3FA4912EB43FC304652D7B01F118589259861E2D628FA7C86193E54D5F987670,IMPHASH=239D911DFA7551A8B735680BC39B2238",
+      "IMPHASH": "239D911DFA7551A8B735680BC39B2238",
+      "Image": "C:\\Windows\\System32\\rundll32.exe",
+      "IntegrityLevel": "Medium",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "365ABB72-2523-5CD8-0000-00204C360100",
+      "LogonId": "0x1364c",
+      "MD5": "C648901695E275C8F2AD04B687A68CE2",
+      "Opcode": 0,
+      "OriginalLogfile": "exec_sysmon_1_11_lolbin_rundll32_zipfldr_RouteTheCall.evtx",
+      "ParentCommandLine": "python  winpwnage.py -u execute -i 14 -p c:\\Windows\\System32\\calc.exe",
+      "ParentImage": "C:\\Python27\\python.exe",
+      "ParentProcessGuid": "365ABB72-268F-5CD8-0000-0010F4A51700",
+      "ParentProcessId": 1256,
+      "ProcessGuid": "365ABB72-269E-5CD8-0000-001084F81A00",
+      "ProcessID": 2036,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "892503B20247B341CFD20DDA5FDACFA41527A087",
+      "SHA256": "3FA4912EB43FC304652D7B01F118589259861E2D628FA7C86193E54D5F987670",
+      "SystemTime": "2019-05-12T13:58:54.897009Z",
+      "Task": 1,
+      "TerminalSessionId": 1,
+      "ThreadID": 296,
+      "User": "IEWIN7\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-12 13:58:54.772",
+      "Version": 5
+    }
+  ]
+}]

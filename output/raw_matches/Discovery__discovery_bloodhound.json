@@ -1,0 +1,40 @@
+[{
+  "title": "Security Eventlog Cleared",
+  "id": "d99b79d2-0a6f-4f46-ad8b-260b6e17f982",
+  "description": "One of the Windows Eventlogs has been cleared. e.g. caused by \"wevtutil cl\" command execution",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Security' AND ((EventID=517 AND Provider_Name='Security') OR (EventID=1102 AND Provider_Name='Microsoft-Windows-Eventlog'))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.t1070.001",
+    "car.2016-04-002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Security",
+      "Computer": "WIN-77LTAPHIQ1R.example.corp",
+      "EventID": 1102,
+      "EventRecordID": 32853,
+      "Guid": "{fc65ddd8-d6ef-4962-83d5-6e5cfe9ce148}",
+      "Keywords": "0x4020000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "discovery_bloodhound.evtx",
+      "ProcessID": 736,
+      "Provider_Name": "Microsoft-Windows-Eventlog",
+      "SubjectDomainName": "EXAMPLE",
+      "SubjectLogonId": "0x35312",
+      "SubjectUserName": "Administrator",
+      "SubjectUserSid": "S-1-5-21-1587066498-1489273250-1035260531-500",
+      "SystemTime": "2019-01-20T07:00:50.800225Z",
+      "Task": 104,
+      "ThreadID": 1592,
+      "Version": 0
+    }
+  ]
+}]

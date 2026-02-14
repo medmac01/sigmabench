@@ -1,0 +1,60 @@
+[{
+  "title": "New Process Created Via Taskmgr.EXE",
+  "id": "3d7679bd-0c00-440c-97b0-3f204273e6c7",
+  "description": "Detects the creation of a process via the Windows task manager. This might be an attempt to bypass UAC",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND (ParentImage LIKE '%\\\\taskmgr.exe' ESCAPE '\\' AND (NOT (Image LIKE '%:\\\\Windows\\\\System32\\\\mmc.exe' ESCAPE '\\' OR Image LIKE '%:\\\\Windows\\\\System32\\\\resmon.exe' ESCAPE '\\' OR Image LIKE '%:\\\\Windows\\\\System32\\\\Taskmgr.exe' ESCAPE '\\'))))"
+  ],
+  "rule_level": "low",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.t1036"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 7,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "cmd.exe",
+      "Company": "Microsoft Corporation",
+      "Computer": "LAPTOP-JU4M3I0E",
+      "CurrentDirectory": "C:\\windows\\",
+      "Description": "Windows Command Processor",
+      "EventID": 1,
+      "EventRecordID": 2164892,
+      "FileVersion": "10.0.18362.449 (WinBuild.160101.0800)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=8DCA9749CD48D286950E7A9FA1088C937CBCCAD4,MD5=D7AB69FAD18D4A643D84A271DFC0DBDF,SHA256=FF79D3C4A0B7EB191783C323AB8363EBD1FD10BE58D8BCC96B07067743CA81D5,IMPHASH=272245E2988E1E430500B852C4FB5E18",
+      "IMPHASH": "272245E2988E1E430500B852C4FB5E18",
+      "Image": "C:\\Windows\\System32\\cmd.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "00247C92-8C36-5F75-0000-002034E39103",
+      "LogonId": "0x391e334",
+      "MD5": "D7AB69FAD18D4A643D84A271DFC0DBDF",
+      "Opcode": 0,
+      "OriginalFileName": "Cmd.Exe",
+      "OriginalLogfile": "UACME_59_Sysmon.evtx",
+      "ParentCommandLine": "C:\\windows\\system32\\taskmgr.exe",
+      "ParentImage": "C:\\Windows\\System32\\Taskmgr.exe",
+      "ParentProcessGuid": "00247C92-858E-5F7B-0000-00105241202B",
+      "ParentProcessId": 18404,
+      "ProcessGuid": "00247C92-858E-5F7B-0000-0010E741202B",
+      "ProcessID": 5424,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "8DCA9749CD48D286950E7A9FA1088C937CBCCAD4",
+      "SHA256": "FF79D3C4A0B7EB191783C323AB8363EBD1FD10BE58D8BCC96B07067743CA81D5",
+      "SystemTime": "2020-10-05T20:43:58.451314Z",
+      "Task": 1,
+      "TerminalSessionId": 2,
+      "ThreadID": 6708,
+      "User": "LAPTOP-JU4M3I0E\\bouss",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2020-10-05 20:43:58.450",
+      "Version": 5
+    }
+  ]
+}]

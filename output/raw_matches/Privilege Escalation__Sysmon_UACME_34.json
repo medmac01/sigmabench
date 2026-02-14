@@ -1,0 +1,104 @@
+[{
+  "title": "UAC Bypass Using Disk Cleanup",
+  "id": "b697e69c-746f-4a86-9f59-7bfff8eab881",
+  "description": "Detects the pattern of UAC Bypass using scheduled tasks and variable expansion of cleanmgr.exe (UACMe 34)",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND (CommandLine LIKE '%\"\\\\system32\\\\cleanmgr.exe /autoclean /d C:' ESCAPE '\\' AND ParentCommandLine LIKE 'C:\\\\Windows\\\\system32\\\\svchost.exe -k netsvcs -p -s Schedule' ESCAPE '\\' AND (IntegrityLevel='High' OR IntegrityLevel='System' OR IntegrityLevel='S-1-16-16384' OR IntegrityLevel='S-1-16-12288')))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1548.002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 4,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"C:\\Windows\\system32\\cmd.exe\"\\system32\\cleanmgr.exe /autoclean /d C:",
+      "Company": "Microsoft Corporation",
+      "Computer": "MSEDGEWIN10",
+      "CurrentDirectory": "C:\\Windows\\system32\\",
+      "Description": "Windows Command Processor",
+      "EventID": 1,
+      "EventRecordID": 5134,
+      "FileVersion": "10.0.17763.1 (WinBuild.160101.0800)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=8C5437CD76A89EC983E3B364E219944DA3DAB464,MD5=975B45B669930B0CC773EAF2B414206F,SHA256=3656F37A1C6951EC4496FABB8EE957D3A6E3C276D5A3785476B482C9C0D32EA2,IMPHASH=272245E2988E1E430500B852C4FB5E18",
+      "IMPHASH": "272245E2988E1E430500B852C4FB5E18",
+      "Image": "C:\\Windows\\System32\\cmd.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "747F3D96-56A3-5D45-0000-0020B3D31800",
+      "LogonId": "0x18d3b3",
+      "MD5": "975B45B669930B0CC773EAF2B414206F",
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_UACME_34.evtx",
+      "ParentCommandLine": "C:\\Windows\\system32\\svchost.exe -k netsvcs -p -s Schedule",
+      "ParentImage": "C:\\Windows\\System32\\svchost.exe",
+      "ParentProcessGuid": "747F3D96-D4EA-5D45-0000-00105CD60000",
+      "ParentProcessId": 1072,
+      "ProcessGuid": "747F3D96-5809-5D45-0000-00100B233F00",
+      "ProcessID": 2780,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "8C5437CD76A89EC983E3B364E219944DA3DAB464",
+      "SHA256": "3656F37A1C6951EC4496FABB8EE957D3A6E3C276D5A3785476B482C9C0D32EA2",
+      "SystemTime": "2019-08-03T09:46:49.402550Z",
+      "Task": 1,
+      "TerminalSessionId": 1,
+      "ThreadID": 3676,
+      "User": "MSEDGEWIN10\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-08-03 09:46:49.331",
+      "Version": 5
+    }
+  ]
+},
+{
+  "title": "Bypass UAC Using SilentCleanup Task",
+  "id": "724ea201-6514-4f38-9739-e5973c34f49a",
+  "description": "Detects the setting of the environement variable \"windir\" to a non default value.\nAttackers often abuse this variable in order to trigger a UAC bypass via the \"SilentCleanup\" task.\nThe SilentCleanup task located in %windir%\\system32\\cleanmgr.exe is an auto-elevated task that can be abused to elevate any file with administrator privileges without prompting UAC.\n",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=13 AND (TargetObject LIKE '%\\\\Environment\\\\windir' ESCAPE '\\' AND (NOT Details LIKE '\\%SystemRoot\\%' ESCAPE '\\')))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.privilege-escalation",
+    "attack.defense-evasion",
+    "attack.t1548.002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 2,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "MSEDGEWIN10",
+      "Details": "\"C:\\Windows\\system32\\cmd.exe\"",
+      "EventID": 13,
+      "EventRecordID": 5132,
+      "EventType": "SetValue",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Windows\\explorer.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_UACME_34.evtx",
+      "ProcessGuid": "747F3D96-5808-5D45-0000-00106CDC3E00",
+      "ProcessID": 2780,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "RuleName": "PrivEsc - UAC bypass UACME-34",
+      "SystemTime": "2019-08-03T09:46:48.726304Z",
+      "TargetObject": "HKU\\S-1-5-21-3461203602-4096304019-2269080069-1000\\Environment\\windir",
+      "Task": 13,
+      "ThreadID": 3676,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-08-03 09:46:48.692",
+      "Version": 2
+    }
+  ]
+}]

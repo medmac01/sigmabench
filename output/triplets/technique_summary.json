@@ -1,0 +1,1572 @@
+{
+  "T1003": {
+    "total_matches": 5,
+    "matches_with_cti": 5,
+    "unique_rules": [
+      "Hacktool Execution - Imphash",
+      "Potential Credential Dumping Via LSASS Process Clone",
+      "Suspicious SYSTEM User Process Creation"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/ppl_bypass_ppldump_knowdll_hijack_sysmon_security.evtx",
+      "Credential Access/sysmon_rdrleakdiag_lsass_dump.evtx",
+      "Lateral Movement/LM_sysmon_psexec_smb_meterpreter.evtx",
+      "Persistence/persistence_sysmon_11_13_1_shime_appfix.evtx",
+      "Privilege Escalation/privesc_roguepotato_sysmon_17_18.evtx"
+    ]
+  },
+  "T1003.001": {
+    "total_matches": 21,
+    "matches_with_cti": 14,
+    "unique_rules": [
+      "HackTool - Dumpert Process Dumper Default File",
+      "HackTool - Generic Process Access",
+      "LSASS Access From Non System Account",
+      "LSASS Dump Keyword In CommandLine",
+      "LSASS Memory Access by Tool With Dump Keyword In Name",
+      "LSASS Process Memory Dump Creation Via Taskmgr.EXE",
+      "LSASS Process Memory Dump Files",
+      "Potential Credential Dumping Via LSASS Process Clone",
+      "Potentially Suspicious AccessMask Requested From LSASS",
+      "Potentially Suspicious GrantedAccess Flags On LSASS",
+      "PowerShell Get-Process LSASS in ScriptBlock",
+      "Process Memory Dump via RdrLeakDiag.EXE",
+      "Suspicious Process Access to LSASS with Dbgcore/Dbghelp DLLs",
+      "Unsigned Image Loaded Into LSASS Process"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/CA_hashdump_4663_4656_lsass_access.evtx",
+      "Credential Access/CA_sysmon_hashdump_cmd_meterpreter.evtx",
+      "Credential Access/Powershell_4104_MiniDumpWriteDump_Lsass.evtx",
+      "Credential Access/ppl_bypass_ppldump_knowdll_hijack_sysmon_security.evtx",
+      "Credential Access/sysmon_10_11_lsass_memdump.evtx",
+      "Credential Access/sysmon_10_11_outlfank_dumpert_and_andrewspecial_memdump.evtx",
+      "Credential Access/sysmon_10_lsass_mimikatz_sekurlsa_logonpasswords.evtx",
+      "Credential Access/sysmon_2x10_lsass_with_different_pid_RtlCreateProcessReflection.evtx",
+      "Credential Access/sysmon_rdrleakdiag_lsass_dump.evtx",
+      "Defense Evasion/DE_BYOV_Zam64_CA_Memdump_sysmon_7_10.evtx",
+      "Defense Evasion/process_suspend_sysmon_10_ga_800.evtx",
+      "Lateral Movement/LM_ImageLoad_NFSH_Sysmon_7.evtx"
+    ]
+  },
+  "T1003.005": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "New Generic Credentials Added Via Cmdkey.EXE"
+    ],
+    "unique_evtx_files": [
+      "Execution/sysmon_zipexec.evtx"
+    ]
+  },
+  "T1003.006": {
+    "total_matches": 3,
+    "matches_with_cti": 3,
+    "unique_rules": [
+      "Active Directory Replication from Non Machine Account",
+      "Mimikatz DC Sync"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/CA_DCSync_4662.evtx",
+      "Persistence/persistence_security_dcshadow_4742.evtx"
+    ]
+  },
+  "T1018": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Webshell Hacking Activity Patterns"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/discovery_sysmon_1_iis_pwd_and_config_discovery_appcmd.evtx"
+    ]
+  },
+  "T1021": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "Potential Remote Desktop Tunneling"
+    ],
+    "unique_evtx_files": [
+      "Command and Control/DE_sysmon-3-rdp-tun.evtx"
+    ]
+  },
+  "T1021.001": {
+    "total_matches": 3,
+    "matches_with_cti": 3,
+    "unique_rules": [
+      "RDP Login from Localhost",
+      "Suspicious Plink Port Forwarding"
+    ],
+    "unique_evtx_files": [
+      "Command and Control/DE_RDP_Tunnel_5156.evtx",
+      "Command and Control/DE_RDP_Tunneling_4624.evtx",
+      "Command and Control/DE_sysmon-3-rdp-tun.evtx"
+    ]
+  },
+  "T1021.002": {
+    "total_matches": 10,
+    "matches_with_cti": 4,
+    "unique_rules": [
+      "DCERPC SMB Spoolss Named Pipe",
+      "First Time Seen Remote Named Pipe",
+      "Potential CobaltStrike Service Installations - Registry",
+      "Protected Storage Service Access",
+      "Rundll32 Execution Without Parameters",
+      "Rundll32 UNC Path Execution",
+      "SMB Create Remote File Admin Share",
+      "Suspicious PsExec Execution"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/CA_protectedstorage_5145_rpc_masterkey.evtx",
+      "Credential Access/remote_sam_registry_access_via_backup_operator_priv.evtx",
+      "Execution/Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.evtx",
+      "Lateral Movement/ImpersonateUser-via local Pass The Hash Sysmon and Security.evtx",
+      "Lateral Movement/LM_renamed_psexecsvc_5145.evtx",
+      "Lateral Movement/LM_sysmon_psexec_smb_meterpreter.evtx",
+      "Lateral Movement/smbmap_upload_exec_sysmon.evtx",
+      "Lateral Movement/spoolsample_5145.evtx",
+      "Privilege Escalation/PrivEsc_NetSvc_SessionToken_Retrival_via_localSMB_Auth_5145.evtx"
+    ]
+  },
+  "T1021.003": {
+    "total_matches": 7,
+    "matches_with_cti": 3,
+    "unique_rules": [
+      "HackTool - Potential Impacket Lateral Movement Activity",
+      "MMC Spawning Windows Shell",
+      "MMC20 Lateral Movement"
+    ],
+    "unique_evtx_files": [
+      "Lateral Movement/LM_impacket_docmexec_mmc_sysmon_01.evtx",
+      "Lateral Movement/LM_wmiexec_impacket_sysmon_whoami.evtx",
+      "Lateral Movement/smbmap_upload_exec_sysmon.evtx",
+      "Privilege Escalation/Sysmon_UACME_39.evtx",
+      "Privilege Escalation/Sysmon_UACME_63.evtx"
+    ]
+  },
+  "T1021.006": {
+    "total_matches": 2,
+    "matches_with_cti": 2,
+    "unique_rules": [
+      "Potential Lateral Movement via Windows Remote Shell",
+      "Remote PowerShell Session Host Process (WinRM)"
+    ],
+    "unique_evtx_files": [
+      "Lateral Movement/LM_PowershellRemoting_sysmon_1_wsmprovhost.evtx",
+      "Lateral Movement/LM_winrm_exec_sysmon_1_winrshost.evtx"
+    ]
+  },
+  "T1027": {
+    "total_matches": 5,
+    "matches_with_cti": 2,
+    "unique_rules": [
+      "Base64 Encoded PowerShell Command Detected",
+      "Suspicious SYSTEM User Process Creation"
+    ],
+    "unique_evtx_files": [
+      "Execution/susp_explorer_exec.evtx",
+      "Execution/sysmon_lolbas_rundll32_zipfldr_routethecall_shell.evtx",
+      "Lateral Movement/LM_sysmon_psexec_smb_meterpreter.evtx",
+      "Persistence/persistence_sysmon_11_13_1_shime_appfix.evtx"
+    ]
+  },
+  "T1033": {
+    "total_matches": 19,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Local Accounts Discovery",
+      "Suspicious PowerShell Get Current User",
+      "Webshell Hacking Activity Patterns",
+      "Whoami.EXE Execution Anomaly",
+      "Whoami.EXE Execution From Privileged Process"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/discovery_sysmon_1_iis_pwd_and_config_discovery_appcmd.evtx",
+      "Credential Access/phish_windows_credentials_powershell_scriptblockLog_4104.evtx",
+      "Defense Evasion/Sysmon 7  Update Session Orchestrator Dll Hijack.evtx",
+      "Defense Evasion/Sysmon 7 dllhijack_cdpsshims_CDPSvc.evtx",
+      "Defense Evasion/faxhell_sysmon_7_1_18_3_bindshell_dllhijack.evtx",
+      "Privilege Escalation/EfsPotato_sysmon_17_18_privesc_seimpersonate_to_system.evtx",
+      "Privilege Escalation/PrivEsc_Imperson_NetSvc_to_Sys_Decoder_Sysmon_1_17_18.evtx",
+      "Privilege Escalation/RogueWinRM.evtx",
+      "Privilege Escalation/privesc_seimpersonate_tosys_spoolsv_sysmon_17_18.evtx",
+      "Privilege Escalation/privesc_spoolsv_spl_file_write_sysmon11.evtx"
+    ]
+  },
+  "T1036": {
+    "total_matches": 10,
+    "matches_with_cti": 5,
+    "unique_rules": [
+      "Explorer Process Tree Break",
+      "New Process Created Via Taskmgr.EXE",
+      "Suspicious Child Process Of Wermgr.EXE",
+      "Suspicious Computer Account Name Change CVE-2021-42287",
+      "Suspicious Process Parents",
+      "Windows Binaries Write Suspicious Extensions"
+    ],
+    "unique_evtx_files": [
+      "Execution/Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.evtx",
+      "Execution/susp_explorer_exec.evtx",
+      "Execution/susp_explorer_exec_root_cmdline_@rimpq_@CyberRaiju.evtx",
+      "Execution/sysmon_exec_from_vss_persistence.evtx",
+      "Lateral Movement/LM_wmi_PoisonHandler_Mr-Un1k0d3r_sysmon_1_13.evtx",
+      "Privilege Escalation/Sysmon_13_1_UAC_Bypass_EventVwrBypass.evtx",
+      "Privilege Escalation/UACME_59_Sysmon.evtx",
+      "Privilege Escalation/eop_appcontainer_il_broker_filewrite.evtx",
+      "Privilege Escalation/privesc_spoolsv_spl_file_write_sysmon11.evtx",
+      "Privilege Escalation/samaccount_spoofing_CVE-2021-42287_CVE-2021-42278_DC_securitylogs.evtx"
+    ]
+  },
+  "T1036.003": {
+    "total_matches": 8,
+    "matches_with_cti": 2,
+    "unique_rules": [
+      "Potential Defense Evasion Via Binary Rename",
+      "Windows Processes Suspicious Parent Directory"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/ppl_bypass_ppldump_knowdll_hijack_sysmon_security.evtx",
+      "Defense Evasion/apt10_jjs_sideloading_prochollowing_persist_as_service_sysmon_1_7_8_13.evtx",
+      "Execution/sysmon_zipexec.evtx",
+      "Lateral Movement/ImpersonateUser-via local Pass The Hash Sysmon and Security.evtx",
+      "Lateral Movement/lm_remote_registry_sysmon_1_13_3.evtx",
+      "Privilege Escalation/privesc_roguepotato_sysmon_17_18.evtx",
+      "Privilege Escalation/privesc_unquoted_svc_sysmon_1_11.evtx"
+    ]
+  },
+  "T1036.005": {
+    "total_matches": 13,
+    "matches_with_cti": 7,
+    "unique_rules": [
+      "Uncommon Svchost Command Line Parameter",
+      "Uncommon Svchost Parent Process",
+      "Windows Processes Suspicious Parent Directory"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/ppl_bypass_ppldump_knowdll_hijack_sysmon_security.evtx",
+      "Defense Evasion/apt10_jjs_sideloading_prochollowing_persist_as_service_sysmon_1_7_8_13.evtx",
+      "Lateral Movement/ImpersonateUser-via local Pass The Hash Sysmon and Security.evtx",
+      "Lateral Movement/lm_remote_registry_sysmon_1_13_3.evtx",
+      "Privilege Escalation/privesc_roguepotato_sysmon_17_18.evtx",
+      "Privilege Escalation/privesc_unquoted_svc_sysmon_1_11.evtx"
+    ]
+  },
+  "T1037.001": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Uncommon Userinit Child Process"
+    ],
+    "unique_evtx_files": [
+      "Persistence/sysmon_13_1_persistence_via_winlogon_shell.evtx"
+    ]
+  },
+  "T1047": {
+    "total_matches": 14,
+    "matches_with_cti": 12,
+    "unique_rules": [
+      "HTML Help HH.EXE Suspicious Child Process",
+      "HackTool - CrackMapExec Execution Patterns",
+      "HackTool - Potential Impacket Lateral Movement Activity",
+      "Suspicious Process Created Via Wmic.EXE",
+      "Suspicious WmiPrvSE Child Process",
+      "WmiPrvSE Spawned A Process"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/sysmon_10_1_memdump_comsvcs_minidump.evtx",
+      "Execution/Sysmon_Exec_CompiledHTML.evtx",
+      "Execution/sysmon_exec_from_vss_persistence.evtx",
+      "Lateral Movement/LM_impacket_docmexec_mmc_sysmon_01.evtx",
+      "Lateral Movement/LM_wmi_PoisonHandler_Mr-Un1k0d3r_sysmon_1_13.evtx",
+      "Lateral Movement/LM_wmiexec_impacket_sysmon_whoami.evtx",
+      "Lateral Movement/smbmap_upload_exec_sysmon.evtx"
+    ]
+  },
+  "T1048": {
+    "total_matches": 2,
+    "matches_with_cti": 2,
+    "unique_rules": [
+      "Suspicious Redirection to Local Admin Share"
+    ],
+    "unique_evtx_files": [
+      "Lateral Movement/LM_impacket_docmexec_mmc_sysmon_01.evtx",
+      "Lateral Movement/LM_wmiexec_impacket_sysmon_whoami.evtx"
+    ]
+  },
+  "T1053": {
+    "total_matches": 2,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "HackTool - CrackMapExec Execution Patterns"
+    ],
+    "unique_evtx_files": [
+      "Lateral Movement/LM_wmiexec_impacket_sysmon_whoami.evtx",
+      "Lateral Movement/smbmap_upload_exec_sysmon.evtx"
+    ]
+  },
+  "T1053.005": {
+    "total_matches": 5,
+    "matches_with_cti": 2,
+    "unique_rules": [
+      "Schedule Task Creation From Env Variable Or Potentially Suspicious Path Via Schtasks.EXE",
+      "Scheduled Task Creation Via Schtasks.EXE",
+      "Suspicious Command Patterns In Scheduled Task Creation",
+      "Suspicious Scheduled Task Update"
+    ],
+    "unique_evtx_files": [
+      "Execution/exec_persist_rundll32_mshta_scheduledtask_sysmon_1_3_11.evtx",
+      "Lateral Movement/remote task update 4624 4702 same logonid.evtx",
+      "Privilege Escalation/sysmon_1_11_exec_as_system_via_schedtask.evtx"
+    ]
+  },
+  "T1055": {
+    "total_matches": 9,
+    "matches_with_cti": 5,
+    "unique_rules": [
+      "HackTool - EfsPotato Named Pipe Creation",
+      "Malicious Named Pipe Created",
+      "Network Connection Initiated Via Notepad.EXE",
+      "Rare Remote Thread Creation By Uncommon Source Image",
+      "Suspect Svchost Activity",
+      "Suspicious Child Process Of Wermgr.EXE",
+      "Uncommon Svchost Command Line Parameter"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/apt10_jjs_sideloading_prochollowing_persist_as_service_sysmon_1_7_8_13.evtx",
+      "Lateral Movement/lm_sysmon_18_remshell_over_namedpipe.evtx",
+      "Privilege Escalation/EfsPotato_sysmon_17_18_privesc_seimpersonate_to_system.evtx",
+      "Privilege Escalation/privesc_roguepotato_sysmon_17_18.evtx",
+      "Privilege Escalation/privesc_rotten_potato_from_webshell_metasploit_sysmon_1_8_3.evtx",
+      "Privilege Escalation/privesc_seimpersonate_tosys_spoolsv_sysmon_17_18.evtx",
+      "Privilege Escalation/privesc_spoolsv_spl_file_write_sysmon11.evtx"
+    ]
+  },
+  "T1055.011": {
+    "total_matches": 5,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Uncommon Process Access Rights For Target Image"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/sysmon_10_1_memdump_comsvcs_minidump.evtx",
+      "Defense Evasion/Sysmon_10_Evasion_Suspicious_NtOpenProcess_CallTrace.evtx",
+      "Defense Evasion/evasion_codeinj_odzhan_conhost_sysmon_10_1.evtx",
+      "Defense Evasion/evasion_codeinj_odzhan_spoolsv_sysmon_10_1.evtx",
+      "Privilege Escalation/privesc_rotten_potato_from_webshell_metasploit_sysmon_1_8_3.evtx"
+    ]
+  },
+  "T1055.012": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "Uncommon Svchost Command Line Parameter"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/apt10_jjs_sideloading_prochollowing_persist_as_service_sysmon_1_7_8_13.evtx"
+    ]
+  },
+  "T1057": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Suspicious Process Discovery With Get-Process"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/Powershell_4104_MiniDumpWriteDump_Lsass.evtx"
+    ]
+  },
+  "T1059": {
+    "total_matches": 24,
+    "matches_with_cti": 18,
+    "unique_rules": [
+      "Elevated System Shell Spawned From Uncommon Parent Location",
+      "Potentially Suspicious Execution From Parent Process In Public Folder",
+      "Suspicious Program Names",
+      "Suspicious Script Execution From Temp Folder",
+      "Unusual Parent Process For Cmd.EXE",
+      "Use of Pcalua For Execution",
+      "Wscript Shell Run In CommandLine"
+    ],
+    "unique_evtx_files": [
+      "Execution/Sysmon_Exec_CompiledHTML.evtx",
+      "Execution/exec_persist_rundll32_mshta_scheduledtask_sysmon_1_3_11.evtx",
+      "Execution/exec_sysmon_1_lolbin_pcalua.evtx",
+      "Execution/exec_sysmon_lobin_regsvr32_sct.evtx",
+      "Execution/susp_explorer_exec.evtx",
+      "Execution/sysmon_1_11_rundll32_cpl_ostap.evtx",
+      "Execution/sysmon_lolbas_rundll32_zipfldr_routethecall_shell.evtx",
+      "Execution/sysmon_mshta_sharpshooter_stageless_meterpreter.evtx",
+      "Execution/sysmon_vbs_sharpshooter_stageless_meterpreter.evtx",
+      "Lateral Movement/LM_sysmon_3_12_13_1_SharpRDP.evtx",
+      "Privilege Escalation/PrivEsc_Imperson_NetSvc_to_Sys_Decoder_Sysmon_1_17_18.evtx",
+      "Privilege Escalation/RogueWinRM.evtx",
+      "Privilege Escalation/Sysmon_UACME_30.evtx",
+      "Privilege Escalation/Sysmon_UACME_41.evtx",
+      "Privilege Escalation/Sysmon_UACME_43.evtx",
+      "Privilege Escalation/eop_appcontainer_il_broker_filewrite.evtx",
+      "Privilege Escalation/privesc_roguepotato_sysmon_17_18.evtx",
+      "Privilege Escalation/privesc_seimpersonate_tosys_spoolsv_sysmon_17_18.evtx",
+      "Privilege Escalation/privesc_spoolsv_spl_file_write_sysmon11.evtx",
+      "Privilege Escalation/sysmon_11_1_15_WScriptBypassUAC.evtx",
+      "Privilege Escalation/sysmon_1_13_11_cmstp_ini_uacbypass.evtx",
+      "Privilege Escalation/sysmon_privesc_from_admin_to_system_handle_inheritance.evtx",
+      "Privilege Escalation/sysmon_uacbypass_CDSSync_schtask_hijack_byeintegrity5.evtx"
+    ]
+  },
+  "T1059.001": {
+    "total_matches": 18,
+    "matches_with_cti": 10,
+    "unique_rules": [
+      "Base64 Encoded PowerShell Command Detected",
+      "HTML Help HH.EXE Suspicious Child Process",
+      "HackTool - CrackMapExec Execution Patterns",
+      "Malicious PowerShell Keywords",
+      "Non Interactive PowerShell Process Spawned",
+      "PowerShell Base64 Encoded IEX Cmdlet",
+      "PowerShell Credential Prompt",
+      "Remote PowerShell Session Host Process (WinRM)",
+      "Suspicious Execution of Powershell with Base64",
+      "Usage Of Web Request Commands And Cmdlets",
+      "Windows Shell/Scripting Processes Spawning Suspicious Programs"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/Powershell_4104_MiniDumpWriteDump_Lsass.evtx",
+      "Credential Access/discovery_sysmon_1_iis_pwd_and_config_discovery_appcmd.evtx",
+      "Credential Access/phish_windows_credentials_powershell_scriptblockLog_4104.evtx",
+      "Execution/Sysmon_Exec_CompiledHTML.evtx",
+      "Execution/exec_persist_rundll32_mshta_scheduledtask_sysmon_1_3_11.evtx",
+      "Execution/exec_sysmon_1_11_lolbin_rundll32_openurl_FileProtocolHandler.evtx",
+      "Execution/execution_evasion_visual_studio_prebuild_event.evtx",
+      "Execution/susp_explorer_exec.evtx",
+      "Execution/sysmon_lolbas_rundll32_zipfldr_routethecall_shell.evtx",
+      "Lateral Movement/ImpersonateUser-via local Pass The Hash Sysmon and Security.evtx",
+      "Lateral Movement/LM_PowershellRemoting_sysmon_1_wsmprovhost.evtx",
+      "Lateral Movement/LM_sysmon_psexec_smb_meterpreter.evtx",
+      "Lateral Movement/LM_wmiexec_impacket_sysmon_whoami.evtx",
+      "Lateral Movement/smbmap_upload_exec_sysmon.evtx",
+      "Privilege Escalation/privesc_seimpersonate_tosys_spoolsv_sysmon_17_18.evtx"
+    ]
+  },
+  "T1059.003": {
+    "total_matches": 3,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "HTML Help HH.EXE Suspicious Child Process",
+      "HackTool - CrackMapExec Execution Patterns"
+    ],
+    "unique_evtx_files": [
+      "Execution/Sysmon_Exec_CompiledHTML.evtx",
+      "Lateral Movement/LM_wmiexec_impacket_sysmon_whoami.evtx",
+      "Lateral Movement/smbmap_upload_exec_sysmon.evtx"
+    ]
+  },
+  "T1059.005": {
+    "total_matches": 4,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "HTML Help HH.EXE Suspicious Child Process",
+      "Suspicious Scripting in a WMI Consumer",
+      "Windows Shell/Scripting Processes Spawning Suspicious Programs"
+    ],
+    "unique_evtx_files": [
+      "Execution/Sysmon_Exec_CompiledHTML.evtx",
+      "Execution/exec_persist_rundll32_mshta_scheduledtask_sysmon_1_3_11.evtx",
+      "Execution/exec_sysmon_1_11_lolbin_rundll32_openurl_FileProtocolHandler.evtx",
+      "Persistence/wmighost_sysmon_20_21_1.evtx"
+    ]
+  },
+  "T1059.006": {
+    "total_matches": 4,
+    "matches_with_cti": 4,
+    "unique_rules": [
+      "Suspicious File Characteristics Due to Missing Fields"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/DE_ProcessHerpaderping_Sysmon_11_10_1_7.evtx",
+      "Persistence/persist_firefox_comhijack_sysmon_11_13_7_1.evtx",
+      "Privilege Escalation/privesc_sysmon_cve_20201030_spooler.evtx",
+      "Privilege Escalation/sysmon_11_7_1_uacbypass_windirectory_mocking.evtx"
+    ]
+  },
+  "T1059.007": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "HTML Help HH.EXE Suspicious Child Process"
+    ],
+    "unique_evtx_files": [
+      "Execution/Sysmon_Exec_CompiledHTML.evtx"
+    ]
+  },
+  "T1068": {
+    "total_matches": 4,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Vulnerable Driver Load",
+      "Vulnerable Driver Load By Name"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/DSE_bypass_BYOV_TDL_dummydriver_sysmon_6_7_13.evtx",
+      "Discovery/discovery_UEFI_Settings_rweverything_sysmon_6.evtx"
+    ]
+  },
+  "T1069.002": {
+    "total_matches": 2,
+    "matches_with_cti": 2,
+    "unique_rules": [
+      "Reconnaissance Activity"
+    ],
+    "unique_evtx_files": [
+      "Discovery/dicovery_4661_net_group_domain_admins_target.evtx",
+      "Lateral Movement/LM_ScheduledTask_ATSVC_target_host.evtx"
+    ]
+  },
+  "T1070": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "DLL Load By System Process From Suspicious Locations"
+    ],
+    "unique_evtx_files": [
+      "Privilege Escalation/sysmon_uacbypass_CDSSync_schtask_hijack_byeintegrity5.evtx"
+    ]
+  },
+  "T1070.001": {
+    "total_matches": 26,
+    "matches_with_cti": 26,
+    "unique_rules": [
+      "Important Windows Eventlog Cleared",
+      "Security Eventlog Cleared"
+    ],
+    "unique_evtx_files": [
+      "Command and Control/DE_RDP_Tunnel_5156.evtx",
+      "Credential Access/ACL_ForcePwd_SPNAdd_User_Computer_Accounts.evtx",
+      "Credential Access/CA_chrome_firefox_opera_4663.evtx",
+      "Credential Access/Zerologon_CVE-2020-1472_DFIR_System_NetLogon_Error_EventID_5805.evtx",
+      "Credential Access/Zerologon_VoidSec_CVE-2020-1472_4626_LT3_Anonym_follwedby_4742_DC_Anony_DC.evtx",
+      "Credential Access/kerberos_pwd_spray_4771.evtx",
+      "Credential Access/remote_pwd_reset_rpc_mimikatz_postzerologon_target_DC.evtx",
+      "Credential Access/remote_sam_registry_access_via_backup_operator_priv.evtx",
+      "Defense Evasion/DE_104_system_log_cleared.evtx",
+      "Defense Evasion/DE_1102_security_log_cleared.evtx",
+      "Defense Evasion/DE_suspicious_remote_eventlog_svc_access_5145.evtx",
+      "Discovery/dicovery_4661_net_group_domain_admins_target.evtx",
+      "Discovery/discovery_bloodhound.evtx",
+      "Discovery/discovery_psloggedon.evtx",
+      "Lateral Movement/LM_4624_mimikatz_sekurlsa_pth_source_machine.evtx",
+      "Lateral Movement/LM_ScheduledTask_ATSVC_target_host.evtx",
+      "Lateral Movement/LM_WMIC_4648_rpcss.evtx",
+      "Lateral Movement/net_share_drive_5142.evtx",
+      "Lateral Movement/remote task update 4624 4702 same logonid.evtx",
+      "Persistence/DACL_DCSync_Right_Powerview_ Add-DomainObjectAcl.evtx",
+      "Persistence/persistence_security_dcshadow_4742.evtx",
+      "Privilege Escalation/4624 LT3 AnonymousLogon Localhost - JuicyPotato.evtx",
+      "Privilege Escalation/NTLM2SelfRelay-med0x2e-security_4624_4688.evtx",
+      "Privilege Escalation/Runas_4624_4648_Webshell_CreateProcessAsUserA.evtx",
+      "Privilege Escalation/samaccount_spoofing_CVE-2021-42287_CVE-2021-42278_DC_securitylogs.evtx",
+      "Privilege Escalation/security_4624_4673_token_manip.evtx"
+    ]
+  },
+  "T1070.003": {
+    "total_matches": 4,
+    "matches_with_cti": 4,
+    "unique_rules": [
+      "RunMRU Registry Key Deletion - Registry"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/ppl_bypass_ppldump_knowdll_hijack_sysmon_security.evtx",
+      "Defense Evasion/Sysmon_12_DE_AntiForensics_MRU_DeleteKey.evtx",
+      "Lateral Movement/LM_sysmon_1_12_13_3_tsclient_SharpRdp.evtx",
+      "Lateral Movement/LM_sysmon_3_12_13_1_SharpRDP.evtx"
+    ]
+  },
+  "T1070.004": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Directory Removal Via Rmdir"
+    ],
+    "unique_evtx_files": [
+      "Privilege Escalation/privesc_spoolsv_spl_file_write_sysmon11.evtx"
+    ]
+  },
+  "T1078": {
+    "total_matches": 11,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "External Remote SMB Logon from Public IP",
+      "Suspicious Remote Logon with Explicit Credentials",
+      "User Added to Local Administrator Group"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/Zerologon_VoidSec_CVE-2020-1472_4626_LT3_Anonym_follwedby_4742_DC_Anony_DC.evtx",
+      "Credential Access/remote_pwd_reset_rpc_mimikatz_postzerologon_target_DC.evtx",
+      "Credential Access/remote_sam_registry_access_via_backup_operator_priv.evtx",
+      "Discovery/dicovery_4661_net_group_domain_admins_target.evtx",
+      "Lateral Movement/LM_ScheduledTask_ATSVC_target_host.evtx",
+      "Lateral Movement/LM_WMIC_4648_rpcss.evtx",
+      "Lateral Movement/LM_WMI_4624_4688_TargetHost.evtx",
+      "Lateral Movement/remote task update 4624 4702 same logonid.evtx",
+      "Persistence/Network_Service_Guest_added_to_admins_4732.evtx",
+      "Privilege Escalation/privexchange_dirkjan.evtx",
+      "Privilege Escalation/samaccount_spoofing_CVE-2021-42287_CVE-2021-42278_DC_securitylogs.evtx"
+    ]
+  },
+  "T1078.001": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Admin User Remote Logon"
+    ],
+    "unique_evtx_files": [
+      "Command and Control/DE_RDP_Tunnel_5156.evtx"
+    ]
+  },
+  "T1078.002": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Admin User Remote Logon"
+    ],
+    "unique_evtx_files": [
+      "Command and Control/DE_RDP_Tunnel_5156.evtx"
+    ]
+  },
+  "T1078.003": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Admin User Remote Logon"
+    ],
+    "unique_evtx_files": [
+      "Command and Control/DE_RDP_Tunnel_5156.evtx"
+    ]
+  },
+  "T1082": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Suspicious Execution of Hostname"
+    ],
+    "unique_evtx_files": [
+      "Lateral Movement/LM_PowershellRemoting_sysmon_1_wsmprovhost.evtx"
+    ]
+  },
+  "T1087": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Webshell Hacking Activity Patterns"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/discovery_sysmon_1_iis_pwd_and_config_discovery_appcmd.evtx"
+    ]
+  },
+  "T1087.001": {
+    "total_matches": 8,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Local Accounts Discovery"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/Sysmon 7  Update Session Orchestrator Dll Hijack.evtx",
+      "Defense Evasion/Sysmon 7 dllhijack_cdpsshims_CDPSvc.evtx",
+      "Defense Evasion/faxhell_sysmon_7_1_18_3_bindshell_dllhijack.evtx",
+      "Privilege Escalation/EfsPotato_sysmon_17_18_privesc_seimpersonate_to_system.evtx",
+      "Privilege Escalation/PrivEsc_Imperson_NetSvc_to_Sys_Decoder_Sysmon_1_17_18.evtx",
+      "Privilege Escalation/RogueWinRM.evtx",
+      "Privilege Escalation/privesc_seimpersonate_tosys_spoolsv_sysmon_17_18.evtx",
+      "Privilege Escalation/privesc_spoolsv_spl_file_write_sysmon11.evtx"
+    ]
+  },
+  "T1087.002": {
+    "total_matches": 4,
+    "matches_with_cti": 4,
+    "unique_rules": [
+      "AD Privileged Users or Groups Reconnaissance",
+      "Reconnaissance Activity"
+    ],
+    "unique_evtx_files": [
+      "Discovery/dicovery_4661_net_group_domain_admins_target.evtx",
+      "Lateral Movement/LM_ScheduledTask_ATSVC_target_host.evtx"
+    ]
+  },
+  "T1090": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "New PortProxy Registry Entry Added"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/de_portforward_netsh_rdp_sysmon_13_1.evtx"
+    ]
+  },
+  "T1095": {
+    "total_matches": 2,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "PUA - Netcat Suspicious Execution"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/Sysmon 7  Update Session Orchestrator Dll Hijack.evtx",
+      "Defense Evasion/Sysmon 7 dllhijack_cdpsshims_CDPSvc.evtx"
+    ]
+  },
+  "T1098": {
+    "total_matches": 5,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "Password Change on Directory Service Restore Mode (DSRM) Account",
+      "Powerview Add-DomainObjectAcl DCSync AD Extend Right",
+      "Suspicious Computer Account Name Change CVE-2021-42287",
+      "User Added to Local Administrator Group"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/4794_DSRM_password_change_t1098.evtx",
+      "Persistence/DACL_DCSync_Right_Powerview_ Add-DomainObjectAcl.evtx",
+      "Persistence/Network_Service_Guest_added_to_admins_4732.evtx",
+      "Privilege Escalation/privexchange_dirkjan.evtx",
+      "Privilege Escalation/samaccount_spoofing_CVE-2021-42287_CVE-2021-42278_DC_securitylogs.evtx"
+    ]
+  },
+  "T1105": {
+    "total_matches": 2,
+    "matches_with_cti": 2,
+    "unique_rules": [
+      "Suspicious Desktopimgdownldr Command",
+      "Suspicious Desktopimgdownldr Target File"
+    ],
+    "unique_evtx_files": [
+      "Execution/sysmon_11_1_lolbas_downldr_desktopimgdownldr.evtx"
+    ]
+  },
+  "T1106": {
+    "total_matches": 2,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "HackTool - CobaltStrike BOF Injection Pattern",
+      "Potential Direct Syscall of NtOpenProcess"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/Sysmon_10_Evasion_Suspicious_NtOpenProcess_CallTrace.evtx",
+      "Privilege Escalation/CVE-2020-0796_SMBV3Ghost_LocalPrivEsc_Sysmon_3_1_10.evtx"
+    ]
+  },
+  "T1110": {
+    "total_matches": 10,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "External Remote SMB Logon from Public IP",
+      "MSSQL Server Failed Logon"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/MSSQL_multiple_failed_logon_EventID_18456.evtx",
+      "Credential Access/Zerologon_VoidSec_CVE-2020-1472_4626_LT3_Anonym_follwedby_4742_DC_Anony_DC.evtx",
+      "Credential Access/remote_pwd_reset_rpc_mimikatz_postzerologon_target_DC.evtx",
+      "Credential Access/remote_sam_registry_access_via_backup_operator_priv.evtx",
+      "Discovery/dicovery_4661_net_group_domain_admins_target.evtx",
+      "Lateral Movement/LM_ScheduledTask_ATSVC_target_host.evtx",
+      "Lateral Movement/LM_WMI_4624_4688_TargetHost.evtx",
+      "Lateral Movement/remote task update 4624 4702 same logonid.evtx",
+      "Privilege Escalation/privexchange_dirkjan.evtx",
+      "Privilege Escalation/samaccount_spoofing_CVE-2021-42287_CVE-2021-42278_DC_securitylogs.evtx"
+    ]
+  },
+  "T1112": {
+    "total_matches": 4,
+    "matches_with_cti": 3,
+    "unique_rules": [
+      "PowerShell Logging Disabled Via Registry Key Tampering",
+      "RDP Sensitive Settings Changed",
+      "RDP Sensitive Settings Changed to Zero",
+      "Trust Access Disable For VBApplications"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/de_PsScriptBlockLogging_disabled_sysmon12_13.evtx",
+      "Defense Evasion/de_sysmon_13_VBA_Security_AccessVBOM.evtx",
+      "Defense Evasion/sysmon_13_rdp_settings_tampering.evtx"
+    ]
+  },
+  "T1132.001": {
+    "total_matches": 3,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "Gzip Archive Decode Via PowerShell",
+      "Suspicious FromBase64String Usage On Gzip Archive - Process Creation",
+      "Suspicious FromBase64String Usage On Gzip Archive - Ps Script"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/phish_windows_credentials_powershell_scriptblockLog_4104.evtx",
+      "Lateral Movement/LM_sysmon_psexec_smb_meterpreter.evtx"
+    ]
+  },
+  "T1133": {
+    "total_matches": 9,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "External Remote SMB Logon from Public IP"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/Zerologon_VoidSec_CVE-2020-1472_4626_LT3_Anonym_follwedby_4742_DC_Anony_DC.evtx",
+      "Credential Access/remote_pwd_reset_rpc_mimikatz_postzerologon_target_DC.evtx",
+      "Credential Access/remote_sam_registry_access_via_backup_operator_priv.evtx",
+      "Discovery/dicovery_4661_net_group_domain_admins_target.evtx",
+      "Lateral Movement/LM_ScheduledTask_ATSVC_target_host.evtx",
+      "Lateral Movement/LM_WMI_4624_4688_TargetHost.evtx",
+      "Lateral Movement/remote task update 4624 4702 same logonid.evtx",
+      "Privilege Escalation/privexchange_dirkjan.evtx",
+      "Privilege Escalation/samaccount_spoofing_CVE-2021-42287_CVE-2021-42278_DC_securitylogs.evtx"
+    ]
+  },
+  "T1134": {
+    "total_matches": 2,
+    "matches_with_cti": 2,
+    "unique_rules": [
+      "Suspicious SYSTEM User Process Creation"
+    ],
+    "unique_evtx_files": [
+      "Lateral Movement/LM_sysmon_psexec_smb_meterpreter.evtx",
+      "Persistence/persistence_sysmon_11_13_1_shime_appfix.evtx"
+    ]
+  },
+  "T1134.001": {
+    "total_matches": 2,
+    "matches_with_cti": 2,
+    "unique_rules": [
+      "Meterpreter or Cobalt Strike Getsystem Service Installation - System",
+      "Potential Meterpreter/CobaltStrike Activity"
+    ],
+    "unique_evtx_files": [
+      "Privilege Escalation/System_7045_namedpipe_privesc.evtx",
+      "Privilege Escalation/sysmon_13_1_meterpreter_getsystem_NamedPipeImpersonation.evtx"
+    ]
+  },
+  "T1134.002": {
+    "total_matches": 2,
+    "matches_with_cti": 2,
+    "unique_rules": [
+      "Meterpreter or Cobalt Strike Getsystem Service Installation - System",
+      "Potential Meterpreter/CobaltStrike Activity"
+    ],
+    "unique_evtx_files": [
+      "Privilege Escalation/System_7045_namedpipe_privesc.evtx",
+      "Privilege Escalation/sysmon_13_1_meterpreter_getsystem_NamedPipeImpersonation.evtx"
+    ]
+  },
+  "T1136.001": {
+    "total_matches": 3,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Creation of a Local Hidden User Account by Registry",
+      "Hidden Local User Creation",
+      "Local User Creation"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/DE_Fake_ComputerAccount_4720.evtx",
+      "Persistence/persistence_hidden_local_account_sysmon.evtx"
+    ]
+  },
+  "T1136.002": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Manipulation of User Computer or Group Security Principals Across AD"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/phish_windows_credentials_powershell_scriptblockLog_4104.evtx"
+    ]
+  },
+  "T1137": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "Registry Modification to Hidden File Extension"
+    ],
+    "unique_evtx_files": [
+      "Persistence/persistence_sysmon_11_13_1_shime_appfix.evtx"
+    ]
+  },
+  "T1140": {
+    "total_matches": 3,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Base64 Encoded PowerShell Command Detected"
+    ],
+    "unique_evtx_files": [
+      "Execution/susp_explorer_exec.evtx",
+      "Execution/sysmon_lolbas_rundll32_zipfldr_routethecall_shell.evtx",
+      "Lateral Movement/LM_sysmon_psexec_smb_meterpreter.evtx"
+    ]
+  },
+  "T1190": {
+    "total_matches": 3,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "Suspicious Child Process Of SQL Server",
+      "Suspicious Process By Web Server Process"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/discovery_sysmon_1_iis_pwd_and_config_discovery_appcmd.evtx",
+      "Lateral Movement/LM_typical_IIS_webshell_sysmon_1_10_traces.evtx",
+      "Lateral Movement/sysmon_1_exec_via_sql_xpcmdshell.evtx"
+    ]
+  },
+  "T1201": {
+    "total_matches": 3,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Password Policy Enumerated"
+    ],
+    "unique_evtx_files": [
+      "Discovery/dicovery_4661_net_group_domain_admins_target.evtx",
+      "Lateral Movement/LM_ScheduledTask_ATSVC_target_host.evtx",
+      "Privilege Escalation/4765_sidhistory_add_t1178.evtx"
+    ]
+  },
+  "T1202": {
+    "total_matches": 2,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "Suspicious ZipExec Execution",
+      "Uncommon Child Process Of Conhost.EXE"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/evasion_codeinj_odzhan_conhost_sysmon_10_1.evtx",
+      "Execution/sysmon_zipexec.evtx"
+    ]
+  },
+  "T1204": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "Suspicious Binaries and Scripts in Public Folder"
+    ],
+    "unique_evtx_files": [
+      "Privilege Escalation/sysmon_uacbypass_CDSSync_schtask_hijack_byeintegrity5.evtx"
+    ]
+  },
+  "T1204.002": {
+    "total_matches": 4,
+    "matches_with_cti": 4,
+    "unique_rules": [
+      "Suspicious Startup Folder Persistence",
+      "Suspicious WmiPrvSE Child Process"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/sysmon_10_1_memdump_comsvcs_minidump.evtx",
+      "Defense Evasion/sysmon_2_11_evasion_timestomp_MACE.evtx",
+      "Lateral Movement/LM_wmi_PoisonHandler_Mr-Un1k0d3r_sysmon_1_13.evtx",
+      "Lateral Movement/smbmap_upload_exec_sysmon.evtx"
+    ]
+  },
+  "T1207": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Add or Remove Computer from DC"
+    ],
+    "unique_evtx_files": [
+      "Privilege Escalation/samaccount_spoofing_CVE-2021-42287_CVE-2021-42278_DC_securitylogs.evtx"
+    ]
+  },
+  "T1217": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "File And SubFolder Enumeration Via Dir Command"
+    ],
+    "unique_evtx_files": [
+      "Privilege Escalation/privesc_spoolsv_spl_file_write_sysmon11.evtx"
+    ]
+  },
+  "T1218": {
+    "total_matches": 4,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "HTML Help HH.EXE Suspicious Child Process",
+      "Suspicious ZipExec Execution",
+      "Windows Shell/Scripting Processes Spawning Suspicious Programs"
+    ],
+    "unique_evtx_files": [
+      "Execution/Sysmon_Exec_CompiledHTML.evtx",
+      "Execution/exec_persist_rundll32_mshta_scheduledtask_sysmon_1_3_11.evtx",
+      "Execution/exec_sysmon_1_11_lolbin_rundll32_openurl_FileProtocolHandler.evtx",
+      "Execution/sysmon_zipexec.evtx"
+    ]
+  },
+  "T1218.001": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "HTML Help HH.EXE Suspicious Child Process"
+    ],
+    "unique_evtx_files": [
+      "Execution/Sysmon_Exec_CompiledHTML.evtx"
+    ]
+  },
+  "T1218.003": {
+    "total_matches": 5,
+    "matches_with_cti": 4,
+    "unique_rules": [
+      "CMSTP Execution Registry Event",
+      "CMSTP UAC Bypass via COM Object Access"
+    ],
+    "unique_evtx_files": [
+      "Privilege Escalation/Sysmon_UACME_41.evtx",
+      "Privilege Escalation/Sysmon_UACME_43.evtx",
+      "Privilege Escalation/Sysmon_uacme_58.evtx",
+      "Privilege Escalation/sysmon_1_13_11_cmstp_ini_uacbypass.evtx"
+    ]
+  },
+  "T1218.005": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "Potential LethalHTA Technique Execution"
+    ],
+    "unique_evtx_files": [
+      "Lateral Movement/LM_DCOM_MSHTA_LethalHTA_Sysmon_3_1.evtx"
+    ]
+  },
+  "T1218.010": {
+    "total_matches": 9,
+    "matches_with_cti": 6,
+    "unique_rules": [
+      "HTML Help HH.EXE Suspicious Child Process",
+      "Potential Regsvr32 Commandline Flag Anomaly",
+      "Scripting/CommandLine Process Spawned Regsvr32",
+      "Suspicious WmiPrvSE Child Process",
+      "Unsigned DLL Loaded by Windows Utility"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/sysmon_10_1_memdump_comsvcs_minidump.evtx",
+      "Defense Evasion/Sysmon 7  Update Session Orchestrator Dll Hijack.evtx",
+      "Execution/Sysmon_Exec_CompiledHTML.evtx",
+      "Execution/exec_sysmon_1_7_jscript9_defense_evasion.evtx",
+      "Execution/exec_sysmon_lobin_regsvr32_sct.evtx",
+      "Lateral Movement/LM_wmi_PoisonHandler_Mr-Un1k0d3r_sysmon_1_13.evtx",
+      "Lateral Movement/smbmap_upload_exec_sysmon.evtx",
+      "Persistence/sysmon_1_persist_bitsjob_SetNotifyCmdLine.evtx"
+    ]
+  },
+  "T1218.011": {
+    "total_matches": 12,
+    "matches_with_cti": 12,
+    "unique_rules": [
+      "Bad Opsec Defaults Sacrificial Processes With Improper Arguments",
+      "HTML Help HH.EXE Suspicious Child Process",
+      "Potentially Suspicious Rundll32 Activity",
+      "Rundll32 UNC Path Execution",
+      "Unsigned DLL Loaded by Windows Utility"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/sysmon_10_1_memdump_comsvcs_minidump.evtx",
+      "Defense Evasion/Sysmon 7  Update Session Orchestrator Dll Hijack.evtx",
+      "Execution/Sysmon_Exec_CompiledHTML.evtx",
+      "Execution/Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.evtx",
+      "Execution/exec_sysmon_1_11_lolbin_rundll32_openurl_FileProtocolHandler.evtx",
+      "Execution/exec_sysmon_1_11_lolbin_rundll32_shdocvw_openurl.evtx",
+      "Execution/exec_sysmon_1_11_lolbin_rundll32_zipfldr_RouteTheCall.evtx",
+      "Execution/exec_sysmon_1_lolbin_rundll32_advpack_RegisterOCX.evtx",
+      "Execution/exec_sysmon_1_rundll32_pcwutl_LaunchApplication.evtx",
+      "Execution/sysmon_lolbas_rundll32_zipfldr_routethecall_shell.evtx",
+      "Lateral Movement/LM_wmi_PoisonHandler_Mr-Un1k0d3r_sysmon_1_13.evtx",
+      "Lateral Movement/smbmap_upload_exec_sysmon.evtx"
+    ]
+  },
+  "T1219.002": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "Hijack Legit RDP Session to Move Laterally"
+    ],
+    "unique_evtx_files": [
+      "Lateral Movement/LM_tsclient_startup_folder.evtx"
+    ]
+  },
+  "T1220": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Msxsl.EXE Execution"
+    ],
+    "unique_evtx_files": [
+      "Execution/exec_msxsl_xsl_sysmon_1_7.evtx"
+    ]
+  },
+  "T1484.001": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "Windows Default Domain GPO Modification"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/ACL_ForcePwd_SPNAdd_User_Computer_Accounts.evtx"
+    ]
+  },
+  "T1489": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Stop Windows Service Via Sc.EXE"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/Sysmon 7 dllhijack_cdpsshims_CDPSvc.evtx"
+    ]
+  },
+  "T1490": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "Sensitive File Access Via Volume Shadow Copy Backup"
+    ],
+    "unique_evtx_files": [
+      "Execution/sysmon_exec_from_vss_persistence.evtx"
+    ]
+  },
+  "T1505.003": {
+    "total_matches": 4,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "Suspicious Child Process Of SQL Server",
+      "Suspicious Process By Web Server Process",
+      "Webshell Hacking Activity Patterns"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/discovery_sysmon_1_iis_pwd_and_config_discovery_appcmd.evtx",
+      "Lateral Movement/LM_typical_IIS_webshell_sysmon_1_10_traces.evtx",
+      "Lateral Movement/sysmon_1_exec_via_sql_xpcmdshell.evtx"
+    ]
+  },
+  "T1531": {
+    "total_matches": 2,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "User Logoff Event"
+    ],
+    "unique_evtx_files": [
+      "Privilege Escalation/4624 LT3 AnonymousLogon Localhost - JuicyPotato.evtx",
+      "Privilege Escalation/NTLM2SelfRelay-med0x2e-security_4624_4688.evtx"
+    ]
+  },
+  "T1543.003": {
+    "total_matches": 8,
+    "matches_with_cti": 4,
+    "unique_rules": [
+      "Potential CobaltStrike Service Installations - Registry",
+      "ServiceDll Hijack",
+      "Suspicious Service Installation",
+      "Uncommon Service Installation Image Path",
+      "Vulnerable Driver Load",
+      "Vulnerable Driver Load By Name"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/DSE_bypass_BYOV_TDL_dummydriver_sysmon_6_7_13.evtx",
+      "Defense Evasion/sysmon_13_rdp_settings_tampering.evtx",
+      "Discovery/discovery_UEFI_Settings_rweverything_sysmon_6.evtx",
+      "Lateral Movement/LM_sysmon_psexec_smb_meterpreter.evtx",
+      "Privilege Escalation/System_7045_namedpipe_privesc.evtx"
+    ]
+  },
+  "T1546.001": {
+    "total_matches": 2,
+    "matches_with_cti": 2,
+    "unique_rules": [
+      "Shell Open Registry Keys Manipulation"
+    ],
+    "unique_evtx_files": [
+      "Privilege Escalation/Sysmon_UACME_33.evtx",
+      "Privilege Escalation/Sysmon_UACME_45.evtx"
+    ]
+  },
+  "T1546.003": {
+    "total_matches": 3,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "WMI Event Subscription",
+      "WMI Persistence - Script Event Consumer"
+    ],
+    "unique_evtx_files": [
+      "Persistence/sysmon_20_21_1_CommandLineEventConsumer.evtx",
+      "Persistence/wmighost_sysmon_20_21_1.evtx"
+    ]
+  },
+  "T1546.011": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "Potential Persistence Via Shim Database Modification"
+    ],
+    "unique_evtx_files": [
+      "Persistence/persistence_sysmon_11_13_1_shime_appfix.evtx"
+    ]
+  },
+  "T1546.012": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Potential Persistence Via GlobalFlags"
+    ],
+    "unique_evtx_files": [
+      "Persistence/persistence_SilentProcessExit_ImageHijack_sysmon_13_1.evtx"
+    ]
+  },
+  "T1546.015": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Potential COM Object Hijacking Via TreatAs Subkey - Registry"
+    ],
+    "unique_evtx_files": [
+      "Persistence/persist_turla_outlook_backdoor_comhijack.evtx"
+    ]
+  },
+  "T1547.001": {
+    "total_matches": 10,
+    "matches_with_cti": 2,
+    "unique_rules": [
+      "CurrentVersion Autorun Keys Modification",
+      "CurrentVersion NT Autorun Keys Modification",
+      "Modify User Shell Folders Startup Value",
+      "Startup Folder File Write",
+      "Suspicious Startup Folder Persistence"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/sysmon_2_11_evasion_timestomp_MACE.evtx",
+      "Lateral Movement/LM_tsclient_startup_folder.evtx",
+      "Lateral Movement/lateral_movement_startup_3_11.evtx",
+      "Lateral Movement/lm_remote_registry_sysmon_1_13_3.evtx",
+      "Lateral Movement/wmi_remote_registry_sysmon.evtx",
+      "Persistence/evasion_persis_hidden_run_keyvalue_sysmon_13.evtx",
+      "Persistence/persistence_SilentProcessExit_ImageHijack_sysmon_13_1.evtx",
+      "Persistence/persistence_startup_UserShellStartup_Folder_Changed_sysmon_13.evtx",
+      "Persistence/sysmon_13_1_persistence_via_winlogon_shell.evtx"
+    ]
+  },
+  "T1547.008": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "DLL Load via LSASS"
+    ],
+    "unique_evtx_files": [
+      "Lateral Movement/LM_regsvc_DirectoryServiceExtPt_Lsass_NTDS_AdamXpn.evtx"
+    ]
+  },
+  "T1547.009": {
+    "total_matches": 2,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "Creation Exe for Service with Unquoted Path",
+      "New Custom Shim Database Created"
+    ],
+    "unique_evtx_files": [
+      "Persistence/persistence_sysmon_11_13_1_shime_appfix.evtx",
+      "Privilege Escalation/privesc_unquoted_svc_sysmon_1_11.evtx"
+    ]
+  },
+  "T1547.010": {
+    "total_matches": 3,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Bypass UAC Using Event Viewer",
+      "Default RDP Port Changed to Non Standard Port"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/sysmon_13_rdp_settings_tampering.evtx",
+      "Privilege Escalation/Sysmon_13_1_UAC_Bypass_EventVwrBypass.evtx",
+      "Privilege Escalation/sysmon_13_1_compmgmtlauncherUACBypass.evtx"
+    ]
+  },
+  "T1548": {
+    "total_matches": 7,
+    "matches_with_cti": 2,
+    "unique_rules": [
+      "Abused Debug Privilege by Arbitrary Parent Processes",
+      "Potential Privilege Escalation via Local Kerberos Relay over LDAP",
+      "UAC Bypass via Windows Firewall Snap-In Hijack"
+    ],
+    "unique_evtx_files": [
+      "Persistence/sysmon_1_smss_child_proc_bootexecute_setupexecute.evtx",
+      "Privilege Escalation/CVE-2020-0796_SMBV3Ghost_LocalPrivEsc_Sysmon_3_1_10.evtx",
+      "Privilege Escalation/Sysmon_UACME_38.evtx",
+      "Privilege Escalation/Sysmon_UACME_63.evtx",
+      "Privilege Escalation/privesc_KrbRelayUp_windows_4624.evtx",
+      "Privilege Escalation/privesc_spoolsv_spl_file_write_sysmon11.evtx",
+      "Privilege Escalation/privesc_unquoted_svc_sysmon_1_11.evtx"
+    ]
+  },
+  "T1548.002": {
+    "total_matches": 34,
+    "matches_with_cti": 15,
+    "unique_rules": [
+      "Bypass UAC Using DelegateExecute",
+      "Bypass UAC Using SilentCleanup Task",
+      "Bypass UAC via Fodhelper.exe",
+      "CMSTP UAC Bypass via COM Object Access",
+      "HackTool - UACMe Akagi Execution",
+      "Potential UAC Bypass Via Sdclt.EXE",
+      "Potentially Suspicious Event Viewer Child Process",
+      "Sdclt Child Processes",
+      "Shell Open Registry Keys Manipulation",
+      "Trusted Path Bypass via Windows Directory Spoofing",
+      "TrustedPath UAC Bypass Pattern",
+      "UAC Bypass Using .NET Code Profiler on MMC",
+      "UAC Bypass Using ChangePK and SLUI",
+      "UAC Bypass Using Consent and Comctl32 - Process",
+      "UAC Bypass Using Disk Cleanup",
+      "UAC Bypass Using IEInstal - File",
+      "UAC Bypass Using IEInstal - Process",
+      "UAC Bypass Using NTFS Reparse Point - Process",
+      "UAC Bypass Using PkgMgr and DISM",
+      "UAC Bypass Using Windows Media Player - File",
+      "UAC Bypass WSReset",
+      "UAC Disabled"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/DE_UAC_Disabled_Sysmon_12_13.evtx",
+      "Defense Evasion/DSE_bypass_BYOV_TDL_dummydriver_sysmon_6_7_13.evtx",
+      "Privilege Escalation/Sysmon_13_1_UACBypass_SDCLTBypass.evtx",
+      "Privilege Escalation/Sysmon_13_1_UAC_Bypass_EventVwrBypass.evtx",
+      "Privilege Escalation/Sysmon_UACME_22.evtx",
+      "Privilege Escalation/Sysmon_UACME_23.evtx",
+      "Privilege Escalation/Sysmon_UACME_32.evtx",
+      "Privilege Escalation/Sysmon_UACME_33.evtx",
+      "Privilege Escalation/Sysmon_UACME_34.evtx",
+      "Privilege Escalation/Sysmon_UACME_36_FileCreate.evtx",
+      "Privilege Escalation/Sysmon_UACME_37_FileCreate.evtx",
+      "Privilege Escalation/Sysmon_UACME_39.evtx",
+      "Privilege Escalation/Sysmon_UACME_41.evtx",
+      "Privilege Escalation/Sysmon_UACME_43.evtx",
+      "Privilege Escalation/Sysmon_UACME_45.evtx",
+      "Privilege Escalation/Sysmon_UACME_53.evtx",
+      "Privilege Escalation/Sysmon_UACME_56.evtx",
+      "Privilege Escalation/Sysmon_UACME_64.evtx",
+      "Privilege Escalation/Sysmon_uacme_58.evtx",
+      "Privilege Escalation/sysmon_11_7_1_uacbypass_windirectory_mocking.evtx",
+      "Privilege Escalation/sysmon_1_13_11_cmstp_ini_uacbypass.evtx",
+      "Privilege Escalation/sysmon_1_13_UACBypass_AppPath_Control.evtx"
+    ]
+  },
+  "T1550": {
+    "total_matches": 4,
+    "matches_with_cti": 4,
+    "unique_rules": [
+      "Outgoing Logon with New Credentials"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/tutto_malseclogon.evtx",
+      "Lateral Movement/LM_4624_mimikatz_sekurlsa_pth_source_machine.evtx",
+      "Privilege Escalation/Invoke_TokenDuplication_UAC_Bypass4624.evtx",
+      "Privilege Escalation/security_4624_4673_token_manip.evtx"
+    ]
+  },
+  "T1550.002": {
+    "total_matches": 10,
+    "matches_with_cti": 10,
+    "unique_rules": [
+      "Pass the Hash Activity 2",
+      "Successful Overpass the Hash Attempt"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/tutto_malseclogon.evtx",
+      "Lateral Movement/ImpersonateUser-via local Pass The Hash Sysmon and Security.evtx",
+      "Lateral Movement/LM_4624_mimikatz_sekurlsa_pth_source_machine.evtx",
+      "Privilege Escalation/Invoke_TokenDuplication_UAC_Bypass4624.evtx",
+      "Privilege Escalation/privexchange_dirkjan.evtx",
+      "Privilege Escalation/security_4624_4673_token_manip.evtx"
+    ]
+  },
+  "T1555.005": {
+    "total_matches": 2,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Remote Thread Created In KeePass.EXE"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/CA_keefarce_keepass_credump.evtx",
+      "Credential Access/CA_keepass_KeeThief_Get-KeePassDatabaseKey.evtx"
+    ]
+  },
+  "T1557.001": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "RottenPotato Like Attack Pattern"
+    ],
+    "unique_evtx_files": [
+      "Privilege Escalation/4624 LT3 AnonymousLogon Localhost - JuicyPotato.evtx"
+    ]
+  },
+  "T1558": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "HackTool - Mimikatz Kirbi File Creation"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/CA_Mimikatz_Memssp_Default_Logs_Sysmon_11.evtx"
+    ]
+  },
+  "T1562.001": {
+    "total_matches": 4,
+    "matches_with_cti": 2,
+    "unique_rules": [
+      "HackTool - CobaltStrike BOF Injection Pattern",
+      "Suspicious Process Access to LSASS with Dbgcore/Dbghelp DLLs",
+      "Sysmon Configuration Update"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/babyshark_mimikatz_powershell.evtx",
+      "Credential Access/sysmon_10_11_lsass_memdump.evtx",
+      "Credential Access/sysmon_10_11_outlfank_dumpert_and_andrewspecial_memdump.evtx",
+      "Privilege Escalation/CVE-2020-0796_SMBV3Ghost_LocalPrivEsc_Sysmon_3_1_10.evtx"
+    ]
+  },
+  "T1562.002": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "EVTX Created In Uncommon Location"
+    ],
+    "unique_evtx_files": [
+      "Execution/execution_evasion_visual_studio_prebuild_event.evtx"
+    ]
+  },
+  "T1564": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "Potentially Suspicious Execution From Parent Process In Public Folder"
+    ],
+    "unique_evtx_files": [
+      "Privilege Escalation/privesc_spoolsv_spl_file_write_sysmon11.evtx"
+    ]
+  },
+  "T1564.001": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "PowerShell Logging Disabled Via Registry Key Tampering"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/de_PsScriptBlockLogging_disabled_sysmon12_13.evtx"
+    ]
+  },
+  "T1566": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "HTML Help HH.EXE Suspicious Child Process"
+    ],
+    "unique_evtx_files": [
+      "Execution/Sysmon_Exec_CompiledHTML.evtx"
+    ]
+  },
+  "T1566.001": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "HTML Help HH.EXE Suspicious Child Process"
+    ],
+    "unique_evtx_files": [
+      "Execution/Sysmon_Exec_CompiledHTML.evtx"
+    ]
+  },
+  "T1569.002": {
+    "total_matches": 6,
+    "matches_with_cti": 3,
+    "unique_rules": [
+      "Potential CobaltStrike Service Installations - Registry",
+      "PowerShell as a Service in Registry",
+      "PsExec Service File Creation",
+      "PsExec Tool Execution From Suspicious Locations - PipeName",
+      "Rundll32 Execution Without Parameters",
+      "Start Windows Service Via Net.EXE"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/Sysmon 7 dllhijack_cdpsshims_CDPSvc.evtx",
+      "Execution/Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.evtx",
+      "Lateral Movement/LM_sysmon_psexec_smb_meterpreter.evtx",
+      "Lateral Movement/remote_file_copy_system_proc_file_write_sysmon_11.evtx",
+      "Privilege Escalation/sysmon_privesc_psexec_dwell.evtx"
+    ]
+  },
+  "T1570": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Rundll32 Execution Without Parameters"
+    ],
+    "unique_evtx_files": [
+      "Execution/Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.evtx"
+    ]
+  },
+  "T1572": {
+    "total_matches": 1,
+    "matches_with_cti": 1,
+    "unique_rules": [
+      "Suspicious Plink Port Forwarding"
+    ],
+    "unique_evtx_files": [
+      "Command and Control/DE_sysmon-3-rdp-tun.evtx"
+    ]
+  },
+  "T1574": {
+    "total_matches": 2,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Windows Spooler Service Suspicious Binary Load"
+    ],
+    "unique_evtx_files": [
+      "Privilege Escalation/privesc_spoolfool_mahdihtm_sysmon_1_11_7_13.evtx",
+      "Privilege Escalation/privesc_sysmon_cve_20201030_spooler.evtx"
+    ]
+  },
+  "T1574.001": {
+    "total_matches": 7,
+    "matches_with_cti": 5,
+    "unique_rules": [
+      "DLL Search Order Hijackig Via Additional Space in Path",
+      "Fax Service DLL Search Order Hijack",
+      "Potential DLL Sideloading Via comctl32.dll",
+      "Potential System DLL Sideloading From Non System Locations",
+      "Potential WWlib.DLL Sideloading"
+    ],
+    "unique_evtx_files": [
+      "Defense Evasion/faxhell_sysmon_7_1_18_3_bindshell_dllhijack.evtx",
+      "Defense Evasion/sideloading_wwlib_sysmon_7_1_11.evtx",
+      "Privilege Escalation/Sysmon_UACME_22.evtx",
+      "Privilege Escalation/sysmon_11_7_1_uacbypass_windirectory_mocking.evtx",
+      "Privilege Escalation/sysmon_1_7_11_mcx2prov_uacbypass.evtx",
+      "Privilege Escalation/sysmon_uacbypass_CDSSync_schtask_hijack_byeintegrity5.evtx"
+    ]
+  },
+  "T1574.007": {
+    "total_matches": 1,
+    "matches_with_cti": 0,
+    "unique_rules": [
+      "Trusted Path Bypass via Windows Directory Spoofing"
+    ],
+    "unique_evtx_files": [
+      "Privilege Escalation/sysmon_11_7_1_uacbypass_windirectory_mocking.evtx"
+    ]
+  },
+  "T1588.002": {
+    "total_matches": 5,
+    "matches_with_cti": 2,
+    "unique_rules": [
+      "Hacktool Execution - Imphash",
+      "PUA - Sysinternal Tool Execution - Registry",
+      "PUA - Sysinternals Tools Execution - Registry",
+      "Potential Execution of Sysinternals Tools"
+    ],
+    "unique_evtx_files": [
+      "Credential Access/ppl_bypass_ppldump_knowdll_hijack_sysmon_security.evtx",
+      "Persistence/persist_valid_account_guest_rid_hijack.evtx",
+      "Privilege Escalation/privesc_roguepotato_sysmon_17_18.evtx",
+      "Privilege Escalation/privesc_unquoted_svc_sysmon_1_11.evtx"
+    ]
+  }
+}

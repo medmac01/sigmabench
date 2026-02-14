@@ -1,0 +1,55 @@
+[{
+  "title": "RDP Login from Localhost",
+  "id": "51e33403-2a37-4d66-a574-1fda1782cc31",
+  "description": "RDP login with localhost source address may be a tunnelled login",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Security' AND (EventID=4624 AND LogonType=10 AND (IpAddress='::1' OR IpAddress='127.0.0.1'))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.lateral-movement",
+    "car.2013-07-002",
+    "attack.t1021.001"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 15,
+      "AuthenticationPackageName": "Negotiate",
+      "Channel": "Security",
+      "Computer": "PC02.example.corp",
+      "EventID": 4624,
+      "EventRecordID": 5315,
+      "Guid": "54849625-5478-4994-A5BA-3E3B0328C30D",
+      "IpAddress": "127.0.0.1",
+      "IpPort": "49164",
+      "KeyLength": 0,
+      "Keywords": "0x8020000000000000",
+      "Level": 0,
+      "LmPackageName": "-",
+      "LogonGuid": "00000000-0000-0000-0000-000000000000",
+      "LogonProcessName": "User32",
+      "LogonType": 10,
+      "Opcode": 0,
+      "OriginalLogfile": "DE_RDP_Tunneling_4624.evtx",
+      "ProcessID": 480,
+      "ProcessName": "C:\\Windows\\System32\\winlogon.exe",
+      "Provider_Name": "Microsoft-Windows-Security-Auditing",
+      "SubjectDomainName": "EXAMPLE",
+      "SubjectLogonId": "0x3e7",
+      "SubjectUserName": "PC02$",
+      "SubjectUserSid": "S-1-5-18",
+      "SystemTime": "2019-02-13T15:26:53.356780Z",
+      "TargetDomainName": "PC02",
+      "TargetLogonId": "0x45120",
+      "TargetUserName": "IEUser",
+      "TargetUserSid": "S-1-5-21-3583694148-1414552638-2922671848-1000",
+      "Task": 12544,
+      "ThreadID": 3952,
+      "TransmittedServices": "-",
+      "Version": 0,
+      "WorkstationName": "PC02"
+    }
+  ]
+}]

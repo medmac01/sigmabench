@@ -1,0 +1,43 @@
+[{
+  "title": "UAC Bypass Using Windows Media Player - File",
+  "id": "68578b43-65df-4f81-9a9b-92f32711a951",
+  "description": "Detects the pattern of UAC Bypass using Windows Media Player osksupport.dll (UACMe 32)",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=11 AND ((TargetFilename LIKE 'C:\\\\Users\\\\%' ESCAPE '\\' AND TargetFilename LIKE '%\\\\AppData\\\\Local\\\\Temp\\\\OskSupport.dll' ESCAPE '\\') OR (Image LIKE 'C:\\\\Windows\\\\system32\\\\DllHost.exe' ESCAPE '\\' AND TargetFilename LIKE 'C:\\\\Program Files\\\\Windows Media Player\\\\osk.exe' ESCAPE '\\')))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1548.002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 2,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "MSEDGEWIN10",
+      "CreationUtcTime": "2019-08-03 10:51:46.599",
+      "EventID": 11,
+      "EventRecordID": 5305,
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Windows\\explorer.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_UACME_32.evtx",
+      "ProcessGuid": "747F3D96-6742-5D45-0000-00104A66B500",
+      "ProcessID": 2780,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "RuleName": "PrivEsc - UAC Bypass UACME 32",
+      "SystemTime": "2019-08-03T10:51:46.647421Z",
+      "TargetFileName": "C:\\Users\\IEUser\\AppData\\Local\\Temp\\OskSupport.dll",
+      "Task": 11,
+      "ThreadID": 3676,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-08-03 10:51:46.599",
+      "Version": 2
+    }
+  ]
+}]

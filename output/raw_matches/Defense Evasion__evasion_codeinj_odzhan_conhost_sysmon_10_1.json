@@ -1,0 +1,107 @@
+[{
+  "title": "Uncommon Child Process Of Conhost.EXE",
+  "id": "7dc2dedd-7603-461a-bc13-15803d132355",
+  "description": "Detects uncommon \"conhost\" child processes. This could be a sign of \"conhost\" usage as a LOLBIN or potential process injection activity.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND (ParentImage LIKE '%\\\\conhost.exe' ESCAPE '\\' AND (NOT (Image LIKE '%:\\\\Windows\\\\System32\\\\conhost.exe' ESCAPE '\\' OR Image IS NULL OR Image='')) AND (NOT Provider_Name='SystemTraceProvider-Process')))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.t1202"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 3,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "notepad",
+      "Company": "Microsoft Corporation",
+      "Computer": "LAPTOP-JU4M3I0E",
+      "CurrentDirectory": "C:\\windows\\",
+      "Description": "Notepad",
+      "EventID": 1,
+      "EventRecordID": 2116722,
+      "FileVersion": "10.0.18362.693 (WinBuild.160101.0800)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=C401CD335BA6A3BDAF8799FDC09CDC0721F06015,MD5=06E6C0482562459ADB462CA9008262F8,SHA256=E5D90BEEB6F13F4613C3153DABBD1466F4A062B7252D931F37210907A7F914F7,IMPHASH=E2D17AC7541817AA681AE8FF7734AD89",
+      "IMPHASH": "E2D17AC7541817AA681AE8FF7734AD89",
+      "Image": "C:\\Windows\\System32\\notepad.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "00247C92-8E79-5EFD-0000-0020B446E837",
+      "LogonId": "0x37e846b4",
+      "MD5": "06E6C0482562459ADB462CA9008262F8",
+      "Opcode": 0,
+      "OriginalFileName": "NOTEPAD.EXE",
+      "OriginalLogfile": "evasion_codeinj_odzhan_conhost_sysmon_10_1.evtx",
+      "ParentCommandLine": "\\??\\C:\\windows\\system32\\conhost.exe 0xffffffff -ForceV1",
+      "ParentImage": "C:\\Windows\\System32\\conhost.exe",
+      "ParentProcessGuid": "00247C92-1117-5EFE-0000-00105A024E3A",
+      "ParentProcessId": 29168,
+      "ProcessGuid": "00247C92-20BD-5EFE-0000-00105C059D3A",
+      "ProcessID": 5320,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "C401CD335BA6A3BDAF8799FDC09CDC0721F06015",
+      "SHA256": "E5D90BEEB6F13F4613C3153DABBD1466F4A062B7252D931F37210907A7F914F7",
+      "SystemTime": "2020-07-02T18:00:29.650400Z",
+      "Task": 1,
+      "TerminalSessionId": 7,
+      "ThreadID": 6908,
+      "User": "LAPTOP-JU4M3I0E\\bouss",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2020-07-02 18:00:29.642",
+      "Version": 5
+    }
+  ]
+},
+{
+  "title": "Uncommon Process Access Rights For Target Image",
+  "id": "a24e5861-c6ca-4fde-a93c-ba9256feddf0",
+  "description": "Detects process access request to uncommon target images with a \"PROCESS_ALL_ACCESS\" access mask.\n",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=10 AND ((TargetImage LIKE '%\\\\calc.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\calculator.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\mspaint.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\notepad.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\ping.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\wordpad.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\write.exe' ESCAPE '\\') AND GrantedAccess='0x1FFFFF'))"
+  ],
+  "rule_level": "low",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1055.011"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 4,
+      "CallTrace": "C:\\windows\\SYSTEM32\\ntdll.dll+9d8e4|C:\\windows\\System32\\KERNELBASE.dll+5f36a|C:\\windows\\System32\\KERNELBASE.dll+5c5ca|C:\\windows\\System32\\KERNELBASE.dll+5bd86|C:\\windows\\System32\\KERNEL32.DLL+5e90b|UNKNOWN(000002022934003D)",
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "LAPTOP-JU4M3I0E",
+      "EventID": 10,
+      "EventRecordID": 2116723,
+      "GrantedAccess": "0x1fffff",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "evasion_codeinj_odzhan_conhost_sysmon_10_1.evtx",
+      "ProcessID": 5320,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SourceImage": "C:\\windows\\system32\\conhost.exe",
+      "SourceProcessGUID": "00247C92-1117-5EFE-0000-00105A024E3A",
+      "SourceProcessId": 29168,
+      "SourceThreadId": 19060,
+      "SystemTime": "2020-07-02T18:00:29.650453Z",
+      "TargetImage": "C:\\windows\\system32\\notepad.exe",
+      "TargetProcessGUID": "00247C92-20BD-5EFE-0000-00105C059D3A",
+      "TargetProcessId": 16788,
+      "Task": 10,
+      "ThreadID": 6908,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2020-07-02 18:00:29.642",
+      "Version": 3
+    }
+  ]
+}]

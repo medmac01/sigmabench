@@ -1,0 +1,104 @@
+[{
+  "title": "UAC Bypass WSReset",
+  "id": "89a9a0e0-f61a-42e5-8957-b1479565a658",
+  "description": "Detects the pattern of UAC Bypass via WSReset usable by default sysmon-config",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND (Image LIKE '%\\\\wsreset.exe' ESCAPE '\\' AND (IntegrityLevel='High' OR IntegrityLevel='System' OR IntegrityLevel='S-1-16-16384' OR IntegrityLevel='S-1-16-12288')))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1548.002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 8,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"C:\\Windows\\system32\\WSReset.exe\"",
+      "Company": "Microsoft Corporation",
+      "Computer": "MSEDGEWIN10",
+      "CurrentDirectory": "C:\\Windows\\system32\\",
+      "Description": "This tool resets the Windows Store without changing account settings or deleting installed apps",
+      "EventID": 1,
+      "EventRecordID": 5949,
+      "FileVersion": "10.0.17763.592 (WinBuild.160101.0800)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=A75F9C233E1C56AD0B3A0FDCFF1368E7FB3EA1D7,MD5=0D2BE4AE7AE5B93B47E12F4EFF38A0D7,SHA256=5FDDA5D5E3AE48A72CD3E71410BF0A67512B7793006CAB5878D1361000616AD6,IMPHASH=AB03184F9306BF7E8482C6F987BA1832",
+      "IMPHASH": "AB03184F9306BF7E8482C6F987BA1832",
+      "Image": "C:\\Windows\\System32\\WSReset.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "747F3D96-56A3-5D45-0000-0020B3D31800",
+      "LogonId": "0x18d3b3",
+      "MD5": "0D2BE4AE7AE5B93B47E12F4EFF38A0D7",
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_UACME_56.evtx",
+      "ParentCommandLine": "UACME.exe  56",
+      "ParentImage": "C:\\Users\\IEUser\\Desktop\\UACME.exe",
+      "ParentProcessGuid": "747F3D96-B07D-5D46-0000-00103C8C0F04",
+      "ParentProcessId": 7588,
+      "ProcessGuid": "747F3D96-B080-5D46-0000-0010D4EA0F04",
+      "ProcessID": 2780,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "A75F9C233E1C56AD0B3A0FDCFF1368E7FB3EA1D7",
+      "SHA256": "5FDDA5D5E3AE48A72CD3E71410BF0A67512B7793006CAB5878D1361000616AD6",
+      "SystemTime": "2019-08-04T10:16:32.438711Z",
+      "Task": 1,
+      "TerminalSessionId": 1,
+      "ThreadID": 3676,
+      "User": "MSEDGEWIN10\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-08-04 10:16:32.267",
+      "Version": 5
+    }
+  ]
+},
+{
+  "title": "Bypass UAC Using DelegateExecute",
+  "id": "46dd5308-4572-4d12-aa43-8938f0184d4f",
+  "description": "Bypasses User Account Control using a fileless method",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=13 AND (TargetObject LIKE '%\\\\open\\\\command\\\\DelegateExecute' ESCAPE '\\' AND Details='(Empty)'))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.privilege-escalation",
+    "attack.defense-evasion",
+    "attack.t1548.002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 3,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "MSEDGEWIN10",
+      "Details": "(Empty)",
+      "EventID": 13,
+      "EventRecordID": 5944,
+      "EventType": "SetValue",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Windows\\system32\\reg.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_UACME_56.evtx",
+      "ProcessGuid": "747F3D96-B07F-5D46-0000-001031A90F04",
+      "ProcessID": 2780,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "RuleName": "PrivEsc - UAC bypass UACME-56",
+      "SystemTime": "2019-08-04T10:16:31.476803Z",
+      "TargetObject": "HKU\\S-1-5-21-3461203602-4096304019-2269080069-1000_Classes\\AppX82a6gwre4fdg3bt635tn5ctqjf8msdd2\\Shell\\open\\command\\DelegateExecute",
+      "Task": 13,
+      "ThreadID": 3676,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-08-04 10:16:31.415",
+      "Version": 2
+    }
+  ]
+}]

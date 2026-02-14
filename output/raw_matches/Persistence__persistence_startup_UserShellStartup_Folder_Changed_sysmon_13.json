@@ -1,0 +1,44 @@
+[{
+  "title": "Modify User Shell Folders Startup Value",
+  "id": "9c226817-8dc9-46c2-a58d-66655aafd7dc",
+  "description": "Detect modification of the User Shell Folders registry values for Startup or Common Startup which could indicate persistence attempts.\nAttackers may modify User Shell Folders registry keys to point to malicious executables or scripts that will be executed during startup.\nThis technique is often used to maintain persistence on a compromised system by ensuring that the malicious payload is executed automatically.\n",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=13 AND (((TargetObject LIKE '%SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Explorer\\\\User Shell Folders%' ESCAPE '\\' OR TargetObject LIKE '%SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Explorer\\\\Shell Folders%' ESCAPE '\\') AND (TargetObject LIKE '%\\\\Common Startup' ESCAPE '\\' OR TargetObject LIKE '%\\\\Startup' ESCAPE '\\')) AND (NOT (Details IS NULL OR (Details LIKE '%C:\\\\ProgramData\\\\Microsoft\\\\Windows\\\\Start Menu\\\\Programs\\\\Startup%' ESCAPE '\\' OR Details LIKE '%\\%ProgramData\\%\\\\Microsoft\\\\Windows\\\\Start Menu\\\\Programs\\\\Startup%' ESCAPE '\\') OR (Details LIKE '%\\%USERPROFILE\\%\\\\AppData\\\\Roaming\\\\Microsoft\\\\Windows\\\\Start Menu\\\\Programs\\\\Startup%' ESCAPE '\\' OR Details LIKE '%\\%\\%USERPROFILE\\%\\%\\\\AppData\\\\Roaming\\\\Microsoft\\\\Windows\\\\Start Menu\\\\Programs\\\\Startup%' ESCAPE '\\') OR (Details LIKE '%C:\\\\Users\\\\%' ESCAPE '\\' AND Details LIKE '%\\\\AppData\\\\Roaming\\\\Microsoft\\\\Windows\\\\Start Menu\\\\Programs\\\\Startup%' ESCAPE '\\')))))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.persistence",
+    "attack.privilege-escalation",
+    "attack.t1547.001"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "IEWIN7",
+      "Details": "c:\\programdata\\StartupNewHomeAddress",
+      "EventID": 13,
+      "EventRecordID": 6625,
+      "EventType": "SetValue",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Windows\\system32\\reg.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "persistence_startup_UserShellStartup_Folder_Changed_sysmon_13.evtx",
+      "ProcessGuid": "365ABB72-BFB2-5CED-0000-0010F2C03600",
+      "ProcessID": 2032,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "RuleName": "Persistence - Startup User Shell Folder Modified",
+      "SystemTime": "2019-05-28T23:09:38.589832Z",
+      "TargetObject": "HKU\\S-1-5-21-3583694148-1414552638-2922671848-1000\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\startup",
+      "Task": 13,
+      "ThreadID": 2420,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-28 23:09:38.589",
+      "Version": 2
+    }
+  ]
+}]

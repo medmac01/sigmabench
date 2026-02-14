@@ -1,0 +1,50 @@
+[{
+  "title": "Password Policy Enumerated",
+  "id": "12ba6a38-adb3-4d6b-91ba-a7fb248e3199",
+  "description": "Detects when the password policy is enumerated.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Security' AND (EventID=4661 AND AccessList LIKE '%\\%\\%5392%' ESCAPE '\\' AND ObjectServer='Security Account Manager')"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.discovery",
+    "attack.t1201"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "AccessList": "%%1537\r\n\t\t\t\t%%1538\r\n\t\t\t\t%%1539\r\n\t\t\t\t%%1540\r\n\t\t\t\t%%5392\r\n\t\t\t\t%%5393\r\n\t\t\t\t%%5394\r\n\t\t\t\t%%5395\r\n\t\t\t\t%%5396\r\n\t\t\t\t%%5397\r\n\t\t\t\t%%5398\r\n\t\t\t\t%%5399\r\n\t\t\t\t%%5400",
+      "AccessMask": "0x2d",
+      "Channel": "Security",
+      "Computer": "2012r2srv.maincorp.local",
+      "EventID": 4661,
+      "EventRecordID": 8068,
+      "Guid": "54849625-5478-4994-A5BA-3E3B0328C30D",
+      "HandleId": "0xc9774b43b0",
+      "Keywords": "0x8020000000000000",
+      "Level": 0,
+      "ObjectName": "DC=maincorp,DC=local",
+      "ObjectServer": "Security Account Manager",
+      "ObjectType": "SAM_DOMAIN",
+      "Opcode": 0,
+      "OriginalLogfile": "4765_sidhistory_add_t1178.evtx",
+      "PrivilegeList": "ǿ\u000f-",
+      "ProcessID": 496,
+      "ProcessName": "C:\\Windows\\System32\\lsass.exe",
+      "Properties": "---\r\n\t{19195a5a-6da0-11d0-afd3-00c04fd930c9}\r\n%%1537\r\n%%1538\r\n%%1539\r\n%%1540\r\n%%5392\r\n%%5393\r\n%%5394\r\n%%5395\r\n%%5396\r\n%%5397\r\n%%5398\r\n%%5399\r\n%%5400\r\n\t\t{c7407360-20bf-11d0-a768-00aa006e0529}\r\n\t\t\t{bf9679a4-0de6-11d0-a285-00aa003049e2}\r\n\t\t\t{bf9679a5-0de6-11d0-a285-00aa003049e2}\r\n\t\t\t{bf9679a6-0de6-11d0-a285-00aa003049e2}\r\n\t\t\t{bf9679bb-0de6-11d0-a285-00aa003049e2}\r\n\t\t\t{bf9679c2-0de6-11d0-a285-00aa003049e2}\r\n\t\t\t{bf9679c3-0de6-11d0-a285-00aa003049e2}\r\n\t\t\t{bf967a09-0de6-11d0-a285-00aa003049e2}\r\n\t\t\t{bf967a0b-0de6-11d0-a285-00aa003049e2}\r\n\t\t{b8119fd0-04f6-4762-ab7a-4986c76b3f9a}\r\n\t\t\t{bf967a34-0de6-11d0-a285-00aa003049e2}\r\n\t\t\t{bf967a33-0de6-11d0-a285-00aa003049e2}\r\n\t\t\t{bf9679c5-0de6-11d0-a285-00aa003049e2}\r\n\t\t\t{bf967a61-0de6-11d0-a285-00aa003049e2}\r\n\t\t\t{bf967977-0de6-11d0-a285-00aa003049e2}\r\n\t\t\t{bf96795e-0de6-11d0-a285-00aa003049e2}\r\n\t\t\t{bf9679ea-0de6-11d0-a285-00aa003049e2}\r\n\t\t{ab721a52-1e2f-11d0-9819-00aa0040529b}",
+      "Provider_Name": "Microsoft-Windows-Security-Auditing",
+      "RestrictedSidCount": 0,
+      "SubjectDomainName": "MAINCORP",
+      "SubjectLogonId": "0x432c8",
+      "SubjectUserName": "Administrator",
+      "SubjectUserSid": "S-1-5-21-2634088540-571122920-1382659128-500",
+      "SystemTime": "2017-06-12T23:39:43.512986Z",
+      "Task": 12803,
+      "ThreadID": 504,
+      "TransactionId": "00000000-0000-0000-0000-000000000000",
+      "Version": 0
+    }
+  ]
+}]

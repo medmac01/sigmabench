@@ -1,0 +1,163 @@
+[{
+  "title": "Suspicious Process Parents",
+  "id": "cbec226f-63d9-4eca-9f52-dfb6652f24df",
+  "description": "Detects suspicious parent processes that should not have any children or should only have a single possible child program",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND ((ParentImage LIKE '%\\\\minesweeper.exe' ESCAPE '\\' OR ParentImage LIKE '%\\\\winver.exe' ESCAPE '\\' OR ParentImage LIKE '%\\\\bitsadmin.exe' ESCAPE '\\') OR ((ParentImage LIKE '%\\\\csrss.exe' ESCAPE '\\' OR ParentImage LIKE '%\\\\certutil.exe' ESCAPE '\\' OR ParentImage LIKE '%\\\\eventvwr.exe' ESCAPE '\\' OR ParentImage LIKE '%\\\\calc.exe' ESCAPE '\\' OR ParentImage LIKE '%\\\\notepad.exe' ESCAPE '\\') AND (NOT ((Image LIKE '%\\\\WerFault.exe' ESCAPE '\\' OR Image LIKE '%\\\\wermgr.exe' ESCAPE '\\' OR Image LIKE '%\\\\conhost.exe' ESCAPE '\\' OR Image LIKE '%\\\\mmc.exe' ESCAPE '\\' OR Image LIKE '%\\\\win32calc.exe' ESCAPE '\\' OR Image LIKE '%\\\\notepad.exe' ESCAPE '\\') OR Image IS NULL)))))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.t1036"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 5,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\"",
+      "Company": "Microsoft Corporation",
+      "Computer": "IEWIN7",
+      "CurrentDirectory": "C:\\Windows\\system32\\",
+      "Description": "Windows PowerShell",
+      "EventID": 1,
+      "EventRecordID": 11116,
+      "FileVersion": "6.1.7600.16385 (win7_rtm.090713-1255)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=04C5D2B4DA9A0F3FA8A45702D4256CEE42D8C48D,MD5=92F44E405DB16AC55D97E3BFE3B132FA,SHA256=6C05E11399B7E3C8ED31BAE72014CF249C144A8F4A2C54A758EB2E6FAD47AEC7,IMPHASH=96BA691B035D05F44E35AB23F6BA946C",
+      "IMPHASH": "96BA691B035D05F44E35AB23F6BA946C",
+      "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "365ABB72-863B-5CD3-0000-00204A390100",
+      "LogonId": "0x1394a",
+      "MD5": "92F44E405DB16AC55D97E3BFE3B132FA",
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_13_1_UAC_Bypass_EventVwrBypass.evtx",
+      "ParentCommandLine": "\"C:\\Windows\\system32\\eventvwr.exe\"",
+      "ParentImage": "C:\\Windows\\System32\\eventvwr.exe",
+      "ParentProcessGuid": "365ABB72-8980-5CD3-0000-00105F451F00",
+      "ParentProcessId": 3884,
+      "ProcessGuid": "365ABB72-8980-5CD3-0000-0010134D1F00",
+      "ProcessID": 1980,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "04C5D2B4DA9A0F3FA8A45702D4256CEE42D8C48D",
+      "SHA256": "6C05E11399B7E3C8ED31BAE72014CF249C144A8F4A2C54A758EB2E6FAD47AEC7",
+      "SystemTime": "2019-05-09T01:59:29.090897Z",
+      "Task": 1,
+      "TerminalSessionId": 1,
+      "ThreadID": 1904,
+      "User": "IEWIN7\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-09 01:59:28.903",
+      "Version": 5
+    }
+  ]
+},
+{
+  "title": "Potentially Suspicious Event Viewer Child Process",
+  "id": "be344333-921d-4c4d-8bb8-e584cf584780",
+  "description": "Detects uncommon or suspicious child processes of \"eventvwr.exe\" which might indicate a UAC bypass attempt",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND (ParentImage LIKE '%\\\\eventvwr.exe' ESCAPE '\\' AND (NOT (Image LIKE '%:\\\\Windows\\\\System32\\\\mmc.exe' ESCAPE '\\' OR Image LIKE '%:\\\\Windows\\\\System32\\\\WerFault.exe' ESCAPE '\\' OR Image LIKE '%:\\\\Windows\\\\SysWOW64\\\\WerFault.exe' ESCAPE '\\'))))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1548.002",
+    "car.2019-04-001"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 5,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\"",
+      "Company": "Microsoft Corporation",
+      "Computer": "IEWIN7",
+      "CurrentDirectory": "C:\\Windows\\system32\\",
+      "Description": "Windows PowerShell",
+      "EventID": 1,
+      "EventRecordID": 11116,
+      "FileVersion": "6.1.7600.16385 (win7_rtm.090713-1255)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=04C5D2B4DA9A0F3FA8A45702D4256CEE42D8C48D,MD5=92F44E405DB16AC55D97E3BFE3B132FA,SHA256=6C05E11399B7E3C8ED31BAE72014CF249C144A8F4A2C54A758EB2E6FAD47AEC7,IMPHASH=96BA691B035D05F44E35AB23F6BA946C",
+      "IMPHASH": "96BA691B035D05F44E35AB23F6BA946C",
+      "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "365ABB72-863B-5CD3-0000-00204A390100",
+      "LogonId": "0x1394a",
+      "MD5": "92F44E405DB16AC55D97E3BFE3B132FA",
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_13_1_UAC_Bypass_EventVwrBypass.evtx",
+      "ParentCommandLine": "\"C:\\Windows\\system32\\eventvwr.exe\"",
+      "ParentImage": "C:\\Windows\\System32\\eventvwr.exe",
+      "ParentProcessGuid": "365ABB72-8980-5CD3-0000-00105F451F00",
+      "ParentProcessId": 3884,
+      "ProcessGuid": "365ABB72-8980-5CD3-0000-0010134D1F00",
+      "ProcessID": 1980,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "04C5D2B4DA9A0F3FA8A45702D4256CEE42D8C48D",
+      "SHA256": "6C05E11399B7E3C8ED31BAE72014CF249C144A8F4A2C54A758EB2E6FAD47AEC7",
+      "SystemTime": "2019-05-09T01:59:29.090897Z",
+      "Task": 1,
+      "TerminalSessionId": 1,
+      "ThreadID": 1904,
+      "User": "IEWIN7\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-09 01:59:28.903",
+      "Version": 5
+    }
+  ]
+},
+{
+  "title": "Bypass UAC Using Event Viewer",
+  "id": "674202d0-b22a-4af4-ae5f-2eda1f3da1af",
+  "description": "Bypasses User Account Control using Event Viewer and a relevant Windows Registry modification",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=13 AND (TargetObject LIKE '%\\_Classes\\\\mscfile\\\\shell\\\\open\\\\command\\\\(Default)' ESCAPE '\\' AND (NOT Details LIKE '\\%SystemRoot\\%\\\\system32\\\\mmc.exe \"\\%1\" \\%%' ESCAPE '\\')))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.privilege-escalation",
+    "attack.persistence",
+    "attack.t1547.010"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "IEWIN7",
+      "Details": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "EventID": 13,
+      "EventRecordID": 11112,
+      "EventType": "SetValue",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_13_1_UAC_Bypass_EventVwrBypass.evtx",
+      "ProcessGuid": "365ABB72-88DC-5CD3-0000-00100DA51A00",
+      "ProcessID": 1980,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2019-05-09T01:59:28.669022Z",
+      "TargetObject": "HKU\\S-1-5-21-3583694148-1414552638-2922671848-1000_CLASSES\\mscfile\\shell\\open\\command\\(Default)",
+      "Task": 13,
+      "ThreadID": 1904,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-09 01:59:28.669",
+      "Version": 2
+    }
+  ]
+}]

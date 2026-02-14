@@ -1,0 +1,47 @@
+[{
+  "title": "HackTool - Generic Process Access",
+  "id": "d0d2f720-d14f-448d-8242-51ff396a334e",
+  "description": "Detects process access requests from hacktool processes based on their default image name",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=10 AND ((SourceImage LIKE '%\\\\Akagi.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\Akagi64.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\atexec\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\Certify.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\Certipy.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\CoercedPotato.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\crackmapexec.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\CreateMiniDump.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\dcomexec\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\dpapi\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\findDelegation\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\GetADUsers\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\GetNPUsers\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\getPac\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\getST\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\getTGT\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\GetUserSPNs\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\gmer.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\hashcat.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\htran.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\ifmap\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\impersonate.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\Inveigh.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\LocalPotato.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\mimikatz\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\mimikatz.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\netview\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\nmapAnswerMachine\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\opdump\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\PasswordDump.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\Potato.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\PowerTool.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\PowerTool64.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\psexec\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\PurpleSharp.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\pypykatz.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\QuarksPwDump.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\rdp\\_check\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\Rubeus.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\SafetyKatz.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\sambaPipe\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\SelectMyParent.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\SharpChisel.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\SharPersist.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\SharpEvtMute.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\SharpImpersonation.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\SharpLDAPmonitor.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\SharpLdapWhoami.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\SharpUp.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\SharpView.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\smbclient\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\smbserver\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\sniff\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\sniffer\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\split\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\SpoolSample.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\Stracciatella.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\SysmonEOP.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\temp\\\\rot.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\ticketer\\_windows.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\TruffleSnout.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\winPEASany\\_ofs.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\winPEASany.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\winPEASx64\\_ofs.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\winPEASx64.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\winPEASx86\\_ofs.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\winPEASx86.exe' ESCAPE '\\' OR SourceImage LIKE '%\\\\xordump.exe' ESCAPE '\\') OR (SourceImage LIKE '%\\\\goldenPac%' ESCAPE '\\' OR SourceImage LIKE '%\\\\just\\_dce\\_%' ESCAPE '\\' OR SourceImage LIKE '%\\\\karmaSMB%' ESCAPE '\\' OR SourceImage LIKE '%\\\\kintercept%' ESCAPE '\\' OR SourceImage LIKE '%\\\\LocalPotato%' ESCAPE '\\' OR SourceImage LIKE '%\\\\ntlmrelayx%' ESCAPE '\\' OR SourceImage LIKE '%\\\\rpcdump%' ESCAPE '\\' OR SourceImage LIKE '%\\\\samrdump%' ESCAPE '\\' OR SourceImage LIKE '%\\\\secretsdump%' ESCAPE '\\' OR SourceImage LIKE '%\\\\smbexec%' ESCAPE '\\' OR SourceImage LIKE '%\\\\smbrelayx%' ESCAPE '\\' OR SourceImage LIKE '%\\\\wmiexec%' ESCAPE '\\' OR SourceImage LIKE '%\\\\wmipersist%' ESCAPE '\\' OR SourceImage LIKE '%HotPotato%' ESCAPE '\\' OR SourceImage LIKE '%Juicy Potato%' ESCAPE '\\' OR SourceImage LIKE '%JuicyPotato%' ESCAPE '\\' OR SourceImage LIKE '%PetitPotam%' ESCAPE '\\' OR SourceImage LIKE '%RottenPotato%' ESCAPE '\\')))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.credential-access",
+    "attack.t1003.001",
+    "attack.s0002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "CallTrace": "C:\\Windows\\SYSTEM32\\ntdll.dll+4595c|C:\\Windows\\system32\\KERNELBASE.dll+8185|C:\\Users\\IEUser\\Desktop\\Win32\\mimikatz.exe+5b414|C:\\Users\\IEUser\\Desktop\\Win32\\mimikatz.exe+5b376|C:\\Users\\IEUser\\Desktop\\Win32\\mimikatz.exe+45933",
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "IEWIN7",
+      "EventID": 10,
+      "EventRecordID": 7845,
+      "GrantedAccess": "0x800",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "process_suspend_sysmon_10_ga_800.evtx",
+      "ProcessID": 1940,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SourceImage": "C:\\Users\\IEUser\\Desktop\\Win32\\mimikatz.exe",
+      "SourceProcessGUID": "365ABB72-D3C2-5CC5-0000-0010D9790500",
+      "SourceProcessId": 860,
+      "SourceThreadId": 864,
+      "SystemTime": "2019-04-28T16:29:42.988125Z",
+      "TargetImage": "C:\\Windows\\system32\\notepad.exe",
+      "TargetProcessGUID": "365ABB72-D3E8-5CC5-0000-0010E7D30500",
+      "TargetProcessId": 748,
+      "Task": 10,
+      "ThreadID": 1316,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-04-28 16:29:42.988",
+      "Version": 3
+    }
+  ]
+}]

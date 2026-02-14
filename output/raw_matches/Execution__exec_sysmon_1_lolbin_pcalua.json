@@ -1,0 +1,59 @@
+[{
+  "title": "Use of Pcalua For Execution",
+  "id": "0955e4e1-c281-4fb9-9ee1-5ee7b4b754d2",
+  "description": "Detects execition of commands and binaries from the context of The program compatibility assistant (Pcalua.exe). This can be used as a LOLBIN in order to bypass application whitelisting.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND (Image LIKE '%\\\\pcalua.exe' ESCAPE '\\' AND CommandLine LIKE '% -a%' ESCAPE '\\'))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.execution",
+    "attack.t1059"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 2,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"C:\\Windows\\System32\\pcalua.exe\"  -a c:\\Windows\\system32\\calc.exe",
+      "Company": "Microsoft Corporation",
+      "Computer": "IEWIN7",
+      "CurrentDirectory": "C:\\Users\\IEUser\\",
+      "Description": "Program Compatibility Assistant",
+      "EventID": 1,
+      "EventRecordID": 16497,
+      "FileVersion": "6.1.7600.16385 (win7_rtm.090713-1255)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=ABB6319976D9702E0C80978D51C0AEE88A33D201,MD5=D652BA887500816431566B524292ECCB,SHA256=65446AF2997779DB6CDAEFB2ABC2994CA9F2A2477C882BC3A5F828BBFFB83CEE,IMPHASH=256CD8CEDFD4FCB3BC9DB32E27E5923A",
+      "IMPHASH": "256CD8CEDFD4FCB3BC9DB32E27E5923A",
+      "Image": "C:\\Windows\\System32\\pcalua.exe",
+      "IntegrityLevel": "Medium",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "365ABB72-4FB5-5CD8-0000-0020F2350100",
+      "LogonId": "0x135f2",
+      "MD5": "D652BA887500816431566B524292ECCB",
+      "Opcode": 0,
+      "OriginalLogfile": "exec_sysmon_1_lolbin_pcalua.evtx",
+      "ParentCommandLine": "\"C:\\Windows\\system32\\cmd.exe\"",
+      "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+      "ParentProcessGuid": "365ABB72-516B-5CD8-0000-001087E41600",
+      "ParentProcessId": 3788,
+      "ProcessGuid": "365ABB72-517E-5CD8-0000-001024D61700",
+      "ProcessID": 2012,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "ABB6319976D9702E0C80978D51C0AEE88A33D201",
+      "SHA256": "65446AF2997779DB6CDAEFB2ABC2994CA9F2A2477C882BC3A5F828BBFFB83CEE",
+      "SystemTime": "2019-05-12T17:01:50.781015Z",
+      "Task": 1,
+      "TerminalSessionId": 1,
+      "ThreadID": 300,
+      "User": "IEWIN7\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-12 17:01:50.781",
+      "Version": 5
+    }
+  ]
+}]

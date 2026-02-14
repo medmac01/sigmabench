@@ -1,0 +1,95 @@
+[{
+  "title": "Potential Direct Syscall of NtOpenProcess",
+  "id": "3f3f3506-1895-401b-9cc3-e86b16e630d0",
+  "description": "Detects potential calls to NtOpenProcess directly from NTDLL.",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=10 AND (CallTrace LIKE 'UNKNOWN%' ESCAPE '\\' AND (NOT ((TargetImage LIKE '%vcredist\\_x64.exe' ESCAPE '\\' AND SourceImage LIKE '%vcredist\\_x64.exe' ESCAPE '\\') OR ((SourceImage LIKE '%:\\\\Program Files (x86)\\\\%' ESCAPE '\\' OR SourceImage LIKE '%:\\\\Program Files\\\\%' ESCAPE '\\' OR SourceImage LIKE '%:\\\\Windows\\\\System32\\\\%' ESCAPE '\\' OR SourceImage LIKE '%:\\\\Windows\\\\SysWOW64\\\\%' ESCAPE '\\' OR SourceImage LIKE '%:\\\\Windows\\\\WinSxS\\\\%' ESCAPE '\\') AND (TargetImage LIKE '%:\\\\Program Files (x86)\\\\%' ESCAPE '\\' OR TargetImage LIKE '%:\\\\Program Files\\\\%' ESCAPE '\\' OR TargetImage LIKE '%:\\\\Windows\\\\System32\\\\%' ESCAPE '\\' OR TargetImage LIKE '%:\\\\Windows\\\\SysWOW64\\\\%' ESCAPE '\\' OR TargetImage LIKE '%:\\\\Windows\\\\WinSxS\\\\%' ESCAPE '\\')) OR Provider_Name='Microsoft-Windows-Kernel-Audit-API-Calls')) AND (NOT ((TargetImage LIKE '%:\\\\Windows\\\\system32\\\\systeminfo.exe' ESCAPE '\\' AND SourceImage LIKE '%setup64.exe' ESCAPE '\\') OR (SourceImage LIKE '%:\\\\Windows\\\\Explorer.EXE' ESCAPE '\\' AND TargetImage LIKE '%:\\\\Program Files\\\\Cylance\\\\Desktop\\\\CylanceUI.exe' ESCAPE '\\') OR (SourceImage LIKE '%AmazonSSMAgentSetup.exe' ESCAPE '\\' AND TargetImage LIKE '%AmazonSSMAgentSetup.exe' ESCAPE '\\') OR (SourceImage LIKE '%\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code\\\\Code.exe' ESCAPE '\\' AND TargetImage LIKE '%\\\\AppData\\\\Local\\\\Programs\\\\Microsoft VS Code\\\\Code.exe' ESCAPE '\\') OR (TargetImage LIKE '%\\\\AppData\\\\Local\\\\Microsoft\\\\Teams\\\\current\\\\Teams.exe' ESCAPE '\\' AND SourceImage LIKE '%\\\\AppData\\\\Local\\\\Microsoft\\\\Teams\\\\current\\\\Teams.exe' ESCAPE '\\') OR (TargetImage LIKE '%\\\\AppData\\\\Local\\\\Discord\\\\%' ESCAPE '\\' AND TargetImage LIKE '%\\\\Discord.exe' ESCAPE '\\') OR (SourceImage LIKE '%\\\\AppData\\\\Local\\\\yammerdesktop\\\\app-%' ESCAPE '\\' AND SourceImage LIKE '%\\\\Yammer.exe' ESCAPE '\\' AND TargetImage LIKE '%\\\\AppData\\\\Local\\\\yammerdesktop\\\\app-%' ESCAPE '\\' AND TargetImage LIKE '%\\\\Yammer.exe' ESCAPE '\\' AND GrantedAccess='0x1000') OR TargetImage LIKE '%\\\\Evernote\\\\Evernote.exe' ESCAPE '\\' OR (SourceImage LIKE '%:\\\\Program Files\\\\Adobe\\\\Acrobat DC\\\\Acrobat\\\\%' ESCAPE '\\' AND SourceImage LIKE '%\\\\AcroCEF.exe' ESCAPE '\\' AND TargetImage LIKE '%:\\\\Program Files\\\\Adobe\\\\Acrobat DC\\\\Acrobat\\\\%' ESCAPE '\\' AND TargetImage LIKE '%\\\\AcroCEF.exe' ESCAPE '\\')))))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.execution",
+    "attack.t1106"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "CallTrace": "UNKNOWN(000001F3C35A0014)",
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "MSEDGEWIN10",
+      "EventID": 10,
+      "EventRecordID": 303867,
+      "GrantedAccess": "0x1fffff",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_10_Evasion_Suspicious_NtOpenProcess_CallTrace.evtx",
+      "ProcessID": 3248,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "RuleName": "Evasion Suspicious NtOpenProcess Call",
+      "SourceImage": "C:\\Users\\Public\\za3bollo.exe",
+      "SourceProcessGUID": "747F3D96-A591-5EFB-0000-00109FE4CC01",
+      "SourceProcessId": 1972,
+      "SourceThreadId": 7192,
+      "SystemTime": "2020-06-30T20:50:25.546713Z",
+      "TargetImage": "C:\\Windows\\system32\\notepad.exe",
+      "TargetProcessGUID": "747F3D96-59BB-5EFB-0000-0010D81B6400",
+      "TargetProcessId": 2996,
+      "Task": 10,
+      "ThreadID": 4128,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2020-06-30 20:50:25.539",
+      "Version": 3
+    }
+  ]
+},
+{
+  "title": "Uncommon Process Access Rights For Target Image",
+  "id": "a24e5861-c6ca-4fde-a93c-ba9256feddf0",
+  "description": "Detects process access request to uncommon target images with a \"PROCESS_ALL_ACCESS\" access mask.\n",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=10 AND ((TargetImage LIKE '%\\\\calc.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\calculator.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\mspaint.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\notepad.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\ping.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\wordpad.exe' ESCAPE '\\' OR TargetImage LIKE '%\\\\write.exe' ESCAPE '\\') AND GrantedAccess='0x1FFFFF'))"
+  ],
+  "rule_level": "low",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1055.011"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "CallTrace": "UNKNOWN(000001F3C35A0014)",
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "MSEDGEWIN10",
+      "EventID": 10,
+      "EventRecordID": 303867,
+      "GrantedAccess": "0x1fffff",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_10_Evasion_Suspicious_NtOpenProcess_CallTrace.evtx",
+      "ProcessID": 3248,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "RuleName": "Evasion Suspicious NtOpenProcess Call",
+      "SourceImage": "C:\\Users\\Public\\za3bollo.exe",
+      "SourceProcessGUID": "747F3D96-A591-5EFB-0000-00109FE4CC01",
+      "SourceProcessId": 1972,
+      "SourceThreadId": 7192,
+      "SystemTime": "2020-06-30T20:50:25.546713Z",
+      "TargetImage": "C:\\Windows\\system32\\notepad.exe",
+      "TargetProcessGUID": "747F3D96-59BB-5EFB-0000-0010D81B6400",
+      "TargetProcessId": 2996,
+      "Task": 10,
+      "ThreadID": 4128,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2020-06-30 20:50:25.539",
+      "Version": 3
+    }
+  ]
+}]

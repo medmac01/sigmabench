@@ -1,0 +1,42 @@
+[{
+  "title": "PsExec Service File Creation",
+  "id": "259e5a6a-b8d2-4c38-86e2-26c5e651361d",
+  "description": "Detects default PsExec service filename which indicates PsExec service installation and execution",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=11 AND TargetFilename LIKE '%\\\\PSEXESVC.exe' ESCAPE '\\')"
+  ],
+  "rule_level": "low",
+  "tags": [
+    "attack.execution",
+    "attack.t1569.002",
+    "attack.s0029"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "04246w-win10.threebeesco.com",
+      "CreationUtcTime": "2020-08-27 11:40:56.396",
+      "EventID": 11,
+      "EventRecordID": 263572,
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "System",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "remote_file_copy_system_proc_file_write_sysmon_11.evtx",
+      "ProcessGuid": "B5CF5917-721E-5F46-0000-0010EB030000",
+      "ProcessID": 2580,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SystemTime": "2020-08-27T11:40:56.397086Z",
+      "TargetFileName": "C:\\Windows\\PSEXESVC.exe",
+      "Task": 11,
+      "ThreadID": 4144,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2020-08-27 11:40:56.396",
+      "Version": 2
+    }
+  ]
+}]

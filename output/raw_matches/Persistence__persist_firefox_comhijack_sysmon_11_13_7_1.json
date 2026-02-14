@@ -1,0 +1,59 @@
+[{
+  "title": "Suspicious File Characteristics Due to Missing Fields",
+  "id": "9637e8a5-7131-4f7f-bdc7-2b05d8670c43",
+  "description": "Detects Executables in the Downloads folder without FileVersion,Description,Product,Company likely created with py2exe",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND (((Description='?' AND FileVersion='?') OR (Description='?' AND Product='?') OR (Description='?' AND Company='?')) AND Image LIKE '%\\\\Downloads\\\\%' ESCAPE '\\'))"
+  ],
+  "rule_level": "medium",
+  "tags": [
+    "attack.execution",
+    "attack.t1059.006"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 1,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"C:\\Users\\IEUser\\Downloads\\com-hijack.exe\"",
+      "Company": "?",
+      "Computer": "IEWIN7",
+      "CurrentDirectory": "C:\\Users\\IEUser\\Downloads\\",
+      "Description": "?",
+      "EventID": 1,
+      "EventRecordID": 370,
+      "FileVersion": "?",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=6F598827EFE472BC8D98CD173AD49B35B041000C,MD5=4177769EEF9E078971DA6EE31BDAE45F,SHA256=E624863387832C7BBE47D17A346AAB6A76638A2C9B5368FD7308A28775F1478A,IMPHASH=9E0317422070F8D5638E230F22763466",
+      "IMPHASH": "9E0317422070F8D5638E230F22763466",
+      "Image": "C:\\Users\\IEUser\\Downloads\\com-hijack.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "365ABB72-39CC-5CE3-0000-002096C70000",
+      "LogonId": "0xc796",
+      "MD5": "4177769EEF9E078971DA6EE31BDAE45F",
+      "Opcode": 0,
+      "OriginalLogfile": "persist_firefox_comhijack_sysmon_11_13_7_1.evtx",
+      "ParentCommandLine": "C:\\Windows\\Explorer.EXE",
+      "ParentImage": "C:\\Windows\\explorer.exe",
+      "ParentProcessGuid": "365ABB72-39CD-5CE3-0000-0010A0E30000",
+      "ParentProcessId": 1376,
+      "ProcessGuid": "365ABB72-47BB-5CE3-0000-0010BFA83E00",
+      "ProcessID": 3416,
+      "Product": "?",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "6F598827EFE472BC8D98CD173AD49B35B041000C",
+      "SHA256": "E624863387832C7BBE47D17A346AAB6A76638A2C9B5368FD7308A28775F1478A",
+      "SystemTime": "2019-05-21T00:35:07.308923Z",
+      "Task": 1,
+      "TerminalSessionId": 1,
+      "ThreadID": 3496,
+      "User": "IEWIN7\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-05-21 00:35:07.297",
+      "Version": 5
+    }
+  ]
+}]

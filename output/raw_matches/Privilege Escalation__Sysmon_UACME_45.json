@@ -1,0 +1,106 @@
+[{
+  "title": "UAC Bypass Using ChangePK and SLUI",
+  "id": "503d581c-7df0-4bbe-b9be-5840c0ecc1fc",
+  "description": "Detects an UAC bypass that uses changepk.exe and slui.exe (UACMe 61)",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND (EventID=1 AND (Image LIKE '%\\\\changepk.exe' ESCAPE '\\' AND ParentImage LIKE '%\\\\slui.exe' ESCAPE '\\' AND (IntegrityLevel='High' OR IntegrityLevel='System' OR IntegrityLevel='S-1-16-16384' OR IntegrityLevel='S-1-16-12288')))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1548.002"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 4,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "CommandLine": "\"C:\\Windows\\system32\\ChangePk.exe\"",
+      "Company": "Microsoft Corporation",
+      "Computer": "MSEDGEWIN10",
+      "CurrentDirectory": "C:\\Windows\\system32\\",
+      "Description": "Windows Activation",
+      "EventID": 1,
+      "EventRecordID": 5666,
+      "FileVersion": "10.0.17763.1 (WinBuild.160101.0800)",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Hashes": "SHA1=38F033D14EFD15DCBA2387656B3099141B6E8261,MD5=712C2F1E1A8AC13E7DB69B2253294484,SHA256=0D07EC1EB0FF9DCABE175C93E5F354484FF2BA1FF5ACCE13ED3872A31E7FE22A,IMPHASH=EE22AD7AC89E2E7EACBAF51750A69C27",
+      "IMPHASH": "EE22AD7AC89E2E7EACBAF51750A69C27",
+      "Image": "C:\\Windows\\System32\\changepk.exe",
+      "IntegrityLevel": "High",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "LogonGuid": "747F3D96-56A3-5D45-0000-0020B3D31800",
+      "LogonId": "0x18d3b3",
+      "MD5": "712C2F1E1A8AC13E7DB69B2253294484",
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_UACME_45.evtx",
+      "ParentCommandLine": "\"C:\\Windows\\system32\\slui.exe\" 0x03",
+      "ParentImage": "C:\\Windows\\System32\\slui.exe",
+      "ParentProcessGuid": "747F3D96-9DB1-5D46-0000-00100FA2AF03",
+      "ParentProcessId": 7260,
+      "ProcessGuid": "747F3D96-9DB2-5D46-0000-00106DBDAF03",
+      "ProcessID": 2780,
+      "Product": "Microsoft® Windows® Operating System",
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "SHA1": "38F033D14EFD15DCBA2387656B3099141B6E8261",
+      "SHA256": "0D07EC1EB0FF9DCABE175C93E5F354484FF2BA1FF5ACCE13ED3872A31E7FE22A",
+      "SystemTime": "2019-08-04T08:56:18.321764Z",
+      "Task": 1,
+      "TerminalSessionId": 1,
+      "ThreadID": 3676,
+      "User": "MSEDGEWIN10\\IEUser",
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-08-04 08:56:18.158",
+      "Version": 5
+    }
+  ]
+},
+{
+  "title": "Shell Open Registry Keys Manipulation",
+  "id": "152f3630-77c1-4284-bcc0-4cc68ab2f6e7",
+  "description": "Detects the shell open key manipulation (exefile and ms-settings) used for persistence and the pattern of UAC Bypass using fodhelper.exe, computerdefaults.exe, slui.exe via registry keys (e.g. UACMe 33 or 62)",
+  "sigmafile": "",
+  "sigma": [
+    "SELECT * FROM logs WHERE Channel='Microsoft-Windows-Sysmon/Operational' AND ((EventID=12 OR EventID=13 OR EventID=14) AND ((EventType='SetValue' AND TargetObject LIKE '%Classes\\\\ms-settings\\\\shell\\\\open\\\\command\\\\SymbolicLinkValue' ESCAPE '\\' AND Details LIKE '%\\\\Software\\\\Classes\\\\{%' ESCAPE '\\') OR TargetObject LIKE '%Classes\\\\ms-settings\\\\shell\\\\open\\\\command\\\\DelegateExecute' ESCAPE '\\' OR ((EventType='SetValue' AND (TargetObject LIKE '%Classes\\\\ms-settings\\\\shell\\\\open\\\\command\\\\(Default)' ESCAPE '\\' OR TargetObject LIKE '%Classes\\\\exefile\\\\shell\\\\open\\\\command\\\\(Default)' ESCAPE '\\')) AND (NOT Details='(Empty)'))))"
+  ],
+  "rule_level": "high",
+  "tags": [
+    "attack.persistence",
+    "attack.defense-evasion",
+    "attack.privilege-escalation",
+    "attack.t1548.002",
+    "attack.t1546.001"
+  ],
+  "count": 1,
+  "matches": [
+    {
+      "row_id": 2,
+      "Channel": "Microsoft-Windows-Sysmon/Operational",
+      "Computer": "MSEDGEWIN10",
+      "Details": "c:\\Windows\\SysWOW64\\notepad.exe",
+      "EventID": 13,
+      "EventRecordID": 5664,
+      "EventType": "SetValue",
+      "Guid": "5770385F-C22A-43E0-BF4C-06F5698FFBD9",
+      "Image": "C:\\Windows\\explorer.exe",
+      "Keywords": "0x8000000000000000",
+      "Level": 4,
+      "Opcode": 0,
+      "OriginalLogfile": "Sysmon_UACME_45.evtx",
+      "ProcessGuid": "747F3D96-9DB0-5D46-0000-00108243AF03",
+      "ProcessID": 2780,
+      "Provider_Name": "Microsoft-Windows-Sysmon",
+      "RuleName": "PrivEsc - UAC bypass UACME-45",
+      "SystemTime": "2019-08-04T08:56:16.650581Z",
+      "TargetObject": "HKU\\S-1-5-21-3461203602-4096304019-2269080069-1000_Classes\\exefile\\shell\\open\\command\\(Default)",
+      "Task": 13,
+      "ThreadID": 3676,
+      "UserID": "S-1-5-18",
+      "UtcTime": "2019-08-04 08:56:16.635",
+      "Version": 2
+    }
+  ]
+}]
